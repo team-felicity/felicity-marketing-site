@@ -14,6 +14,8 @@
   },
   "dependencies": {
     "@heroicons/react": "^1.0.3",
+    "@radix-ui/react-accordion": "^0.0.18",
+    "@radix-ui/react-dialog": "^0.0.20",
     "@stitches/react": "^0.2.4",
     "framer-motion": "^4.1.17",
     "next": "11.0.1",

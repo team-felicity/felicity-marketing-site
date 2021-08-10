@@ -7,6 +7,6 @@ export default styled('span', {
   },
   defaultVariants: {
     size: '3',
-    color: 'primary1',
+    color: 'black1',
   },
 })

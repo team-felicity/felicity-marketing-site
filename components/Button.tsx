@@ -1,5 +1,4 @@
 import { ComponentProps, forwardRef } from 'react'
-import { InternalCSS } from '@stitches/react'
 import { motion } from 'framer-motion'
 
 import type * as Polymorphic from '@radix-ui/react-polymorphic'
@@ -57,7 +56,12 @@ const StyledButton = styled(motion.button, {
   display: 'grid',
   placeItems: 'center',
 
-  '&:disabled': disabledOrLoadingStyles,
+  '&:disabled': {
+    cursor: 'not-allowed',
+    $$borderColor: '#eaeaea',
+    color: '#999',
+  },
+
   '&:active, &:focus': {
     $$borderWidth: '2px',
   },
@@ -80,8 +84,10 @@ const StyledButton = styled(motion.button, {
         $$borderWidth: '2px',
         color: '$primary1',
 
-        '&:hover': {
-          background: '$primary1',
+        '&:not(&:disabled):hover': {
+          $$borderColor: '$colors$primary1',
+
+          background: '$$borderColor',
           color: '$white1',
         },
       },
@@ -89,7 +95,7 @@ const StyledButton = styled(motion.button, {
         $$opacity: 2,
         border: 'none',
         linearGradient: `to bottom right, $primary1, $primary4`,
-        color: '$white1',
+        color: '$white1 !important',
         fontWeight: '$semibold',
         boxShadow: 'none',
       },

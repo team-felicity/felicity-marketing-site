@@ -304,7 +304,7 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
 
-"@radix-ui/react-polymorphic@0.0.13":
+"@radix-ui/react-polymorphic@0.0.13", "@radix-ui/react-polymorphic@^0.0.13":
   version "0.0.13"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-polymorphic/-/react-polymorphic-0.0.13.tgz#d010d48281626191c9513f11db5d82b37662418a"
   integrity sha512-0sGqBp+v9/yrsMhPfAejxcem2MwAFgaSAxF3Sieaklm6ZVYM/hTZxxWI5NVOLGV+482GwW0wIqwpVUzREjmh+w==

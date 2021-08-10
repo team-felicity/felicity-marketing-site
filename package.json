@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "format": "prettier --write",
-    "lint": "next lint",
+    "lint": "next lint .",
     "lint:eslint": "eslint --fix --max-warnings=0",
     "type-check": "tsc --pretty --noEmit",
     "prepare": "husky install"

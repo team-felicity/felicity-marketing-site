@@ -1,8 +1,5 @@
 import { createCss, InternalCSS } from '@stitches/react'
 
-const defaultFont =
-  "'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';"
-
 export const {
   css,
   styled,
@@ -91,7 +88,8 @@ export const {
       max: '999',
     },
     fonts: {
-      default: defaultFont,
+      default:
+        "'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';",
     },
     fontWeights: {
       light: 300,
@@ -172,7 +170,7 @@ export const globalStyles = global({
   },
 
   body: {
-    fontFamily: defaultFont,
+    fontFamily: '$default',
   },
 
   'body, html': {

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 
 import type * as Polymorphic from '@radix-ui/react-polymorphic'
 
+import { radiiMap, styled, theme, keyframes } from '@config/stitches'
 // undecided default animation whileTap/onClick
 // const ScaleDownButton = forwardRef<
 //   HTMLButtonElement,
@@ -29,7 +30,12 @@ export const TouchableOpacity = forwardRef<
   />
 ))
 
-TouchableOpacity.displayName = 'TouchableOpacity'
+const pulse = keyframes({
+  '0%, 100%': {
+    opacity: 1,
+  },
+  '50%': { opacity: 0.5 },
+})
 
 const StyledButton = styled(motion.button, {
   background: 'none',
@@ -64,7 +70,10 @@ const StyledButton = styled(motion.button, {
       large: { height: '$7', fontSize: '$3', lineHeight: '1.5rem' },
     },
     loading: {
-      true: disabledOrLoadingStyles,
+      true: {
+        cursor: 'not-allowed',
+        animation: `${pulse} 2s cubic-bezier(0.4, 0, 0.6, 1) infinite`,
+      },
     },
     variant: {
       secondary: {

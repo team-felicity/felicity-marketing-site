@@ -1,4 +1,4 @@
-import { createCss, InternalCSS } from '@stitches/react'
+import { createCss, CSSPropertiesToTokenScale } from '@stitches/react'
 
 export const {
   css,
@@ -98,6 +98,12 @@ export const {
       semibold: 600,
       bold: 700,
     },
+    borderStyles: {},
+    borderWidths: {},
+    letterSpacings: {},
+    lineHeights: {},
+    shadows: {},
+    transitions: {},
   },
 
   utils: {
@@ -184,27 +190,24 @@ export const globalStyles = global({
   },
 })
 
-type ThemeKeys = keyof typeof theme
-type CSSProps = keyof InternalCSS
-type TKeys<T extends keyof typeof config.theme> = Exclude<
+export type CSSProps = keyof CSSPropertiesToTokenScale
+type ThemeKeyFromCSSProp<T extends CSSProps> = CSSPropertiesToTokenScale[T]
+type TokenKeys<T extends keyof typeof config.theme> = Exclude<
   keyof typeof config.theme[T],
   symbol
 >
-type KeysToPropMap<
-  Keys extends string | number,
-  Prop extends CSSProps
-> = Record<Keys, Record<Prop, `$${Keys}`>>
 
-// maps to { 1: { fontSizes: '$1' } }
-export function mapThemeToCSSProp<T extends ThemeKeys, U extends CSSProps>(
-  themeKey: T,
-  // auto-complete does not work probably due to performance issues
-  cssProp: U
-): KeysToPropMap<TKeys<T>, U> {
+export type KeysToPropMap<Prop extends CSSProps> = Record<
+  TokenKeys<CSSPropertiesToTokenScale[Prop]>,
+  Record<Prop, `$${TokenKeys<ThemeKeyFromCSSProp<Prop>>}`>
+>
+
+export function mapThemeToCSSProp(cssProp: CSSProps) {
+  const themeKey = config.themeMap[cssProp]
   return Object.fromEntries(
     Object.entries(theme[themeKey]).map(([key]) => [
       key,
       { [cssProp]: `$${key}` },
     ])
-  ) as KeysToPropMap<TKeys<T>, U>
+  ) as KeysToPropMap<typeof cssProp>
 }

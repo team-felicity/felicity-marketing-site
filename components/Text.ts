@@ -1,9 +1,24 @@
-import { styled, mapThemeToCSSProp } from '@config/stitches'
+import {
+  styled,
+  mapThemeToCSSProp,
+  KeysToPropMap,
+  CSSProps,
+} from '@config/stitches'
+
+const fontSizeMapKey: CSSProps = 'fontSize'
+const colorsMapKey: CSSProps = 'color'
+
+const fontSizeMap = mapThemeToCSSProp(fontSizeMapKey) as KeysToPropMap<
+  typeof fontSizeMapKey
+>
+const colorsMap = mapThemeToCSSProp(colorsMapKey) as KeysToPropMap<
+  typeof colorsMapKey
+>
 
 export default styled('span', {
   variants: {
-    size: mapThemeToCSSProp('fontSizes', 'fontSize'),
-    color: mapThemeToCSSProp('colors', 'color'),
+    size: fontSizeMap,
+    color: colorsMap,
   },
   defaultVariants: {
     size: '3',

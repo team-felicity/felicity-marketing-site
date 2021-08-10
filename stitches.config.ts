@@ -184,30 +184,27 @@ export const globalStyles = global({
   },
 })
 
-export type CSSProps = keyof InternalCSS
-export type FontSizeKeys = keyof typeof config['theme']['fontSizes']
-export type ColorKeys = keyof typeof config['theme']['colors']
-export type RadiiKeys = keyof typeof config['theme']['radii']
-export type KeysToPropMap<
+type ThemeKeys = keyof typeof theme
+type CSSProps = keyof InternalCSS
+type TKeys<T extends keyof typeof config.theme> = Exclude<
+  keyof typeof config.theme[T],
+  symbol
+>
+type KeysToPropMap<
   Keys extends string | number,
   Prop extends CSSProps
 > = Record<Keys, Record<Prop, `$${Keys}`>>
 
 // maps to { 1: { fontSizes: '$1' } }
-export const fontSizesMap = Object.fromEntries(
-  Object.entries(config.theme.fontSizes).map(([key]) => {
-    return [key, { fontSize: `$${key}` }]
-  })
-) as KeysToPropMap<FontSizeKeys, 'fontSize'>
-
-export const colorsMap = Object.fromEntries(
-  Object.entries(config.theme.colors).map(([key]) => {
-    return [key, { color: `$${key}` }]
-  })
-) as KeysToPropMap<ColorKeys, 'color'>
-
-export const radiiMap = Object.fromEntries(
-  Object.entries(config.theme.radii).map(([key]) => {
-    return [key, { borderRadius: `$${key}` }]
-  })
-) as KeysToPropMap<RadiiKeys, 'borderRadius'>
+export function mapThemeToCSSProp<T extends ThemeKeys, U extends CSSProps>(
+  themeKey: T,
+  // auto-complete does not work probably due to performance issues
+  cssProp: U
+): KeysToPropMap<TKeys<T>, U> {
+  return Object.fromEntries(
+    Object.entries(theme[themeKey]).map(([key]) => [
+      key,
+      { [cssProp]: `$${key}` },
+    ])
+  ) as KeysToPropMap<TKeys<T>, U>
+}

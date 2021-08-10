@@ -3,7 +3,8 @@ import { motion } from 'framer-motion'
 
 import type * as Polymorphic from '@radix-ui/react-polymorphic'
 
-import { radiiMap, styled, theme, keyframes } from '@config/stitches'
+import { styled, theme, keyframes, mapThemeToCSSProp } from '@config/stitches'
+
 // undecided default animation whileTap/onClick
 // const ScaleDownButton = forwardRef<
 //   HTMLButtonElement,
@@ -67,7 +68,7 @@ const StyledButton = styled(motion.button, {
   },
 
   variants: {
-    radius: radiiMap,
+    radius: mapThemeToCSSProp('radii', 'borderRadius'),
     size: {
       small: { height: '$5' },
       medium: { height: '$6' },

@@ -127,6 +127,8 @@ const Button = forwardRef(({ disabled, loading, ...rest }, ref) => {
       {...rest}
       disabled={isDisabled}
       loading={loading}
+      // make sure to only use motion elements for the `as` prop
+      // causes build error if component is casted to non-motion element
       whileTap={!isDisabled ? rest.whileTap : undefined}
       whileDrag={!isDisabled ? rest.whileDrag : undefined}
       whileHover={!isDisabled ? rest.whileHover : undefined}

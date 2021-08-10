@@ -180,7 +180,7 @@ export const globalStyles = global({
 
   a: {
     textDecoration: 'none',
-    width: 'fit-content',
+    cursor: 'pointer',
   },
 })
 

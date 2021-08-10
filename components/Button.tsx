@@ -80,6 +80,11 @@ const StyledButton = styled(motion.button, {
         animation: `${pulse} 2s cubic-bezier(0.4, 0, 0.6, 1) infinite`,
       },
     },
+    fitContent: {
+      true: {
+        width: 'fit-content',
+      },
+    },
     variant: {
       secondary: {
         $$borderWidth: '2px',

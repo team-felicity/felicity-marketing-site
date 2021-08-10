@@ -2,7 +2,7 @@ import { ComponentProps, forwardRef } from 'react'
 import { InternalCSS } from '@stitches/react'
 import { motion } from 'framer-motion'
 
-import { radiiMap, styled, theme } from '@config/stitches'
+import type * as Polymorphic from '@radix-ui/react-polymorphic'
 
 // undecided default animation whileTap/onClick
 // const ScaleDownButton = forwardRef<
@@ -16,8 +16,6 @@ import { radiiMap, styled, theme } from '@config/stitches'
 //     transition={{ duration: 0.1 }}
 //   />
 // ))
-
-// ScaleDownButton.displayName = 'ScaleDownButton'
 
 export const TouchableOpacity = forwardRef<
   HTMLButtonElement,
@@ -33,14 +31,7 @@ export const TouchableOpacity = forwardRef<
 
 TouchableOpacity.displayName = 'TouchableOpacity'
 
-const disabledOrLoadingStyles: InternalCSS = {
-  cursor: 'not-allowed',
-  background: '#fafafa',
-  borderColor: '#eaeaea',
-  color: '#999',
-}
-
-export default styled(motion.button, {
+const StyledButton = styled(motion.button, {
   background: 'none',
   border: '0px solid $black1',
   padding: '0 $3',
@@ -107,3 +98,28 @@ export default styled(motion.button, {
     size: 'medium',
   },
 })
+
+type PolymorphicButton = Polymorphic.ForwardRefComponent<
+  typeof motion.button,
+  Polymorphic.OwnProps<typeof StyledButton>
+>
+
+const Button = forwardRef(({ disabled, loading, ...rest }, ref) => {
+  const isDisabled = (disabled || loading) as boolean | undefined
+  return (
+    <StyledButton
+      ref={ref}
+      {...rest}
+      disabled={isDisabled}
+      loading={loading}
+      whileTap={!isDisabled ? rest.whileTap : undefined}
+      whileDrag={!isDisabled ? rest.whileDrag : undefined}
+      whileHover={!isDisabled ? rest.whileHover : undefined}
+      whileFocus={!isDisabled ? rest.whileFocus : undefined}
+    >
+      {loading ? 'Loading...' : rest.children}
+    </StyledButton>
+  )
+}) as PolymorphicButton
+
+export default Button

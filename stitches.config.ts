@@ -14,6 +14,7 @@ export const stitches = createCss({
       gray1: '#9C9595',
       gray2: '#888888',
       gray3: '#c4c4c4',
+      gray4: '#c7c7c7',
 
       //whites
       white1: '#ffffff',
@@ -155,9 +156,9 @@ export const stitches = createCss({
   },
 
   media: {
-    bp1: '(min-width: 520px)',
-    bp2: '(min-width: 900px)',
-    bp3: '(min-width: 1200px)',
+    phone: '(min-width: 520px)',
+    tablet: '(min-width: 900px)',
+    desktop: '(min-width: 1200px)',
   },
 })
 

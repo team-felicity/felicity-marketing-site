@@ -5,5 +5,6 @@ export { default as View } from './View'
 export { default as Flex } from './Flex'
 export { default as Grid } from './Grid'
 export { default as Container } from './Container'
+export { default as TextField } from './TextField'
 
 export * as Sheet from './Sheet'

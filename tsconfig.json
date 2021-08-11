@@ -1,6 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES2017",
+    "baseUrl": "./",
+    "paths": {
+      "@config/stitches": ["stitches.config.ts"],
+      "@components": ["components/"],
+      "@components/*": ["components/*"],
+    },
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,

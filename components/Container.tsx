@@ -8,21 +8,13 @@ export default styled(motion.div, {
 
   variants: {
     size: {
-      '1': {
-        maxWidth: '430px',
-      },
-      '2': {
-        maxWidth: '715px',
-      },
-      '3': {
-        maxWidth: '1145px',
-      },
-      '4': {
-        maxWidth: 'none',
-      },
+      small: { maxWidth: '430px' },
+      medium: { maxWidth: '715px' },
+      large: { maxWidth: '1145px' },
+      xl: { maxWidth: 'none' },
     },
   },
   defaultVariants: {
-    size: '4',
+    size: 'xl',
   },
 })

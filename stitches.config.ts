@@ -1,15 +1,6 @@
 import { createCss, CSSPropertiesToTokenScale } from '@stitches/react'
 
-export const {
-  css,
-  styled,
-  config,
-  getCssString,
-  global,
-  keyframes,
-  theme,
-  utils,
-} = createCss({
+export const stitches = createCss({
   theme: {
     colors: {
       // primary colors
@@ -22,6 +13,7 @@ export const {
       // grays
       gray1: '#9C9595',
       gray2: '#888888',
+      gray3: '#c4c4c4',
 
       //whites
       white1: '#ffffff',
@@ -31,6 +23,8 @@ export const {
 
       //utility colors
       error: '#ee0000',
+      shadowLight: 'hsl(206 22% 7% / 35%)',
+      shadowDark: 'hsl(206 22% 7% / 20%)',
     },
     space: {
       1: '5px',
@@ -166,6 +160,17 @@ export const {
     bp3: '(min-width: 1200px)',
   },
 })
+
+export const {
+  css,
+  styled,
+  config,
+  getCssString,
+  global,
+  keyframes,
+  theme,
+  utils,
+} = stitches
 
 export const globalStyles = global({
   '@import':

@@ -25,7 +25,7 @@ import {
 // ))
 
 const radiusMapKey = 'borderRadius'
-const raddiMap = mapThemeToCSSProp(radiusMapKey) as KeysToPropMap<
+const radiiMap = mapThemeToCSSProp(radiusMapKey) as KeysToPropMap<
   typeof radiusMapKey
 >
 
@@ -79,7 +79,7 @@ const StyledButton = styled(motion.button, {
   },
 
   variants: {
-    radius: raddiMap,
+    radius: radiiMap,
     size: {
       small: { height: '$5' },
       medium: { height: '$6' },

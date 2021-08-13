@@ -208,6 +208,20 @@ export type KeysToPropMap<Prop extends CSSProps> = Record<
   Record<Prop, `$${TokenKeys<ThemeKeyFromCSSProp<Prop>>}`>
 >
 
+/**
+ *
+ * @param cssProp CamelCased CSS Property (color, background, fontSize)
+ * @returns a record of mapped design tokens to css property with the design token's value as its value
+ * @example
+ * mapThemeToCSSProp('color')
+ * // generates
+ * {
+ *    primary1: { color: '$primary1' },
+ *    primary2: { color: '$primary2' },
+ *    primary3: { color: '$primary3' },
+ *    ...
+ * }
+ */
 export function mapThemeToCSSProp(cssProp: CSSProps) {
   const themeKey = config.themeMap[cssProp]
   return Object.fromEntries(

@@ -63,6 +63,7 @@ const StyledButton = styled(motion.button, {
   transition: 'all .15s ease',
   userSelect: 'none',
   cursor: 'pointer',
+  WebkitTapHighlightColor: 'transparent',
 
   // used when morphing to Link/a
   display: 'grid',

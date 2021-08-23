@@ -15,7 +15,7 @@ const gapXMap = mapThemeToCSSProp(gapXMapKey) as KeysToPropMap<
   typeof gapXMapKey
 >
 
-const gapYMapKey: CSSProps = 'columnGap'
+const gapYMapKey: CSSProps = 'rowGap'
 const gapYMap = mapThemeToCSSProp(gapYMapKey) as KeysToPropMap<
   typeof gapYMapKey
 >

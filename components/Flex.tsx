@@ -11,6 +11,16 @@ import type { FlexDirectionProperty } from '@stitches/react/types/css-types'
 const gapMapKey: CSSProps = 'gap'
 const gapMap = mapThemeToCSSProp(gapMapKey) as KeysToPropMap<typeof gapMapKey>
 
+const gapXMapKey: CSSProps = 'columnGap'
+const gapXMap = mapThemeToCSSProp(gapXMapKey) as KeysToPropMap<
+  typeof gapXMapKey
+>
+
+const gapYMapKey: CSSProps = 'rowGap'
+const gapYMap = mapThemeToCSSProp(gapYMapKey) as KeysToPropMap<
+  typeof gapYMapKey
+>
+
 export default styled(motion.div, {
   display: 'flex',
   flexDirection: '$$fd' as FlexDirectionProperty,
@@ -19,6 +29,8 @@ export default styled(motion.div, {
 
   variants: {
     gap: gapMap,
+    gapX: gapXMap,
+    gapY: gapYMap,
     direction: {
       row: { $$fd: 'row' },
       column: { $$fd: 'column' },

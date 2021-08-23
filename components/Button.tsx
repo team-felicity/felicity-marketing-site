@@ -111,11 +111,18 @@ const StyledButton = styled(motion.button, {
       },
       primary: {
         $$opacity: 2,
+
         border: 'none',
-        linearGradient: `to bottom right, $primary1, $primary4`,
+        linearGradient: 'to right, $primary1 0%, $primary4 50%',
         color: '$white1 !important',
         fontWeight: '$semibold',
         boxShadow: 'none',
+        backgroundSize: '200% auto',
+        transition: 'all 0.2s ease',
+
+        '&:hover': {
+          backgroundPosition: 'center',
+        },
       },
       ghost: {
         boxShadow: 'none',

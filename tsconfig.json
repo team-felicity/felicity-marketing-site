@@ -6,6 +6,7 @@
       "@config/stitches": ["stitches.config.ts"],
       "@components": ["components/"],
       "@components/*": ["components/*"],
+      "@assets/*": ["public/assets/*"],
     },
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

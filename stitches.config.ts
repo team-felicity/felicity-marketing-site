@@ -162,6 +162,7 @@ export const stitches = createCss({
     phone: '(min-width: 520px)',
     tablet: '(min-width: 900px)',
     desktop: '(min-width: 1200px)',
+    fhd: '(min-width: 1920px)',
   },
 })
 

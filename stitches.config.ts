@@ -15,6 +15,7 @@ export const stitches = createCss({
       gray2: '#888888',
       gray3: '#c4c4c4',
       gray4: '#c7c7c7',
+      gray5: '#F5F5F6',
 
       //whites
       white1: '#ffffff',

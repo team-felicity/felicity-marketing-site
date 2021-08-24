@@ -1,96 +1,93 @@
 import Image from 'next/image'
-import { Text, View, Grid, Flex, Link } from '@components'
+import { Text, View, Grid, Flex, Link, Container } from '@components'
+import { styled } from '@config/stitches'
+import Facebook from 'public/facebook.svg'
+import Instagram from 'public/instagram.svg'
+import Twitter from 'public/twitter.svg'
+import Youtube from 'public/youtube.svg'
+import Email from 'public/email.svg'
+import Phone from 'public/phone-call.svg'
+import Logo from 'public/logo.svg'
 
 export default function Footer() {
   return (
     <View
       css={{
-        width: '100%',
-        backgroundColor: '#F5F5F6',
-        position: 'relative',
-        bottom: 0,
-        paddingTop: 50,
-        paddingBottom: 30,
+        backgroundColor: '$gray5',
+        paddingTop: '$6',
+        paddingBottom: '$6',
       }}
     >
-      <Grid
+      <Container
+        as={Grid}
         flow={{
           '@phone': 'row',
           '@desktop': 'column',
         }}
+        gap="3"
       >
-        <Flex direction="row" justify="center">
-          <Image src="/logo.svg" alt="logo" height={50} width={50} />
+        <FlexRow justify="center" gap="3">
+          <Image src={Logo} alt="logo" />
           <Text
             color="primary5"
             size="8"
             weight="bold"
             css={{
-              '@desktop': { paddingTop: 35, paddingLeft: 20 },
+              paddingTop: '$2',
+              '@desktop': { paddingTop: '$6' },
             }}
           >
             FELICITY
           </Text>
-        </Flex>
+        </FlexRow>
 
-        <Grid flow="row" justify="center">
-          <Text
-            css={{
-              paddingBottom: 20,
-              '@phone': { textAlign: 'center' },
-              '@desktop': { textAlign: 'start' },
-            }}
-          >
-            Reach Out to us!
-          </Text>
-          <Flex direction="row">
-            <Image src="/phone-call.svg" alt="phone" height={30} width={30} />
-            <Text css={{ paddingLeft: 20 }}>+63 927 304 3415</Text>
-          </Flex>
-          <Flex direction="row" css={{ paddingTop: 10 }}>
-            <Image src="/email.svg" alt="email" height={30} width={30} />
-            <Text css={{ paddingLeft: 20 }}>Felicitycorp123@gmail.com</Text>
-          </Flex>
+        <Grid flow="row" justify="center" gap="2">
+          <FooterColumnTitle>Reach out to us!</FooterColumnTitle>
+          <FlexRow gap="3">
+            <Image src={Phone} alt="phone" />
+            <Text>+63 927 304 3415</Text>
+          </FlexRow>
+
+          <FlexRow gap="2">
+            <Image src={Email} alt="email" />
+            <Text>Felicitycorp123@gmail.com</Text>
+          </FlexRow>
         </Grid>
 
-        <Flex direction="column" align="center">
-          <Flex direction="column">
-            <Text
-              css={{
-                paddingBottom: 20,
-                '@phone': { textAlign: 'center' },
-                '@desktop': { textAlign: 'start' },
-              }}
-            >
-              Follow us on:
-            </Text>
-            <Flex direction="row" justify="center">
+        <FlexCol align="center">
+          <FlexCol>
+            <FooterColumnTitle>Follow us on:</FooterColumnTitle>
+            <FlexRow justify="center">
               <Link href="http://www.facebook.com">
-                <Image src="/facebook.svg" alt="fb" height={50} width={50} />
+                <Image src={Facebook} alt="fb" />
               </Link>
-              <Link href="http://www.facebook.comt">
-                <Image src="/twitter.svg" alt="twttr" height={50} width={50} />
+              <Link href="http://www.twitter.com">
+                <Image src={Twitter} alt="twttr" />
               </Link>
-              <Link href="http://www.facebook.com">
-                <Image
-                  src="/instagram.svg"
-                  alt="insta"
-                  height={50}
-                  width={50}
-                />
+              <Link href="http://www.instagram.com">
+                <Image src={Instagram} alt="insta" />
               </Link>
-              <Link href="http://www.facebook.com">
-                <Image
-                  src="/youtube.svg"
-                  alt="youtube"
-                  height={50}
-                  width={50}
-                />
+              <Link href="http://www.youtube.com">
+                <Image src={Youtube} alt="youtube" />
               </Link>
-            </Flex>
-          </Flex>
-        </Flex>
-      </Grid>
+            </FlexRow>
+          </FlexCol>
+        </FlexCol>
+      </Container>
     </View>
   )
 }
+
+const FooterColumnTitle = styled(Text, {
+  paddingBottom: 20,
+  textAlign: 'center',
+  '@desktop': { textAlign: 'start' },
+})
+
+const FlexRow = styled(Flex, {
+  flexDirection: 'row',
+})
+
+const FlexCol = styled(Flex, {
+  flexDirection: 'column',
+})

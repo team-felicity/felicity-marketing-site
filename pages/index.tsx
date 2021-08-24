@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { motion } from 'framer-motion'
 
 import { styled } from '@config/stitches'
-import { Text, Button, Link, Container } from '@components'
+import { Text, Button, Link, Container, Footer } from '@components'
 import { TouchableOpacity } from '@components/Button'
 
 const Box = styled('div', {})
@@ -85,6 +85,7 @@ export default function LandingPage() {
           Get Started
         </Button>
       </Container>
+      <Footer />
     </>
   )
 }

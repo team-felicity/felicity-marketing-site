@@ -1,6 +1,8 @@
+import { motion } from 'framer-motion'
+
 import { styled } from '@config/stitches'
 
-import { Container, Grid, View, Flex } from '@components'
+import { Container, Grid, View, Flex, Button } from '@components'
 import { textStyles } from '@components/Text'
 import HeroCarousel from './HeroCarousel'
 
@@ -51,6 +53,25 @@ function HeroContent() {
         Stripe’s software and APIs to accept payments, send payouts, and manage
         their businesses online.
       </CompanyDescription>
+      <Button
+        as={motion.a}
+        href="#"
+        variant="primary"
+        radius="pill"
+        size="large"
+        css={{
+          marginTop: '$4',
+          fontSize: '$4',
+          width: 'fit-content',
+          padding: '1rem 3rem',
+          height: 'unset',
+          marginBottom: '$5',
+
+          '@desktop': { marginBottom: 'unset' },
+        }}
+      >
+        Download App
+      </Button>
     </Flex>
   )
 }

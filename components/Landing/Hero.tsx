@@ -46,6 +46,11 @@ function HeroContent() {
         Discover <EmphasizedSloganText>Fresh and Healthy </EmphasizedSloganText>
         Food
       </SloganText>
+      <CompanyDescription>
+        Millions of companies of all sizes—from startups to Fortune 500s—use
+        Stripe’s software and APIs to accept payments, send payouts, and manage
+        their businesses online.
+      </CompanyDescription>
     </Flex>
   )
 }
@@ -67,5 +72,16 @@ const EmphasizedSloganText = styled('span', {
 
   defaultVariants: {
     color: 'primary3',
+  },
+})
+
+const CompanyDescription = styled('p', {
+  ...textStyles,
+
+  opacity: 0.85,
+
+  defaultVariants: {
+    color: 'primary5',
+    size: '4',
   },
 })

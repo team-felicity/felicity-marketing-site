@@ -1,4 +1,7 @@
+import { styled } from '@config/stitches'
+
 import { Container, Grid, View, Flex } from '@components'
+import { textStyles } from '@components/Text'
 import HeroCarousel from './HeroCarousel'
 
 export default function Hero() {
@@ -33,7 +36,36 @@ function HeroContent() {
       gapY="2"
       css={{ gridArea: 'content' }}
     >
-      content
+      <SloganText
+        size={{
+          '@initial': '11',
+          '@tablet': '12',
+          '@desktop': '13',
+        }}
+      >
+        Discover <EmphasizedSloganText>Fresh and Healthy </EmphasizedSloganText>
+        Food
+      </SloganText>
     </Flex>
   )
 }
+
+const SloganText = styled('h1', {
+  ...textStyles,
+
+  defaultVariants: {
+    color: 'primary5',
+    weight: 'bold',
+  },
+})
+
+const EmphasizedSloganText = styled('span', {
+  ...textStyles,
+
+  fontSize: 'inherit',
+  fontWeight: 'inherit',
+
+  defaultVariants: {
+    color: 'primary3',
+  },
+})

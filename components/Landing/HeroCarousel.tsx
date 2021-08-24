@@ -4,8 +4,10 @@ import NextImage from 'next/image'
 import { styled } from '@config/stitches'
 
 import Img1 from '@assets/carousel-image1.jpg'
+import DesktopVector from '@assets/carousel-vector-desktop.png'
+import PhoneVector from '@assets/carousel-vector-phone.png'
 
-import { View, Flex } from '@components'
+import { View, Flex, Container } from '@components'
 
 const carouselImages = [Img1, Img1, Img1, Img1]
 const getTranslateXValue = (carouselIdx: number) =>
@@ -35,20 +37,20 @@ export default function HeroCarousel() {
   }, [handleNextImage])
 
   return (
-    <View
+    <Container
+      size="large"
       css={{
         overflow: 'hidden',
         gridArea: 'carousel',
+        padding: 0,
+        mx: 'unset',
 
-        // hardcoded container padding
-        width: 'calc(100vw - 50px)',
-
-        '@desktop': {
+        '@tablet': {
           position: 'absolute',
           right: 0,
           top: '50%',
           transform: 'translateY(-50%)',
-          width: '45vw',
+          width: '50vw',
         },
       }}
     >
@@ -66,7 +68,7 @@ export default function HeroCarousel() {
           css={{
             width: `${100 * carouselImages.length}%`,
             margin: 0,
-            padding: 0,
+            padding: '1px 0',
             transform: `translateX(${getTranslateXValue(carouselIndex)}%)`,
             transition: 'all 300ms ease',
           }}
@@ -75,6 +77,9 @@ export default function HeroCarousel() {
             <Image
               key={index}
               src={item}
+              width={2000}
+              height={1900}
+              objectFit="cover"
               alt="Image of a mango"
               css={{
                 filter: index % 2 ? 'brightness(0.2)' : 'unset',
@@ -84,15 +89,43 @@ export default function HeroCarousel() {
             />
           ))}
         </Flex>
+        <Wavez />
       </View>
-    </View>
+    </Container>
+  )
+}
+
+function Wavez() {
+  return (
+    <Flex
+      align="end"
+      css={{
+        position: 'absolute',
+        left: 0,
+        bottom: 0,
+        width: '101%', // removes 1 pixel of carousel that shows idk why
+        height: '100%',
+        pointerEvents: 'none',
+
+        '@tablet': {
+          bottom: 'unset',
+          top: 0,
+        },
+      }}
+    >
+      {typeof window === 'object' && window.innerWidth > 900 ? (
+        <Image src={DesktopVector} alt="vector" layout="fill" />
+      ) : (
+        <Image src={PhoneVector} alt="vector" layout="fill" />
+      )}
+    </Flex>
   )
 }
 
 const CarouselDotContainer = styled(Flex, {
   position: 'absolute',
-  bottom: '1rem',
-  left: '1rem',
+  bottom: '22%',
+  left: '14%',
   zIndex: '$1',
 })
 const CarouselDot = styled('div', {

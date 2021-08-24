@@ -14,7 +14,7 @@ export default function Hero() {
         css={{
           gridTemplateAreas: '"carousel" "content"',
 
-          '@desktop': {
+          '@tablet': {
             height: '100%',
             gridTemplateColumns: '480px 1fr',
             gridTemplateAreas: '"content carousel"',
@@ -67,7 +67,7 @@ function HeroContent() {
           height: 'unset',
           marginBottom: '$5',
 
-          '@desktop': { marginBottom: 'unset' },
+          '@tablet': { marginBottom: 'unset' },
         }}
       >
         Download App

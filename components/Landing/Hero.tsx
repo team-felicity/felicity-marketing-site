@@ -10,9 +10,12 @@ export default function Hero() {
   return (
     <View as="section" css={{ flexGrow: 1, position: 'relative' }}>
       <Container
-        size="large"
+        size="large2"
         css={{
           gridTemplateAreas: '"carousel" "content"',
+
+          // sa hero nlng ang padding since kaylangan way padding sa carousel
+          padding: 0,
 
           '@tablet': {
             height: '100%',
@@ -36,7 +39,7 @@ function HeroContent() {
       direction="column"
       justify="center"
       gapY="2"
-      css={{ gridArea: 'content' }}
+      css={{ gridArea: 'content', px: '$5' }}
     >
       <SloganText
         size={{

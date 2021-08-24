@@ -10,7 +10,13 @@ export default styled(motion.div, {
     size: {
       small: { maxWidth: '430px' },
       medium: { maxWidth: '715px' },
-      large: { maxWidth: '1145px' },
+      large: {
+        maxWidth: '1145px',
+
+        '@fhd': {
+          maxWidth: '1440px',
+        },
+      },
       xl: { maxWidth: 'none' },
     },
   },

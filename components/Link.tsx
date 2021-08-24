@@ -15,7 +15,7 @@ type PolymorphicLink = Polymorphic.ForwardRefComponent<
 
 const Link = forwardRef(({ href, ...rest }, ref) => {
   return (
-    <NextLink href={href as LinkProps['href']}>
+    <NextLink href={href as LinkProps['href']} passHref>
       <StyledLink ref={ref} {...rest} />
     </NextLink>
   )

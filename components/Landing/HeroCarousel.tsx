@@ -7,7 +7,7 @@ import Img1 from '@assets/carousel-image1.jpg'
 import DesktopVector from '@assets/carousel-vector-desktop.png'
 import PhoneVector from '@assets/carousel-vector-phone.png'
 
-import { View, Flex, Container } from '@components'
+import { View, Flex } from '@components'
 
 const carouselImages = [Img1, Img1, Img1, Img1]
 const getTranslateXValue = (carouselIdx: number) =>
@@ -37,20 +37,17 @@ export default function HeroCarousel() {
   }, [handleNextImage])
 
   return (
-    <Container
-      size="large"
+    <View
       css={{
         overflow: 'hidden',
         gridArea: 'carousel',
-        padding: 0,
-        mx: 'unset',
 
         '@tablet': {
           position: 'absolute',
           right: 0,
           top: '50%',
           transform: 'translateY(-50%)',
-          width: '50vw',
+          width: '55vw',
         },
       }}
     >
@@ -77,8 +74,8 @@ export default function HeroCarousel() {
             <Image
               key={index}
               src={item}
-              width={2000}
-              height={1900}
+              width={1100}
+              height={900}
               objectFit="cover"
               alt="Image of a mango"
               css={{
@@ -91,7 +88,7 @@ export default function HeroCarousel() {
         </Flex>
         <Wavez />
       </View>
-    </Container>
+    </View>
   )
 }
 

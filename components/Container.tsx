@@ -11,6 +11,7 @@ export default styled(motion.div, {
       small: { maxWidth: '430px' },
       medium: { maxWidth: '715px' },
       large: { maxWidth: '1145px' },
+      large2: { maxWidth: '1440px' },
       xl: { maxWidth: 'none' },
     },
   },

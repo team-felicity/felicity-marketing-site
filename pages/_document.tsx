@@ -3,7 +3,7 @@ import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
 import { getCssString } from '@config/stitches'
 
 export default class Document extends NextDocument {
-  return() {
+  render() {
     return (
       <Html lang="en">
         <Head>

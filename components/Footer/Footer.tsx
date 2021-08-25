@@ -8,6 +8,7 @@ import Youtube from 'public/youtube.svg'
 import Email from 'public/email.svg'
 import Phone from 'public/phone-call.svg'
 import Logo from 'public/logo.svg'
+import { textStyles } from '@components/Text'
 
 export default function Footer() {
   return (
@@ -16,6 +17,7 @@ export default function Footer() {
         backgroundColor: '$gray5',
         paddingTop: '$6',
         paddingBottom: '$6',
+        marginTop: '$9',
       }}
     >
       <Container
@@ -28,17 +30,14 @@ export default function Footer() {
       >
         <FlexRow justify="center" gap="3">
           <Image src={Logo} alt="logo" />
-          <Text
-            color="primary5"
-            size="8"
-            weight="bold"
+          <CompanyName
             css={{
               paddingTop: '$2',
               '@desktop': { paddingTop: '$6' },
             }}
           >
             FELICITY
-          </Text>
+          </CompanyName>
         </FlexRow>
 
         <Grid flow="row" justify="center" gap="2">
@@ -90,4 +89,14 @@ const FlexRow = styled(Flex, {
 
 const FlexCol = styled(Flex, {
   flexDirection: 'column',
+})
+
+const CompanyName = styled('h1', {
+  ...textStyles,
+
+  defaultVariants: {
+    color: 'primary5',
+    size: '8',
+    weight: 'bold',
+  },
 })

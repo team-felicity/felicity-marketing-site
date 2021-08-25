@@ -26,6 +26,7 @@ export const stitches = createCss({
       error: '#ee0000',
       shadowLight: 'hsl(206 22% 7% / 35%)',
       shadowDark: 'hsl(206 22% 7% / 20%)',
+      inherit: 'inherit',
     },
     space: {
       1: '5px',

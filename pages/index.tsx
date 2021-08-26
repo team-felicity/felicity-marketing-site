@@ -16,8 +16,8 @@ export default function LandingPage() {
           header
         </View> */}
         <Hero />
+        <Footer />
       </Flex>
-      <Footer />
     </>
   )
 }

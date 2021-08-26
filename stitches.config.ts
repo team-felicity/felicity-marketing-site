@@ -9,6 +9,7 @@ export const stitches = createCss({
       primary3: '#35A3A5',
       primary4: '#2B657D',
       primary5: '#455A64',
+      primary6: '#61C295',
 
       // grays
       gray1: '#9C9595',

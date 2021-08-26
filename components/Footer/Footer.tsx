@@ -13,6 +13,7 @@ import { textStyles } from '@components/Text'
 export default function Footer() {
   return (
     <View
+      as="footer"
       css={{
         backgroundColor: '$gray5',
         paddingTop: '$6',
@@ -30,14 +31,7 @@ export default function Footer() {
       >
         <FlexRow justify="center" gap="3">
           <Image src={Logo} alt="logo" />
-          <CompanyName
-            css={{
-              paddingTop: '$2',
-              '@desktop': { paddingTop: '$6' },
-            }}
-          >
-            FELICITY
-          </CompanyName>
+          <CompanyName>FELICITY</CompanyName>
         </FlexRow>
 
         <Grid flow="row" justify="center" gap="2">
@@ -57,16 +51,16 @@ export default function Footer() {
           <FlexCol>
             <FooterColumnTitle>Follow us on:</FooterColumnTitle>
             <FlexRow justify="center">
-              <Link href="http://www.facebook.com">
+              <Link href="http://www.facebook.com" target="_blank">
                 <Image src={Facebook} alt="fb" />
               </Link>
-              <Link href="http://www.twitter.com">
+              <Link href="http://www.twitter.com" target="_blank">
                 <Image src={Twitter} alt="twttr" />
               </Link>
-              <Link href="http://www.instagram.com">
+              <Link href="http://www.instagram.com" target="_blank">
                 <Image src={Instagram} alt="insta" />
               </Link>
-              <Link href="http://www.youtube.com">
+              <Link href="http://www.youtube.com" target="_blank">
                 <Image src={Youtube} alt="youtube" />
               </Link>
             </FlexRow>
@@ -93,7 +87,8 @@ const FlexCol = styled(Flex, {
 
 const CompanyName = styled('h1', {
   ...textStyles,
-
+  paddingTop: '$2',
+  '@desktop': { paddingTop: '$6' },
   defaultVariants: {
     color: 'primary5',
     size: '8',

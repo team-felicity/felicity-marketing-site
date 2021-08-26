@@ -9,31 +9,28 @@ import { textStyles } from '@components/Text'
 
 export default function DownloadSection() {
   return (
-    <Container size="large" css={{ display: 'grid', gapy: '1rem', mb: '$5' }}>
+    <Container size="large" css={{ display: 'grid', gapy: '1rem', mt: '$8' }}>
       <FlexOuter>
-        <Container size="medium">
-          <FlexCol>
-            <Description>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Id
-              donec ultrices tincidunt arcu non sodales neque. Orci phasellus
-              egestas tellus rutrum tellus pellentesque eu tincidunt tortor rci
-              phasellus egestas tellus rutrum tellus pellentesque eu tincidunt
-              tortor
-            </Description>
-            <FlexRow>
-              <Link href="http://facebok.com" target="_blank">
-                <Image src={Appstore} alt="appstore" />
-              </Link>
-              <Link href="http://facebok.com" target="_blank">
-                <Image src={Playstore} alt="playstore" />
-              </Link>
-            </FlexRow>
+        <Container size="medium" as={FlexCol}>
+          <Description>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Id donec
+            ultrices tincidunt arcu non sodales neque. Orci phasellus egestas
+            tellus rutrum tellus pellentesque eu tincidunt tortor rci phasellus
+            egestas tellus rutrum tellus pellentesque eu tincidunt tortor
+          </Description>
+          <FlexRow>
+            <Link href="http://facebok.com" target="_blank">
+              <Image src={Appstore} alt="appstore" />
+            </Link>
+            <Link href="http://facebok.com" target="_blank">
+              <Image src={Playstore} alt="playstore" />
+            </Link>
+          </FlexRow>
 
-            <BigText>Download Our App!</BigText>
-          </FlexCol>
+          <BigText>Download Our App!</BigText>
         </Container>
-        <View css={{ position: 'relative', top: '-5%' }}>
+        <View css={{ position: 'relative', top: '-5%', alignSelf: 'center' }}>
           <Behind>
             <Image src={Foodbowl} alt="foodbowl" height="200" width="200" />
           </Behind>
@@ -84,7 +81,7 @@ const Description = styled('p', {
 
 const Behind = styled(View, {
   position: 'absolute',
-  right: '10%',
-  top: '45%',
-  transform: 'translateY(-50%)',
+  right: '-25%',
+  top: '50%',
+  transform: 'translateY(-40%)',
 })

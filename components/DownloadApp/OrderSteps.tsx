@@ -33,13 +33,14 @@ const data = [
 export default function OrderSteps() {
   return (
     <View
+      as="section"
       css={{
         backgroundColor: '$white1',
         marginTop: '$9',
       }}
     >
       <Container
-        size="large"
+        size="large2"
         as={Grid}
         css={{
           gapy: '3rem',

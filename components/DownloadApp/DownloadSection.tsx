@@ -10,9 +10,11 @@ import { textStyles } from '@components/Text'
 export default function DownloadSection() {
   return (
     <Container
-      size="large"
+      as="section"
+      size="large2"
       css={{
         display: 'flex',
+        justifyContent: 'space-between',
         gap: '1rem',
         mt: '$8',
         flexDirection: 'column-reverse',
@@ -20,7 +22,7 @@ export default function DownloadSection() {
         '@desktop': { flexDirection: 'row' },
       }}
     >
-      <Container size="medium" as={FlexCol}>
+      <Container size="medium" as={FlexCol} css={{ m: 0, p: 0 }}>
         <Description>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Id donec
@@ -39,7 +41,7 @@ export default function DownloadSection() {
 
         <BigText>Download Our App!</BigText>
       </Container>
-      <View css={{ position: 'relative', top: '-5%' }}>
+      <View css={{ position: 'relative', transform: 'translateX(-40%)' }}>
         <Behind>
           <Image src={Foodbowl} alt="foodbowl" height="200" width="200" />
         </Behind>

@@ -7,5 +7,6 @@ export { default as Grid } from './Grid'
 export { default as Container } from './Container'
 export { default as TextField } from './TextField'
 export { default as Footer } from './Footer/Footer'
+export { default as ContactUs } from './ContactUs/ContactUs'
 
 export * as Sheet from './Sheet'

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import { Flex, Footer } from '@components'
+import { Flex, Footer, ContactUs } from '@components'
 import Hero from '@components/Landing/Hero'
 
 export default function LandingPage() {
@@ -16,6 +16,7 @@ export default function LandingPage() {
           header
         </View> */}
         <Hero />
+        <ContactUs />
         <Footer />
       </Flex>
     </>

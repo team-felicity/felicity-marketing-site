@@ -17,45 +17,22 @@ const navLinks = [
     title: 'Home',
   },
   {
-    href: '#',
+    href: '/about',
     title: 'About Us',
   },
   {
-    href: '#',
+    href: '/blog',
     title: 'Our Blog',
   },
   {
-    href: '#',
+    href: '/faq',
     title: 'FAQs',
   },
   {
-    href: '#',
+    href: '/shop',
     title: 'Shop',
   },
 ]
-
-// const navLinks = [
-//   {
-//     href: '/',
-//     title: 'Home',
-//   },
-//   {
-//     href: '/about',
-//     title: 'About Us',
-//   },
-//   {
-//     href: '/blog',
-//     title: 'Our Blog',
-//   },
-//   {
-//     href: '/faq',
-//     title: 'FAQs',
-//   },
-//   {
-//     href: '/shop',
-//     title: 'Shop',
-//   },
-// ]
 
 const socialMediaLinks = [
   {

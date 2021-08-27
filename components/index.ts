@@ -7,5 +7,7 @@ export { default as Grid } from './Grid'
 export { default as Container } from './Container'
 export { default as TextField } from './TextField'
 export { default as ContactUs } from './ContactUs/ContactUs'
+export { default as DownloadSection } from './DownloadApp/DownloadSection'
+export { default as OrderSteps } from './DownloadApp/OrderSteps'
 
 export * as Sheet from './Sheet'

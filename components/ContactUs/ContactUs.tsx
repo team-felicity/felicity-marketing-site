@@ -62,74 +62,81 @@ const validationSchema = yup.object().shape({
     .required('Email is required'),
   message: yup.string().required('Message is required'),
 })
+const initialValues = { fname: '', lname: '', email: '', message: '' }
 
 const ContactForm = () => {
   return (
     <Formik
-      initialValues={{ fname: '', lname: '', email: '', message: '' }}
+      initialValues={initialValues}
       validationSchema={validationSchema}
+      initialErrors={{}} // default is adding error messages to all fields but it feels like the form is shouting at you
       onSubmit={() => {
         alert('congrats')
       }}
     >
-      {({ errors, touched }) => (
-        <Form>
-          <FormGrid>
-            <ContactUsContainer size="small">
-              <ContactUsHeader>Contact Us</ContactUsHeader>
-              <Text>
-                We want to provide you a great experience which is why we want
-                to hear from you. Your feedback helps us cater the events you
-                love and services you expect.
-              </Text>
-              <Flex
-                direction={{ '@mobile': 'column', '@desktop': 'row' }}
-                gap="4"
-              >
-                <Field
-                  as={TextField}
-                  placeholder="First Name"
-                  variant="flushed"
-                  name="fname"
-                  error={touched.fname && errors.fname ? errors.fname : ''}
-                />
-                <Field
-                  as={TextField}
-                  placeholder="Last Name"
-                  variant="flushed"
-                  name="lname"
-                  error={touched.lname && errors.lname ? errors.lname : ''}
-                />
-              </Flex>
+      {({ errors, touched }) => {
+        const getErrorMessage = (name: keyof typeof initialValues) =>
+          touched[name] && errors[name] ? errors[name] : ''
 
-              <Field
-                as={TextField}
-                placeholder="Email"
-                variant="flushed"
-                name="email"
-                error={touched.email && errors.email ? errors.email : ''}
-              />
-              <Field
-                as={TextField}
-                placeholder="Message"
-                variant="flushed"
-                name="message"
-                error={touched.message && errors.message ? errors.message : ''}
-              />
-            </ContactUsContainer>
-            <Button
-              type="submit"
-              size="large"
-              variant="primary"
-              as={TouchableOpacity}
-              radius="10"
-              css={{ rt: 0, mt: '$2' }}
-            >
-              Submit
-            </Button>
-          </FormGrid>
-        </Form>
-      )}
+        return (
+          <Form>
+            <FormGrid>
+              <ContactUsContainer size="small">
+                <ContactUsHeader>Contact Us</ContactUsHeader>
+                <Text>
+                  We want to provide you a great experience which is why we want
+                  to hear from you. Your feedback helps us cater the events you
+                  love and services you expect.
+                </Text>
+                <Flex
+                  direction={{ '@mobile': 'column', '@desktop': 'row' }}
+                  gap="4"
+                >
+                  <Field
+                    as={TextField}
+                    placeholder="First Name"
+                    variant="flushed"
+                    name="fname"
+                    error={getErrorMessage('fname')}
+                  />
+                  <Field
+                    as={TextField}
+                    placeholder="Last Name"
+                    variant="flushed"
+                    name="lname"
+                    error={getErrorMessage('lname')}
+                  />
+                </Flex>
+
+                <Field
+                  as={TextField}
+                  placeholder="Email"
+                  variant="flushed"
+                  name="email"
+                  error={getErrorMessage('email')}
+                />
+                <Field
+                  as={TextField}
+                  placeholder="Message"
+                  variant="flushed"
+                  name="message"
+                  error={getErrorMessage('message')}
+                />
+              </ContactUsContainer>
+              <Button
+                type="submit"
+                size="large"
+                variant="primary"
+                as={TouchableOpacity}
+                radius="10"
+                css={{ rt: 0, mt: '$2' }}
+              >
+                Submit
+              </Button>
+            </FormGrid>
+          </Form>
+        )
+      }}
     </Formik>
   )
 }

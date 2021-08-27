@@ -23,11 +23,6 @@ export default function HeroCarousel() {
     if (carouselIndex + 1 > carouselImages.length) setCarouselIndex(1)
     else setCarouselIndex((prev) => prev + 1)
   }, [carouselIndex])
-  // const handlePrevImage = () => {
-  //   // cycle to last image on lowerbound
-  //   if (carouselIndex - 1 === 0) setCarouselIndex(carouselImages.length)
-  //   else setCarouselIndex((prev) => prev - 1)
-  // }
 
   useEffect(() => {
     const id = setInterval(() => {

@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Flex, View, Grid, Container } from '@components'
+import { Flex, View, Grid, Container, ScrollReveal } from '@components'
 import { styled } from '@config/stitches'
 import { textStyles } from '@components/Text'
 import Shop from 'public/shop.svg'
@@ -50,14 +50,18 @@ export default function OrderSteps() {
           },
         }}
       >
-        <Header>Order in 3 easy steps!</Header>
+        <ScrollReveal>
+          <Header>Order in 3 easy steps!</Header>
+        </ScrollReveal>
         <OuterFlex>
           {data.map((data) => (
-            <FlexCol key={data.id}>
-              <Image src={data.imageProps} alt={data.columnTitle} />
-              <ColumnTitle>{data.columnTitle}</ColumnTitle>
-              <Subtitles>{data.subtitle}</Subtitles>
-            </FlexCol>
+            <ScrollReveal key={data.id}>
+              <FlexCol>
+                <Image src={data.imageProps} alt={data.columnTitle} />
+                <ColumnTitle>{data.columnTitle}</ColumnTitle>
+                <Subtitles>{data.subtitle}</Subtitles>
+              </FlexCol>
+            </ScrollReveal>
           ))}
         </OuterFlex>
       </Container>

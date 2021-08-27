@@ -88,31 +88,33 @@ const Button = forwardRef(({ error = '', ...rest }, ref) => {
     'data-error': !!error,
   }
 
-  if (!error) return <StyledInput {...props} />
-
-  props.css.borderColor = '$error'
-  props.css.caretColor = '$error'
-  props.css.color = '$error'
-  props.css['&::placeholder'] = { color: `${theme.colors.error.value}66` }
+  if (error) {
+    props.css.borderColor = '$error'
+    props.css.caretColor = '$error'
+    props.css.color = '$error'
+    props.css['&::placeholder'] = { color: `${theme.colors.error.value}66` }
+  }
 
   return (
     <Flex direction="column" gap="2">
       <StyledInput {...props} />
-      <Grid
-        align="start"
-        gap="1"
-        css={{ gridTemplateColumns: '$sizes$4 auto' }}
-      >
-        <StyledErrorIcon />
-        <Flex gap="1">
-          <Text color="error" size="2" weight="semibold" as="b">
-            Error:
-          </Text>
-          <Text color="error" size="2" css={{ wordBreak: 'break-word' }}>
-            {error}
-          </Text>
-        </Flex>
-      </Grid>
+      {error ? (
+        <Grid
+          align="start"
+          gap="1"
+          css={{ gridTemplateColumns: '$sizes$4 auto' }}
+        >
+          <StyledErrorIcon />
+          <Flex gap="1">
+            <Text color="error" size="2" weight="semibold" as="b">
+              Error:
+            </Text>
+            <Text color="error" size="2" css={{ wordBreak: 'break-word' }}>
+              {error}
+            </Text>
+          </Flex>
+        </Grid>
+      ) : null}
     </Flex>
   )
 }) as PolymorphicInput

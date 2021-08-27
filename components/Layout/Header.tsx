@@ -65,7 +65,7 @@ export default function Header() {
       }}
     >
       <HeaderContainer size="large2" as={Flex} justify="between">
-        <Link href="/">
+        <Link href="/" css={{ WebkitTapHighlightColor: 'transparent' }}>
           <LogoWithCompanyName />
         </Link>
         <Navigation />
@@ -187,6 +187,8 @@ const HeaderContainer = styled(Container, {
 })
 
 const NavLink = styled(Link, {
+  WebkitTapHighlightColor: 'transparent',
+
   variants: {
     active: {
       true: { color: '$primary1' },

@@ -64,7 +64,7 @@ export default function Header() {
         },
       }}
     >
-      <HeaderContainer size="large2" as={Flex} justify="between">
+      <HeaderContainer as={Flex} justify="between">
         <Link href="/" css={{ WebkitTapHighlightColor: 'transparent' }}>
           <LogoWithCompanyName />
         </Link>

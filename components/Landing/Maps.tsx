@@ -2,7 +2,7 @@ import { Container } from '@components'
 
 export default function MapSection() {
   return (
-    <Container as="section" size="large2" css={{ width: '100%' }}>
+    <Container as="section" size="large2" css={{ width: '100%', pt: '$9' }}>
       <CPIMapIFrame />
     </Container>
   )
@@ -12,7 +12,7 @@ function CPIMapIFrame() {
   return (
     <iframe
       width="100%"
-      height="450"
+      height="300"
       style={{ border: 0, borderRadius: 40 }}
       loading="lazy"
       allowFullScreen

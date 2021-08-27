@@ -36,7 +36,7 @@ export default function OrderSteps() {
       as="section"
       css={{
         backgroundColor: '$white1',
-        marginTop: '$9',
+        py: '$9',
       }}
     >
       <Container

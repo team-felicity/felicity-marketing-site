@@ -9,51 +9,51 @@ import { textStyles } from '@components/Text'
 
 export default function DownloadSection() {
   return (
-    <Container
+    <View
       as="section"
-      size="large2"
-      css={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        gap: '1rem',
-        mt: '$8',
-        flexDirection: 'column-reverse',
-        alignItems: 'center',
-        '@desktop': { flexDirection: 'row' },
-      }}
+      css={{ '@initial': { py: '$6' }, '@desktop': { py: '$9' } }}
     >
-      <Container size="medium" as={FlexCol} css={{ m: 0, p: 0 }}>
-        <Description>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Id donec
-          ultrices tincidunt arcu non sodales neque. Orci phasellus egestas
-          tellus rutrum tellus pellentesque eu tincidunt tortor rci phasellus
-          egestas tellus rutrum tellus pellentesque eu tincidunt tortor
-        </Description>
-        <FlexRow>
-          <Link href="http://facebok.com" target="_blank">
-            <Image src={Appstore} alt="appstore" />
-          </Link>
-          <Link href="http://facebok.com" target="_blank">
-            <Image src={Playstore} alt="playstore" />
-          </Link>
-        </FlexRow>
-
-        <BigText>Download Our App!</BigText>
-      </Container>
-      <View
-        css={{
-          position: 'relative',
-          transform: 'translateX(-10%)',
-          '@desktop': { transform: 'translateX(-40%)' },
-        }}
+      <Container
+        as={Flex}
+        size="large2"
+        justify="between"
+        gap="3"
+        direction={{ '@initial': 'columnReverse', '@desktop': 'row' }}
+        align="center"
       >
-        <Behind>
-          <Image src={Foodbowl} alt="foodbowl" height="200" width="200" />
-        </Behind>
-        <Image src={Phone} alt="phone" />
-      </View>
-    </Container>
+        <Container size="medium" as={FlexCol} css={{ m: 0, p: 0 }}>
+          <Description>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Id donec
+            ultrices tincidunt arcu non sodales neque. Orci phasellus egestas
+            tellus rutrum tellus pellentesque eu tincidunt tortor rci phasellus
+            egestas tellus rutrum tellus pellentesque eu tincidunt tortor
+          </Description>
+          <FlexRow>
+            <Link href="http://facebok.com" target="_blank">
+              <Image src={Appstore} alt="appstore" />
+            </Link>
+            <Link href="http://facebok.com" target="_blank">
+              <Image src={Playstore} alt="playstore" />
+            </Link>
+          </FlexRow>
+
+          <BigText>Download Our App!</BigText>
+        </Container>
+        <View
+          css={{
+            position: 'relative',
+            transform: 'translateX(-10%)',
+            '@desktop': { transform: 'translateX(-40%)' },
+          }}
+        >
+          <Behind>
+            <Image src={Foodbowl} alt="foodbowl" height="200" width="200" />
+          </Behind>
+          <Image src={Phone} alt="phone" />
+        </View>
+      </Container>
+    </View>
   )
 }
 

@@ -16,11 +16,12 @@ import {
 } from '@components'
 import { TouchableOpacity } from '@components/Button'
 import { textStyles } from '@components/Text'
-import { Formik } from 'formik'
+import { Formik, Field, Form } from 'formik'
+import * as yup from 'yup'
 
 export default function ContactUs() {
   return (
-    <Container size="large">
+    <Container size="large2">
       <OuterView as={Grid} flow={{ '@phone': 'row', '@desktop': 'column' }}>
         <ContactForm />
         <ContactsCotainer as={FlexCol}>
@@ -52,36 +53,27 @@ export default function ContactUs() {
   )
 }
 
+const validationSchema = yup.object().shape({
+  fname: yup.string().required('First Name is required'),
+  lname: yup.string().required('Last Name is required'),
+  email: yup
+    .string()
+    .email('Must be a valid email')
+    .required('Email is required'),
+  message: yup.string().required('Message is required'),
+})
+
 const ContactForm = () => {
   return (
     <Formik
       initialValues={{ fname: '', lname: '', email: '', message: '' }}
-      validate={(values) => {
-        const errors = { fname: '', lname: '', email: '', message: '' }
-        if (!values.email) {
-          errors.email = 'Required'
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        ) {
-          errors.email = 'Invalid email address'
-        }
-        if (!values.fname) {
-          errors.fname = 'Required'
-        }
-        if (!values.lname) {
-          errors.lname = 'Required'
-        }
-        if (!values.message) {
-          errors.message = 'Required'
-        }
-        return errors
-      }}
+      validationSchema={validationSchema}
       onSubmit={() => {
         alert('congrats')
       }}
     >
-      {({ values, errors, handleChange, handleSubmit }) => (
-        <form onSubmit={handleSubmit}>
+      {({ errors, touched }) => (
+        <Form>
           <FormGrid>
             <ContactUsContainer size="small">
               <ContactUsHeader>Contact Us</ContactUsHeader>
@@ -94,39 +86,35 @@ const ContactForm = () => {
                 direction={{ '@mobile': 'column', '@desktop': 'row' }}
                 gap="4"
               >
-                <TextField
+                <Field
+                  as={TextField}
                   placeholder="First Name"
                   variant="flushed"
                   name="fname"
-                  onChange={handleChange('fname')}
-                  value={values.fname}
-                  error={errors.fname}
+                  error={touched.fname && errors.fname ? errors.fname : ''}
                 />
-                <TextField
+                <Field
+                  as={TextField}
                   placeholder="Last Name"
                   variant="flushed"
                   name="lname"
-                  onChange={handleChange('lname')}
-                  value={values.lname}
-                  error={errors.lname}
+                  error={touched.lname && errors.lname ? errors.lname : ''}
                 />
               </Flex>
 
-              <TextField
+              <Field
+                as={TextField}
                 placeholder="Email"
                 variant="flushed"
                 name="email"
-                onChange={handleChange('email')}
-                value={values.email}
-                error={errors.email}
+                error={touched.email && errors.email ? errors.email : ''}
               />
-              <TextField
+              <Field
+                as={TextField}
                 placeholder="Message"
                 variant="flushed"
                 name="message"
-                onChange={handleChange('message')}
-                value={values.message}
-                error={errors.message}
+                error={touched.message && errors.message ? errors.message : ''}
               />
             </ContactUsContainer>
             <Button
@@ -140,7 +128,7 @@ const ContactForm = () => {
               Submit
             </Button>
           </FormGrid>
-        </form>
+        </Form>
       )}
     </Formik>
   )

@@ -78,6 +78,7 @@ export default function HeroCarousel() {
               height={900}
               objectFit="cover"
               alt="Image of a mango"
+              placeholder="blur"
               css={{
                 filter: index % 2 ? 'brightness(0.2)' : 'unset',
                 pointerEvents: 'none',
@@ -111,9 +112,19 @@ function Wavez() {
       }}
     >
       {typeof window === 'object' && window.innerWidth > 900 ? (
-        <Image src={DesktopVector} alt="vector" layout="fill" />
+        <Image
+          src={DesktopVector}
+          alt="vector"
+          layout="fill"
+          placeholder="blur"
+        />
       ) : (
-        <Image src={PhoneVector} alt="vector" layout="fill" />
+        <Image
+          src={PhoneVector}
+          alt="vector"
+          layout="fill"
+          placeholder="blur"
+        />
       )}
     </Flex>
   )

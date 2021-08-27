@@ -1,4 +1,5 @@
 import { createCss, CSSPropertiesToTokenScale } from '@stitches/react'
+import { DESKTOP_SIZE, FHD_SIZE, PHONE_SIZE, TABLET_SIZE } from 'utils'
 
 export const stitches = createCss({
   theme: {
@@ -162,10 +163,10 @@ export const stitches = createCss({
   },
 
   media: {
-    phone: '(min-width: 520px)',
-    tablet: '(min-width: 900px)',
-    desktop: '(min-width: 1200px)',
-    fhd: '(min-width: 1920px)',
+    phone: `(min-width: ${PHONE_SIZE}px)`,
+    tablet: `(min-width: ${TABLET_SIZE}px)`,
+    desktop: `(min-width: ${DESKTOP_SIZE}px)`,
+    fhd: `(min-width: ${FHD_SIZE}px)`,
   },
 })
 

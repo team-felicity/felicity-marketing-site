@@ -23,17 +23,14 @@ const fontWeightsMap = mapThemeToCSSProp(fontWeightsMapKey) as KeysToPropMap<
 
 export const textStyles = {
   margin: 0,
-
   variants: {
     size: fontSizeMap,
     color: colorsMap,
     weight: fontWeightsMap,
   },
 }
-
 export default styled(motion.span, {
   ...textStyles,
-
   defaultVariants: {
     size: '3',
     color: 'black1',

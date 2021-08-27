@@ -104,7 +104,7 @@ export const stitches = createCss({
     borderWidths: {},
     letterSpacings: {},
     lineHeights: {},
-    shadows: { headerShadow: '0 0 $1 rgba(0, 0, 0, 0.13)' },
+    shadows: { headerShadow: '0 0 5px rgba(0, 0, 0, 0.13)' },
     transitions: {},
   },
 

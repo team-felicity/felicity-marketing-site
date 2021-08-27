@@ -26,27 +26,34 @@ export default function ContactUs() {
         <ContactForm />
         <ContactsCotainer as={FlexCol}>
           <ContactsHeader>Office Address</ContactsHeader>
-          <GridCol>
-            <LocationMarkerIcon width="1.5rem" color="white" />
-            <GridRow>
-              <ContactsText>Holy Family Road, Nivel Hil</ContactsText>
-              <ContactsText>Cebu City, 6000 Cebu</ContactsText>
-            </GridRow>
-          </GridCol>
+          <GridRow>
+            <LocationMarkerIcon color="white" />
+            <ContactsText>
+              Holy Family Road, Nivel Hill Cebu City, 6000 Cebu
+            </ContactsText>
+          </GridRow>
 
           <ContactsHeader>Contacts</ContactsHeader>
-          <FlexRow>
-            <DeviceMobileIcon width="1.5rem" color="white" />
+          <GridRow>
+            <DeviceMobileIcon color="white" />
             <ContactsText>(+63) 927 304 3415</ContactsText>
-          </FlexRow>
-          <FlexRow>
-            <PhoneIcon width="1.5rem" color="white" />
+          </GridRow>
+          <GridRow>
+            <PhoneIcon color="white" />
             <ContactsText>(032) 414 1784</ContactsText>
-          </FlexRow>
-          <FlexRow>
-            <MailIcon width="1.5rem" color="white" />
-            <ContactsText>Felicitycorp123@gmaisl.com</ContactsText>
-          </FlexRow>
+          </GridRow>
+          <GridRow>
+            <MailIcon color="white" />
+            <ContactsText
+              css={{
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              felicityincorporate@gmail.com
+            </ContactsText>
+          </GridRow>
         </ContactsCotainer>
       </OuterView>
     </Container>
@@ -89,7 +96,7 @@ const ContactForm = () => {
                   love and services you expect.
                 </Text>
                 <Flex
-                  direction={{ '@mobile': 'column', '@desktop': 'row' }}
+                  direction={{ '@initial': 'column', '@desktop': 'row' }}
                   gap="4"
                 >
                   <Field
@@ -179,10 +186,9 @@ const ContactUsHeader = styled('h1', {
 const ContactsCotainer = styled(View, {
   backgroundColor: '$primary6',
   borderRadius: 50,
-  paddingLeft: '$4',
-  paddingTop: '$7',
-  paddingBottom: '$7',
+  padding: '$6',
   margin: 0,
+
   '@desktop': {
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
@@ -206,31 +212,16 @@ const ContactsText = styled('p', {
   },
 })
 
-const FlexRow = styled(Flex, {
-  defaultVariants: {
-    direction: 'row',
-    gap: '4',
-  },
+const GridRow = styled(View, {
+  display: 'grid',
+  gridAutoFlow: 'column',
+  gap: '$2',
+  gridTemplateColumns: '1.5rem 1fr',
 })
 
 const FlexCol = styled(Flex, {
   defaultVariants: {
     direction: 'column',
     gap: '7',
-  },
-})
-
-const GridRow = styled(Grid, {
-  defaultVariants: {
-    flow: 'row',
-    gap: '3',
-  },
-})
-
-const GridCol = styled(Grid, {
-  defaultVariants: {
-    flow: 'column',
-    justify: 'start',
-    gap: '4',
   },
 })

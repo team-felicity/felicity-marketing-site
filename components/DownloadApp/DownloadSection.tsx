@@ -41,7 +41,13 @@ export default function DownloadSection() {
 
         <BigText>Download Our App!</BigText>
       </Container>
-      <View css={{ position: 'relative', transform: 'translateX(-40%)' }}>
+      <View
+        css={{
+          position: 'relative',
+          transform: 'translateX(-10%)',
+          '@desktop': { transform: 'translateX(-40%)' },
+        }}
+      >
         <Behind>
           <Image src={Foodbowl} alt="foodbowl" height="200" width="200" />
         </Behind>

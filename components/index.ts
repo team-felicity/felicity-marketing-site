@@ -9,5 +9,6 @@ export { default as TextField } from './TextField'
 export { default as ContactUs } from './ContactUs/ContactUs'
 export { default as DownloadSection } from './DownloadApp/DownloadSection'
 export { default as OrderSteps } from './DownloadApp/OrderSteps'
+export { default as ScrollReveal } from './ScrollReveal'
 
 export * as Sheet from './Sheet'

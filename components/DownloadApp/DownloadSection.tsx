@@ -3,7 +3,7 @@ import Appstore from 'public/appstore.png'
 import Playstore from 'public/googleplay.png'
 import Phone from 'public/phone.svg'
 import Foodbowl from 'public/foodbowl.png'
-import { Link, View, Flex, Container } from '@components'
+import { Link, View, Flex, Container, ScrollReveal } from '@components'
 import { styled } from '@config/stitches'
 import { textStyles } from '@components/Text'
 
@@ -22,36 +22,44 @@ export default function DownloadSection() {
         align="center"
       >
         <Container size="medium" as={FlexCol} css={{ m: 0, p: 0 }}>
-          <Description>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Id donec
-            ultrices tincidunt arcu non sodales neque. Orci phasellus egestas
-            tellus rutrum tellus pellentesque eu tincidunt tortor rci phasellus
-            egestas tellus rutrum tellus pellentesque eu tincidunt tortor
-          </Description>
-          <FlexRow>
-            <Link href="http://facebok.com" target="_blank">
-              <Image src={Appstore} alt="appstore" />
-            </Link>
-            <Link href="http://facebok.com" target="_blank">
-              <Image src={Playstore} alt="playstore" />
-            </Link>
-          </FlexRow>
-
-          <BigText>Download Our App!</BigText>
+          <ScrollReveal>
+            <Description>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Id
+              donec ultrices tincidunt arcu non sodales neque. Orci phasellus
+              egestas tellus rutrum tellus pellentesque eu tincidunt tortor rci
+              phasellus egestas tellus rutrum tellus pellentesque eu tincidunt
+              tortor
+            </Description>
+          </ScrollReveal>
+          <ScrollReveal>
+            <FlexRow>
+              <Link href="http://facebok.com" target="_blank">
+                <Image src={Appstore} alt="appstore" />
+              </Link>
+              <Link href="http://facebok.com" target="_blank">
+                <Image src={Playstore} alt="playstore" />
+              </Link>
+            </FlexRow>
+          </ScrollReveal>
+          <ScrollReveal>
+            <BigText>Download Our App!</BigText>
+          </ScrollReveal>
         </Container>
-        <View
-          css={{
-            position: 'relative',
-            transform: 'translateX(-10%)',
-            '@desktop': { transform: 'translateX(-40%)' },
-          }}
-        >
-          <Behind>
-            <Image src={Foodbowl} alt="foodbowl" height="200" width="200" />
-          </Behind>
-          <Image src={Phone} alt="phone" />
-        </View>
+        <ScrollReveal>
+          <View
+            css={{
+              position: 'relative',
+              transform: 'translateX(-10%)',
+              '@desktop': { transform: 'translateX(-40%)' },
+            }}
+          >
+            <Behind>
+              <Image src={Foodbowl} alt="foodbowl" height="200" width="200" />
+            </Behind>
+            <Image src={Phone} alt="phone" />
+          </View>
+        </ScrollReveal>
       </Container>
     </View>
   )

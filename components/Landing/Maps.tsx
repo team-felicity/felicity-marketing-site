@@ -17,7 +17,7 @@ export default function MapSection() {
               height: MAP_WIDTH,
               width: '100%',
               background: '#333',
-              borderRadius: 40,
+              borderRadius: BORDER_RADIUS,
             }}
           >
             <Text color="white1">visual placeholder</Text>

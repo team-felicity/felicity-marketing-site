@@ -1,14 +1,41 @@
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { Text, View, Grid, Flex, Link, Container } from '@components'
+import { ClipboardIcon, ClipboardCheckIcon } from '@heroicons/react/outline'
+
 import { styled } from '@config/stitches'
+
+import { Text, View, Flex, Link, Container } from '@components'
+import { textStyles } from '@components/Text'
+import Button from '@components/Button'
+import Logo from './LogoSVG'
+
 import Facebook from 'public/facebook.svg'
 import Instagram from 'public/instagram.svg'
 import Twitter from 'public/twitter.svg'
 import Youtube from 'public/youtube.svg'
-import Email from 'public/email.svg'
-import Phone from 'public/phone-call.svg'
-import Logo from 'public/logo.svg'
-import { textStyles } from '@components/Text'
+
+const socialMediaLinks = [
+  {
+    href: 'https://facebook.com',
+    image: Facebook,
+    alt: 'Facebook logo icon',
+  },
+  {
+    href: 'https://twitter.com',
+    SVG: Twitter,
+    alt: 'Twitter logo icon',
+  },
+  {
+    href: 'https://instagram.com',
+    SVG: Instagram,
+    alt: 'Instagram logo icon',
+  },
+  {
+    href: 'https://youtube.com',
+    SVG: Youtube,
+    alt: 'Youtube logo icon',
+  },
+]
 
 export default function Footer() {
   return (
@@ -22,50 +49,33 @@ export default function Footer() {
       }}
     >
       <Container
-        as={Grid}
-        flow={{
-          '@initial': 'row',
-          '@desktop': 'column',
-        }}
+        as={Flex}
+        direction={{ '@initial': 'column', '@tablet': 'row' }}
         size="large2"
         gap="3"
+        justify="between"
+        align="center"
       >
-        <FlexRow justify="center">
-          <Image src={Logo} alt="logo" />
+        <Flex justify="center" align="center">
+          <Logo />
           <CompanyName>FELICITY</CompanyName>
-        </FlexRow>
+        </Flex>
 
-        <Grid flow="row" justify="center" gap="2">
+        <Flex direction="column" align="center">
           <FooterColumnTitle>Reach out to us!</FooterColumnTitle>
-          <FlexRow gap="3">
-            <Image src={Phone} alt="phone" />
-            <Text>+63 927 304 3415</Text>
-          </FlexRow>
-
-          <FlexRow gap="3">
-            <Image src={Email} alt="email" />
-            <Text>Felicitycorp123@gmail.com</Text>
-          </FlexRow>
-        </Grid>
+          <ContactInfo label="+63 927 304 3415" />
+          <ContactInfo label="felicityincorporated@gmail.com" />
+        </Flex>
 
         <FlexCol align="center">
-          <FlexCol>
-            <FooterColumnTitle>Follow us on:</FooterColumnTitle>
-            <FlexRow justify="center">
-              <Link href="http://www.facebook.com" target="_blank">
-                <Image src={Facebook} alt="fb" />
+          <FooterColumnTitle>Follow us on:</FooterColumnTitle>
+          <Flex justify="center">
+            {socialMediaLinks.map((item) => (
+              <Link href={item.href} target="_blank" key={item.href}>
+                <Image src={item.image} alt={item.alt} />
               </Link>
-              <Link href="http://www.twitter.com" target="_blank">
-                <Image src={Twitter} alt="twttr" />
-              </Link>
-              <Link href="http://www.instagram.com" target="_blank">
-                <Image src={Instagram} alt="insta" />
-              </Link>
-              <Link href="http://www.youtube.com" target="_blank">
-                <Image src={Youtube} alt="youtube" />
-              </Link>
-            </FlexRow>
-          </FlexCol>
+            ))}
+          </Flex>
         </FlexCol>
       </Container>
     </View>
@@ -122,13 +132,14 @@ function ContactInfo({ label }: { label: string }) {
 }
 
 const FooterColumnTitle = styled(Text, {
-  paddingBottom: 20,
-  textAlign: 'center',
-  '@desktop': { textAlign: 'start' },
-})
+  ...textStyles,
 
-const FlexRow = styled(Flex, {
-  flexDirection: 'row',
+  textAlign: 'center',
+  padding: '$1',
+
+  defaultVariants: {
+    weight: 'semibold',
+  },
 })
 
 const FlexCol = styled(Flex, {
@@ -137,8 +148,7 @@ const FlexCol = styled(Flex, {
 
 const CompanyName = styled('h1', {
   ...textStyles,
-  paddingTop: '$2',
-  '@desktop': { paddingTop: '$6' },
+
   defaultVariants: {
     color: 'primary5',
     size: '8',

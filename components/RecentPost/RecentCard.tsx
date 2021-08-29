@@ -16,63 +16,55 @@ export default function RecentCard() {
         mt: '$9',
       }}
     >
-      <View
-        style={{
-          borderRadius: 50,
-          backgroundColor: 'white1',
-          boxShadow: '1px 2px 6px 1px #D0D0D0',
-        }}
+      <Layout
+        as={View}
+        flow={{ '@desktop': 'row', '@phone': 'column' }}
+        gap="6"
       >
-        <Container
-          css={{
-            display: 'grid',
-            gapy: '1rem',
-            mb: '$4',
-            mt: '$4',
-            pt: '$2',
-            pb: '$2',
-          }}
-          size="large"
-        >
-          <Grid
-            flow={{ '@phone': 'row', '@desktop': 'column' }}
-            gap="6"
-            css={{ paddingLeft: '$4' }}
+        <StyledImage src={Photo} alt="photo" placeholder="blur" />
+        <ContentFlex>
+          <Blogtitle>Contact Us</Blogtitle>
+          <Text>
+            We want to provide you a great experience which is why we want to
+            hear from you. Your feedback helps us cater the events you love and
+            services you expect. We want to provide you a great experience which
+            is why we want to hear from you. Your feedback helps us cater the
+            events you love and services you expec
+          </Text>
+          <Button
+            as={motion.a}
+            href="#"
+            variant="secondary"
+            size="large"
+            css={{
+              marginTop: '$4',
+              fontSize: '$4',
+              width: 'fit-content',
+              padding: '1rem 2rem',
+              height: 'unset',
+              marginBottom: '$5',
+              '@desktop': {
+                padding: '1rem 6rem',
+              },
+            }}
           >
-            <Image src={Photo} alt="photo" />
-
-            <Flex direction="column" gap="5">
-              <Blogtitle>Contact Us</Blogtitle>
-              <Text>
-                We want to provide you a great experience which is why we want
-                to hear from you. Your feedback helps us cater the events you
-                love and services you expect. We want to provide you a great
-                experience which is why we want to hear from you. Your feedback
-                helps us cater the events you love and services you expec
-              </Text>
-              <Button
-                as={motion.a}
-                href="#"
-                variant="secondary"
-                size="large"
-                css={{
-                  marginTop: '$4',
-                  fontSize: '$4',
-                  width: 'fit-content',
-                  padding: '1rem 6rem',
-                  height: 'unset',
-                  marginBottom: '$5',
-                }}
-              >
-                Continue Reading
-              </Button>
-            </Flex>
-          </Grid>
-        </Container>
-      </View>
+            Continue Reading
+          </Button>
+        </ContentFlex>
+      </Layout>
     </Container>
   )
 }
+
+const Layout = styled(Grid, {
+  gapy: '1rem',
+  my: '$4',
+  py: '$6',
+  px: '$6',
+  borderRadius: 50,
+  backgroundColor: 'white1',
+  boxShadow: '1px 2px 6px 1px #D0D0D0',
+})
 
 const Blogtitle = styled('h1', {
   ...textStyles,
@@ -82,4 +74,16 @@ const Blogtitle = styled('h1', {
     color: 'primary5',
     weight: 'bold',
   },
+})
+
+const ContentFlex = styled(Flex, {
+  flexDirection: 'column',
+  paddingTop: '$3',
+  gap: '$5',
+})
+
+const StyledImage = styled(Image, {
+  borderTopLeftRadius: '50px',
+  borderBottomLeftRadius: '50px',
+  borderBottomRightRadius: '50px',
 })

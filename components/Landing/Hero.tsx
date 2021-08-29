@@ -18,7 +18,7 @@ export default function Hero() {
           padding: 0,
 
           '@tablet': {
-            height: '100%',
+            height: '100vh',
             gridTemplateColumns: '480px 1fr',
             gridTemplateAreas: '"content carousel"',
           },

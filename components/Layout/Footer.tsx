@@ -29,7 +29,7 @@ export default function Footer() {
         }}
         gap="3"
       >
-        <FlexRow justify="center" gap="3">
+        <FlexRow justify="center">
           <Image src={Logo} alt="logo" />
           <CompanyName>FELICITY</CompanyName>
         </FlexRow>

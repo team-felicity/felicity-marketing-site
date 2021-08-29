@@ -72,6 +72,55 @@ export default function Footer() {
   )
 }
 
+function ContactInfo({ label }: { label: string }) {
+  const [copied, setCopied] = useState(false)
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      if (copied) setCopied(false)
+    }, 2000)
+
+    return () => clearTimeout(id)
+  }, [copied])
+
+  const handleClipboardClick = () => {
+    setCopied(true)
+    navigator.clipboard.writeText(label)
+  }
+
+  return (
+    <Flex
+      justify="center"
+      css={{ alignSelf: 'stretch', '&:hover button': { opacity: 1 } }}
+    >
+      <Text css={{ position: 'relative' }}>
+        {label}
+        <Button
+          variant="ghost"
+          css={{
+            padding: '2px',
+            height: 'unset',
+
+            position: 'absolute',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            right: '-2rem',
+
+            opacity: 0,
+          }}
+          onClick={handleClipboardClick}
+        >
+          {copied ? (
+            <ClipboardCheckIcon height="20px" width="20px" />
+          ) : (
+            <ClipboardIcon height="20px" width="20px" />
+          )}
+        </Button>
+      </Text>
+    </Flex>
+  )
+}
+
 const FooterColumnTitle = styled(Text, {
   paddingBottom: 20,
   textAlign: 'center',

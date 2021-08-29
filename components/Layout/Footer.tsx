@@ -24,9 +24,10 @@ export default function Footer() {
       <Container
         as={Grid}
         flow={{
-          '@phone': 'row',
+          '@initial': 'row',
           '@desktop': 'column',
         }}
+        size="large2"
         gap="3"
       >
         <FlexRow justify="center">
@@ -41,7 +42,7 @@ export default function Footer() {
             <Text>+63 927 304 3415</Text>
           </FlexRow>
 
-          <FlexRow gap="2">
+          <FlexRow gap="3">
             <Image src={Email} alt="email" />
             <Text>Felicitycorp123@gmail.com</Text>
           </FlexRow>

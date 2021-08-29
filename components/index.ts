@@ -8,6 +8,6 @@ export { default as TextField } from './TextField'
 export { default as Flex } from './Flex'
 export { default as DownloadSection } from './DownloadApp/DownloadSection'
 export { default as OrderSteps } from './DownloadApp/OrderSteps'
-export { default as RecentCard } from './RecentPost/RecentCard'
+export { default as ScrollReveal } from './ScrollReveal'
 
 export * as Sheet from './Sheet'

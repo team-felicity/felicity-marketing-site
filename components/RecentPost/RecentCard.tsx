@@ -1,5 +1,13 @@
 import Image from 'next/image'
-import { Text, View, Button, Grid, Container, Flex } from '@components'
+import {
+  Text,
+  View,
+  Button,
+  Grid,
+  Container,
+  Flex,
+  ScrollReveal,
+} from '@components'
 import Photo from 'public/sample.png'
 import { textStyles } from '@components/Text'
 import { styled } from '@config/stitches'
@@ -21,35 +29,42 @@ export default function RecentCard() {
         flow={{ '@desktop': 'row', '@phone': 'column' }}
         gap="6"
       >
-        <StyledImage src={Photo} alt="photo" placeholder="blur" />
+        <ScrollReveal>
+          <StyledImage src={Photo} alt="photo" placeholder="blur" />
+        </ScrollReveal>
+
         <ContentFlex>
-          <Blogtitle>Contact Us</Blogtitle>
-          <Text>
-            We want to provide you a great experience which is why we want to
-            hear from you. Your feedback helps us cater the events you love and
-            services you expect. We want to provide you a great experience which
-            is why we want to hear from you. Your feedback helps us cater the
-            events you love and services you expec
-          </Text>
-          <Button
-            as={motion.a}
-            href="#"
-            variant="secondary"
-            size="large"
-            css={{
-              marginTop: '$4',
-              fontSize: '$4',
-              width: 'fit-content',
-              padding: '1rem 2rem',
-              height: 'unset',
-              marginBottom: '$5',
-              '@desktop': {
-                padding: '1rem 6rem',
-              },
-            }}
-          >
-            Continue Reading
-          </Button>
+          <ScrollReveal>
+            <Blogtitle>Contact Us</Blogtitle>
+            <Text>
+              We want to provide you a great experience which is why we want to
+              hear from you. Your feedback helps us cater the events you love
+              and services you expect. We want to provide you a great experience
+              which is why we want to hear from you. Your feedback helps us
+              cater the events you love and services you expec
+            </Text>
+          </ScrollReveal>
+          <ScrollReveal>
+            <Button
+              as={motion.a}
+              href="#"
+              variant="secondary"
+              size="large"
+              css={{
+                marginTop: '$4',
+                fontSize: '$4',
+                width: 'fit-content',
+                padding: '1rem 2rem',
+                height: 'unset',
+                marginBottom: '$5',
+                '@desktop': {
+                  padding: '1rem 6rem',
+                },
+              }}
+            >
+              Continue Reading
+            </Button>
+          </ScrollReveal>
         </ContentFlex>
       </Layout>
     </Container>

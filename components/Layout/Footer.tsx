@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { ClipboardIcon, ClipboardCheckIcon } from '@heroicons/react/outline'
 
+import type { ReactNode } from 'react'
+
 import { styled } from '@config/stitches'
 
 import { Text, View, Flex, Link, Container } from '@components'
@@ -61,13 +63,13 @@ export default function Footer() {
           <CompanyName>FELICITY</CompanyName>
         </Flex>
 
-        <Flex direction="column" align="center">
+        <FooterColumn>
           <FooterColumnTitle>Reach out to us!</FooterColumnTitle>
           <ContactInfo label="+63 927 304 3415" />
           <ContactInfo label="felicityincorporated@gmail.com" />
-        </Flex>
+        </FooterColumn>
 
-        <FlexCol align="center">
+        <FooterColumn>
           <FooterColumnTitle>Follow us on:</FooterColumnTitle>
           <Flex justify="center">
             {socialMediaLinks.map((item) => (
@@ -76,9 +78,20 @@ export default function Footer() {
               </Link>
             ))}
           </Flex>
-        </FlexCol>
+        </FooterColumn>
       </Container>
     </View>
+  )
+}
+
+function FooterColumn({ children }: { children: ReactNode }) {
+  return (
+    <Flex
+      direction="column"
+      align={{ '@initial': 'center', '@tablet': 'start' }}
+    >
+      {children}
+    </Flex>
   )
 }
 
@@ -100,7 +113,7 @@ function ContactInfo({ label }: { label: string }) {
 
   return (
     <Flex
-      justify="center"
+      justify={{ '@initial': 'center', '@tablet': 'start' }}
       css={{ alignSelf: 'stretch', '&:hover button': { opacity: 1 } }}
     >
       <Text css={{ position: 'relative' }}>
@@ -135,15 +148,15 @@ const FooterColumnTitle = styled(Text, {
   ...textStyles,
 
   textAlign: 'center',
-  padding: '$1',
+  mb: '$1',
+
+  '@dekstop': {
+    textAlign: 'start',
+  },
 
   defaultVariants: {
     weight: 'semibold',
   },
-})
-
-const FlexCol = styled(Flex, {
-  flexDirection: 'column',
 })
 
 const CompanyName = styled('h1', {

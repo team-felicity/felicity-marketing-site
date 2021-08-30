@@ -22,17 +22,17 @@ const socialMediaLinks = [
   },
   {
     href: 'https://twitter.com',
-    SVG: Twitter,
+    image: Twitter,
     alt: 'Twitter logo icon',
   },
   {
     href: 'https://instagram.com',
-    SVG: Instagram,
+    image: Instagram,
     alt: 'Instagram logo icon',
   },
   {
     href: 'https://youtube.com',
-    SVG: Youtube,
+    image: Youtube,
     alt: 'Youtube logo icon',
   },
 ]

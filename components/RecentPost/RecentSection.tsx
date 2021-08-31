@@ -4,6 +4,7 @@ import { styled } from '@config/stitches'
 import Image from 'next/image'
 import Tomato from 'public/tomato.png'
 import Brocoli from 'public/brocoli.png'
+import { textStyles } from '@components/Text'
 
 export default function RecentPostSection() {
   return (
@@ -14,6 +15,10 @@ export default function RecentPostSection() {
         gapy: '2rem',
         mb: '$7',
         mt: '$9',
+        '@desktop': {
+          mt: '$6',
+          height: '54vw',
+        },
       }}
     >
       <View
@@ -21,6 +26,8 @@ export default function RecentPostSection() {
           position: 'relative',
         }}
       >
+        <Title size={{ '@initial': '6', '@desktop': '14' }}>RECENT POST</Title>
+
         <TomatoView>
           <Image src={Tomato} alt="tomato" objectFit="contain" />
         </TomatoView>
@@ -55,7 +62,7 @@ const TomatoView = styled(View, {
   '@desktop': {
     width: '20rem',
     height: '20rem',
-    transform: 'translateY(-10%)',
+    transform: 'translateY(-15%)',
     left: '-5%',
   },
 })
@@ -71,5 +78,15 @@ const BrocoliView = styled(View, {
     height: '20rem',
     right: '-19%',
     transform: 'translateY(-15%)',
+  },
+})
+
+const Title = styled('h1', {
+  ...textStyles,
+  mb: '$6',
+  textAlign: 'center',
+  defaultVariants: {
+    color: 'white1',
+    weight: 'bold',
   },
 })

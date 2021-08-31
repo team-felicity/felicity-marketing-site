@@ -44,7 +44,7 @@ export default function OrderSteps() {
         as={Grid}
         css={{
           gapy: '3rem',
-          mb: '$8',
+          mb: '$5',
           '@desktop': {
             pt: '$5',
           },

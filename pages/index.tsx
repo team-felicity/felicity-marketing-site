@@ -32,11 +32,9 @@ function Wave() {
     >
       <Grid
         css={{
-          position: 'relative',
           mt: '-1px',
           width: '100vw',
           height: '100%',
-          overflow: 'hidden',
         }}
       >
         <Image src={Waves} alt="wave" />

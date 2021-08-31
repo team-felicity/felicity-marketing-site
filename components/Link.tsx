@@ -1,12 +1,12 @@
 import { forwardRef } from 'react'
 import NextLink, { LinkProps } from 'next/link'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 import type { ElementRef, ComponentProps } from 'react'
 
 import { styled } from '@config/stitches'
 
-const StyledLink = styled(motion.a, {})
+const StyledLink = styled(m.a, {})
 
 const Link = forwardRef<
   ElementRef<typeof StyledLink>,

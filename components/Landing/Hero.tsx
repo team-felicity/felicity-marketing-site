@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 import { styled } from '@config/stitches'
 
@@ -44,7 +44,7 @@ function HeroContent() {
       css={{ gridArea: 'content', px: '$5' }}
     >
       <SloganText
-        as={motion.h1}
+        as={m.h1}
         size={{
           '@initial': '11',
           '@tablet': '12',
@@ -62,7 +62,7 @@ function HeroContent() {
         Food
       </SloganText>
       <CompanyDescription
-        as={motion.p}
+        as={m.p}
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
@@ -85,8 +85,6 @@ function HeroContent() {
         }}
       >
         <Button
-          as={motion.a}
-          href="#"
           variant="primary"
           radius="pill"
           size="large"

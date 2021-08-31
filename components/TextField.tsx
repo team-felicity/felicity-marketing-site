@@ -1,5 +1,5 @@
 import { forwardRef } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { ExclamationCircleIcon } from '@heroicons/react/outline'
 
 import type { ElementRef, ComponentProps } from 'react'
@@ -10,7 +10,7 @@ import Text from './Text'
 import Flex from './Flex'
 import Grid from './Grid'
 
-const StyledInput = styled(motion.input, {
+const StyledInput = styled(m.input, {
   $$borderWidth: '1px',
 
   padding: '0 12px',

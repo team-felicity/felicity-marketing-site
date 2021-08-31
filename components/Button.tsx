@@ -1,5 +1,5 @@
 import { forwardRef } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 import type { ElementRef, ComponentProps } from 'react'
 
@@ -20,9 +20,9 @@ import { styled, theme, keyframes, mapThemeToCSSProp } from '@config/stitches'
 
 export const TouchableOpacity = forwardRef<
   HTMLButtonElement,
-  ComponentProps<typeof motion.button>
+  ComponentProps<typeof m.button>
 >((props, ref) => (
-  <motion.button
+  <m.button
     {...props}
     ref={ref}
     whileTap={props.whileTap || { opacity: 0.4 }}
@@ -37,7 +37,7 @@ const pulse = keyframes({
   '50%': { opacity: 0.5 },
 })
 
-const StyledButton = styled(motion.button, {
+const StyledButton = styled(m.button, {
   background: 'none',
   border: '0px solid $black1',
   padding: '0 $3',

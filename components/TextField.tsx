@@ -4,22 +4,11 @@ import { ExclamationCircleIcon } from '@heroicons/react/outline'
 
 import type * as Polymorphic from '@radix-ui/react-polymorphic'
 
-import {
-  CSSProps,
-  KeysToPropMap,
-  mapThemeToCSSProp,
-  styled,
-  theme,
-} from '@config/stitches'
+import { mapThemeToCSSProp, styled, theme } from '@config/stitches'
 
 import Text from './Text'
 import Flex from './Flex'
 import Grid from './Grid'
-
-const radiusMapKey: CSSProps = 'borderRadius'
-const radiiMap = mapThemeToCSSProp(radiusMapKey) as KeysToPropMap<
-  typeof radiusMapKey
->
 
 const StyledInput = styled(motion.input, {
   $$borderWidth: '1px',
@@ -39,7 +28,7 @@ const StyledInput = styled(motion.input, {
   '&::placeholder': { color: '$gray3' },
 
   variants: {
-    radius: radiiMap,
+    radius: mapThemeToCSSProp('borderRadius'),
     size: {
       small: { height: '32px' },
       medium: { height: '40px' },

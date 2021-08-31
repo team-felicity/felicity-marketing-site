@@ -197,16 +197,16 @@ export const globalStyles = globalCss({
   },
 })
 
-export type CSSProps = keyof CSSPropertiesToTokenScale
-type ThemeKeyFromCSSProp<T extends CSSProps> = CSSPropertiesToTokenScale[T]
+type DefaultThemeMapKeys = keyof Stitches.DefaultThemeMap
+type ThemeKey<T extends DefaultThemeMapKeys> = Stitches.DefaultThemeMap[T]
 type TokenKeys<T extends keyof typeof config.theme> = Exclude<
   keyof typeof config.theme[T],
   symbol
 >
 
-export type KeysToPropMap<Prop extends CSSProps> = Record<
-  TokenKeys<CSSPropertiesToTokenScale[Prop]>,
-  Record<Prop, `$${TokenKeys<ThemeKeyFromCSSProp<Prop>>}`>
+export type KeysToPropMap<Prop extends DefaultThemeMapKeys> = Record<
+  TokenKeys<ThemeKey<Prop>>,
+  Record<Prop, `$${TokenKeys<ThemeKey<Prop>>}`>
 >
 
 /**
@@ -223,12 +223,12 @@ export type KeysToPropMap<Prop extends CSSProps> = Record<
  *    ...
  * }
  */
-export function mapThemeToCSSProp(cssProp: CSSProps) {
+export function mapThemeToCSSProp<T extends DefaultThemeMapKeys>(cssProp: T) {
   const themeKey = config.themeMap[cssProp]
   return Object.fromEntries(
     Object.entries(theme[themeKey]).map(([key]) => [
       key,
       { [cssProp]: `$${key}` },
     ])
-  ) as KeysToPropMap<typeof cssProp>
+  ) as KeysToPropMap<T>
 }

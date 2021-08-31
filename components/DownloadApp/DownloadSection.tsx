@@ -18,8 +18,12 @@ export default function DownloadSection() {
         size="large2"
         justify="between"
         gap="3"
-        direction={{ '@initial': 'columnReverse', '@desktop': 'row' }}
         align="center"
+        css={{
+          flexDirection: 'column-reverse',
+
+          '@desktop': { flexDirection: 'row' },
+        }}
       >
         <Container size="medium" as={FlexCol} css={{ m: 0, p: 0 }}>
           <ScrollReveal>

@@ -1,27 +1,16 @@
 import { forwardRef } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { ExclamationCircleIcon } from '@heroicons/react/outline'
 
-import type * as Polymorphic from '@radix-ui/react-polymorphic'
+import type { ElementRef, ComponentProps } from 'react'
 
-import {
-  CSSProps,
-  KeysToPropMap,
-  mapThemeToCSSProp,
-  styled,
-  theme,
-} from '@config/stitches'
+import { mapThemeToCSSProp, styled, theme } from '@config/stitches'
 
 import Text from './Text'
 import Flex from './Flex'
 import Grid from './Grid'
 
-const radiusMapKey: CSSProps = 'borderRadius'
-const radiiMap = mapThemeToCSSProp(radiusMapKey) as KeysToPropMap<
-  typeof radiusMapKey
->
-
-const StyledInput = styled(motion.input, {
+const StyledInput = styled(m.input, {
   $$borderWidth: '1px',
 
   padding: '0 12px',
@@ -39,7 +28,7 @@ const StyledInput = styled(motion.input, {
   '&::placeholder': { color: '$gray3' },
 
   variants: {
-    radius: radiiMap,
+    radius: mapThemeToCSSProp('borderRadius'),
     size: {
       small: { height: '32px' },
       medium: { height: '40px' },
@@ -70,16 +59,10 @@ const StyledErrorIcon = styled(ExclamationCircleIcon, {
   width: '100%',
 })
 
-interface CustomInputProps {
-  error?: string
-}
-
-type PolymorphicInput = Polymorphic.ForwardRefComponent<
-  typeof motion.input,
-  Polymorphic.OwnProps<typeof StyledInput> & CustomInputProps
->
-
-const Button = forwardRef(({ error = '', ...rest }, ref) => {
+const Button = forwardRef<
+  ElementRef<typeof StyledInput>,
+  ComponentProps<typeof StyledInput> & { error?: string }
+>(({ error = '', ...rest }, ref) => {
   const css = rest.css || {}
   const props = {
     ...rest,
@@ -117,6 +100,6 @@ const Button = forwardRef(({ error = '', ...rest }, ref) => {
       ) : null}
     </Flex>
   )
-}) as PolymorphicInput
+})
 
 export default Button

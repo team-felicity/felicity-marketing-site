@@ -47,10 +47,11 @@ export default function RecentPostSection() {
 
 const TomatoView = styled(View, {
   position: 'absolute',
-  left: '-8%',
-  transform: 'translateY(-15%)',
+  left: '-3%',
+  transform: 'translateY(-20%)',
   width: '6rem',
   height: '6rem',
+
   '@desktop': {
     width: '20rem',
     height: '20rem',
@@ -61,8 +62,8 @@ const TomatoView = styled(View, {
 
 const BrocoliView = styled(View, {
   position: 'absolute',
-  right: '-8%',
-  transform: 'translateY(-30%)',
+  right: '0%',
+  transform: 'translateY(-40%)',
   width: '6rem',
   height: '6rem',
   '@desktop': {

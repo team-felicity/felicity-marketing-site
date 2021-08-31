@@ -11,7 +11,14 @@ interface Props {
 
 export default function RecentCard({ direction }: Props) {
   return (
-    <Layout direction={{ '@phone': 'row', '@desktop': direction }} gapX="5">
+    <Layout
+      direction={{
+        '@initial': 'column',
+        '@phone': direction,
+        '@tablet': direction,
+      }}
+      gapX="5"
+    >
       <ScrollReveal>
         <ImageContainer>
           <StyledImage src={Photo} alt="photo" placeholder="blur" />
@@ -80,6 +87,9 @@ export default function RecentCard({ direction }: Props) {
                 fontSize: '$4',
                 padding: '1rem 6rem',
               },
+              '@tablet': {
+                padding: '1rem 9rem',
+              },
             }}
           >
             Continue Reading
@@ -118,12 +128,14 @@ const ContentFlex = styled(Flex, {
 })
 
 const ImageContainer = styled(View, {
-  width: '12rem',
-  height: '12rem',
+  width: '100%',
+  pb: '$3',
+  '@tablet': {
+    width: '20rem',
+  },
   '@desktop': {
     pt: '$5',
     width: '20rem',
-    height: '20rem',
   },
 })
 

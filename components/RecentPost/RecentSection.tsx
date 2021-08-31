@@ -62,14 +62,14 @@ const TomatoView = styled(View, {
 
 const BrocoliView = styled(View, {
   position: 'absolute',
-  right: '0%',
+  right: '-2%',
   transform: 'translateY(-40%)',
   width: '6rem',
   height: '6rem',
   '@desktop': {
     width: '20rem',
     height: '20rem',
-    right: '-22%',
+    right: '-19%',
     transform: 'translateY(-15%)',
   },
 })

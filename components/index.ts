@@ -9,5 +9,6 @@ export { default as Flex } from './Flex'
 export { default as DownloadSection } from './DownloadApp/DownloadSection'
 export { default as OrderSteps } from './DownloadApp/OrderSteps'
 export { default as ScrollReveal } from './ScrollReveal'
+export { default as RecentPostSection } from '@components/RecentPost/RecentSection'
 
 export * as Sheet from './Sheet'

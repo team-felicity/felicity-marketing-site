@@ -21,7 +21,13 @@ export default function Layout({ children }: Props) {
       </Head>
       <Flex direction="column" css={{ minHeight: '100vh' }}>
         <Header />
-        <View as="main" css={{ flexGrow: 1 }}>
+        <View
+          as="main"
+          css={{
+            flexGrow: 1,
+            background: 'linear-gradient(#60BB93,#85AAC1)',
+          }}
+        >
           {children}
         </View>
         <Footer />

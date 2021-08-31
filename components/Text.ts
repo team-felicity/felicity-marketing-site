@@ -1,35 +1,16 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
-import {
-  styled,
-  mapThemeToCSSProp,
-  KeysToPropMap,
-  CSSProps,
-} from '@config/stitches'
-
-const fontSizesMapKey: CSSProps = 'fontSize'
-const colorsMapKey: CSSProps = 'color'
-const fontWeightsMapKey: CSSProps = 'fontWeight'
-
-const fontSizeMap = mapThemeToCSSProp(fontSizesMapKey) as KeysToPropMap<
-  typeof fontSizesMapKey
->
-const colorsMap = mapThemeToCSSProp(colorsMapKey) as KeysToPropMap<
-  typeof colorsMapKey
->
-const fontWeightsMap = mapThemeToCSSProp(fontWeightsMapKey) as KeysToPropMap<
-  typeof fontWeightsMapKey
->
+import { styled, mapThemeToCSSProp } from '@config/stitches'
 
 export const textStyles = {
   margin: 0,
   variants: {
-    size: fontSizeMap,
-    color: colorsMap,
-    weight: fontWeightsMap,
+    size: mapThemeToCSSProp('fontSize'),
+    color: mapThemeToCSSProp('color'),
+    weight: mapThemeToCSSProp('fontWeight'),
   },
 }
-export default styled(motion.span, {
+export default styled(m.span, {
   ...textStyles,
   defaultVariants: {
     size: '3',

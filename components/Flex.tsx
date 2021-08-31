@@ -1,36 +1,17 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
-import {
-  CSSProps,
-  KeysToPropMap,
-  mapThemeToCSSProp,
-  styled,
-} from '@config/stitches'
-import type { FlexDirectionProperty } from '@stitches/react/types/css-types'
+import { mapThemeToCSSProp, styled } from '@config/stitches'
 
-const gapMapKey: CSSProps = 'gap'
-const gapMap = mapThemeToCSSProp(gapMapKey) as KeysToPropMap<typeof gapMapKey>
-
-const gapXMapKey: CSSProps = 'columnGap'
-const gapXMap = mapThemeToCSSProp(gapXMapKey) as KeysToPropMap<
-  typeof gapXMapKey
->
-
-const gapYMapKey: CSSProps = 'rowGap'
-const gapYMap = mapThemeToCSSProp(gapYMapKey) as KeysToPropMap<
-  typeof gapYMapKey
->
-
-export default styled(motion.div, {
+export default styled(m.div, {
   display: 'flex',
-  flexDirection: '$$fd' as FlexDirectionProperty,
+  flexDirection: '$$fd' as string,
   justifyContent: '$$jc',
   alignItems: '$$ai',
 
   variants: {
-    gap: gapMap,
-    gapX: gapXMap,
-    gapY: gapYMap,
+    gap: mapThemeToCSSProp('gap'),
+    gapX: mapThemeToCSSProp('columnGap'),
+    gapY: mapThemeToCSSProp('rowGap'),
     direction: {
       row: { $$fd: 'row' },
       column: { $$fd: 'column' },

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 import type { Transition } from 'framer-motion'
 import type { ReactNode } from 'react'
@@ -28,7 +28,7 @@ export default function ScrollReveal({
   const finalTransition = { ...defaultTransition, ...transition }
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial="hidden"
       animate={inView ? 'visible' : 'hidden'}
@@ -36,6 +36,6 @@ export default function ScrollReveal({
       transition={finalTransition}
     >
       {children}
-    </motion.div>
+    </m.div>
   )
 }

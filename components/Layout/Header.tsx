@@ -104,7 +104,7 @@ function Navigation() {
           <Flex justify="between" onClick={closeDialog}>
             <LogoWithCompanyName />
             <StyledClose onClick={closeDialog}>
-              <XIcon color={theme.colors.gray3} width="24px" />
+              <XIcon color={theme.colors.gray3.value} width="24px" />
             </StyledClose>
           </Flex>
 
@@ -141,7 +141,7 @@ function Navigation() {
         </StyledContent>
 
         <StyledTrigger onClick={openDialog}>
-          <MenuIcon color={theme.colors.primary1} width="24px" />
+          <MenuIcon color={theme.colors.primary1.value} width="24px" />
         </StyledTrigger>
       </Dialog.Root>
 

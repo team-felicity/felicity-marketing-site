@@ -2,7 +2,7 @@ import { forwardRef } from 'react'
 import { motion } from 'framer-motion'
 import { ExclamationCircleIcon } from '@heroicons/react/outline'
 
-import type * as Polymorphic from '@radix-ui/react-polymorphic'
+import type { ElementRef, ComponentProps } from 'react'
 
 import { mapThemeToCSSProp, styled, theme } from '@config/stitches'
 
@@ -59,16 +59,10 @@ const StyledErrorIcon = styled(ExclamationCircleIcon, {
   width: '100%',
 })
 
-interface CustomInputProps {
-  error?: string
-}
-
-type PolymorphicInput = Polymorphic.ForwardRefComponent<
-  typeof motion.input,
-  Polymorphic.OwnProps<typeof StyledInput> & CustomInputProps
->
-
-const Button = forwardRef(({ error = '', ...rest }, ref) => {
+const Button = forwardRef<
+  ElementRef<typeof StyledInput>,
+  ComponentProps<typeof StyledInput> & { error?: string }
+>(({ error = '', ...rest }, ref) => {
   const css = rest.css || {}
   const props = {
     ...rest,
@@ -104,6 +98,6 @@ const Button = forwardRef(({ error = '', ...rest }, ref) => {
       </Grid>
     </Flex>
   )
-}) as PolymorphicInput
+})
 
 export default Button

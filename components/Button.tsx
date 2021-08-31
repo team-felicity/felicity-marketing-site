@@ -1,7 +1,7 @@
-import { ComponentProps, forwardRef } from 'react'
+import { forwardRef } from 'react'
 import { motion } from 'framer-motion'
 
-import type * as Polymorphic from '@radix-ui/react-polymorphic'
+import type { ElementRef, ComponentProps } from 'react'
 
 import { styled, theme, keyframes, mapThemeToCSSProp } from '@config/stitches'
 
@@ -128,12 +128,10 @@ const StyledButton = styled(motion.button, {
   },
 })
 
-type PolymorphicButton = Polymorphic.ForwardRefComponent<
-  typeof motion.button,
-  Polymorphic.OwnProps<typeof StyledButton>
->
-
-const Button = forwardRef(({ disabled, loading, ...rest }, ref) => {
+const Button = forwardRef<
+  ElementRef<typeof StyledButton>,
+  ComponentProps<typeof StyledButton>
+>(({ disabled, loading, ...rest }, ref) => {
   const isDisabled = (disabled || loading) as boolean | undefined
   return (
     <StyledButton
@@ -151,6 +149,6 @@ const Button = forwardRef(({ disabled, loading, ...rest }, ref) => {
       {loading ? 'Loading...' : rest.children}
     </StyledButton>
   )
-}) as PolymorphicButton
+})
 
 export default Button

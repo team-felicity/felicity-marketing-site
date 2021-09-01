@@ -1,16 +1,15 @@
 import { forwardRef } from 'react'
-import { m } from 'framer-motion'
 import { ExclamationCircleIcon } from '@heroicons/react/outline'
 
-import type { ElementRef, ComponentProps } from 'react'
+import type { ElementRef, ComponentProps, ReactElement } from 'react'
 
-import { mapThemeToCSSProp, styled, theme } from '@config/stitches'
+import { css, mapThemeToCSSProp, styled, theme } from '@config/stitches'
 
 import Text from './Text'
 import Flex from './Flex'
 import Grid from './Grid'
 
-const StyledInput = styled(m.input, {
+const sharedStyles = css({
   $$borderWidth: '1px',
 
   padding: '0 12px',
@@ -22,17 +21,20 @@ const StyledInput = styled(m.input, {
   outline: 'none',
   width: '100%',
 
-  '&:not(&[data-error="true"]):active, &:not(&[data-error="true"]):focus': {
-    borderColor: '$black1',
-  },
+  '&:active, &:focus': { borderColor: '$black1' },
   '&::placeholder': { color: '$gray3' },
 
   variants: {
     radius: mapThemeToCSSProp('borderRadius'),
-    size: {
-      small: { height: '32px' },
-      medium: { height: '40px' },
-      large: { height: '$7', fontSize: '$4' },
+    status: {
+      error: {
+        borderColor: '$error',
+        caretColor: '$error',
+        color: '$error',
+
+        '&::placeholder': { color: `${theme.colors.error.value}66` },
+        '&:active, &:focus': { borderColor: '$error' },
+      },
     },
     variant: {
       outline: {},
@@ -50,7 +52,6 @@ const StyledInput = styled(m.input, {
   defaultVariants: {
     variant: 'outline',
     radius: '1',
-    size: 'medium',
   },
 })
 
@@ -59,28 +60,38 @@ const StyledErrorIcon = styled(ExclamationCircleIcon, {
   width: '100%',
 })
 
-const Button = forwardRef<
-  ElementRef<typeof StyledInput>,
-  ComponentProps<typeof StyledInput> & { error?: string }
->(({ error = '', ...rest }, ref) => {
-  const css = rest.css || {}
-  const props = {
-    ...rest,
-    ref,
-    css,
-    'data-error': !!error,
-  }
+export const BaseInput = styled('input', sharedStyles, {
+  variants: {
+    size: {
+      small: { height: '32px' },
+      medium: { height: '40px' },
+      large: { height: '$7', fontSize: '$4' },
+    },
+  },
 
-  if (error) {
-    props.css.borderColor = '$error'
-    props.css.caretColor = '$error'
-    props.css.color = '$error'
-    props.css['&::placeholder'] = { color: `${theme.colors.error.value}66` }
-  }
+  defaultVariants: {
+    size: 'medium',
+  },
+})
 
+export const BaseTextArea = styled('textarea', sharedStyles, {
+  py: '$2',
+  resize: 'vertical',
+  height: 'unset',
+})
+
+type HasError = {
+  error?: string
+}
+
+// wrapper component that adds error to text field
+function TextFieldWrapper({
+  error,
+  children,
+}: { children: ReactElement } & HasError) {
   return (
     <Flex direction="column" gap="2">
-      <StyledInput {...props} />
+      {children}
       {error ? (
         <Grid
           align="start"
@@ -100,6 +111,30 @@ const Button = forwardRef<
       ) : null}
     </Flex>
   )
+}
+
+// NOTE: not polymorphic since both have specific unique styles that differ from each other
+
+type TextFieldProps = ComponentProps<typeof BaseInput> & HasError
+export const TextField = forwardRef<
+  ElementRef<typeof BaseInput>,
+  TextFieldProps
+>(({ error = '', ...rest }, ref) => {
+  return (
+    <TextFieldWrapper error={error}>
+      <BaseInput {...rest} ref={ref} status={error ? 'error' : undefined} />
+    </TextFieldWrapper>
+  )
 })
 
-export default Button
+type TextAreaProps = ComponentProps<typeof BaseTextArea> & HasError
+export const TextArea = forwardRef<
+  ElementRef<typeof BaseTextArea>,
+  TextAreaProps
+>(({ error = '', ...rest }, ref) => {
+  return (
+    <TextFieldWrapper error={error}>
+      <BaseTextArea {...rest} ref={ref} status={error ? 'error' : undefined} />
+    </TextFieldWrapper>
+  )
+})

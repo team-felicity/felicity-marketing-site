@@ -1,9 +1,16 @@
 import { forwardRef } from 'react'
 import { m } from 'framer-motion'
 
+import type * as Polymorphic from '@radix-ui/react-polymorphic'
 import type { ElementRef, ComponentProps } from 'react'
 
-import { styled, theme, keyframes, mapThemeToCSSProp } from '@config/stitches'
+import {
+  styled,
+  theme,
+  keyframes,
+  mapThemeToCSSProp,
+  css,
+} from '@config/stitches'
 
 // undecided default animation whileTap/onClick
 // const ScaleDownButton = forwardRef<
@@ -37,7 +44,10 @@ const pulse = keyframes({
   '50%': { opacity: 0.5 },
 })
 
-const StyledButton = styled(m.button, {
+// converted styles to reusable css for object composition
+// sample usecase is styling dialog close button
+// const Close = styled(Dialog.Close, buttonStyles, { color: '$primar1' })
+const buttonStyles = css({
   background: 'none',
   border: '0px solid $black1',
   padding: '0 $3',
@@ -128,6 +138,13 @@ const StyledButton = styled(m.button, {
   },
 })
 
+const StyledButton = styled(m.button, buttonStyles)
+
+type PolymorphicButton = Polymorphic.ForwardRefComponent<
+  'button',
+  Polymorphic.OwnProps<typeof StyledButton>
+>
+
 const Button = forwardRef<
   ElementRef<typeof StyledButton>,
   ComponentProps<typeof StyledButton>
@@ -149,6 +166,6 @@ const Button = forwardRef<
       {loading ? 'Loading...' : rest.children}
     </StyledButton>
   )
-})
+}) as PolymorphicButton
 
 export default Button

@@ -1,6 +1,6 @@
-import { DownloadSection, OrderSteps, ContactUs } from '@components'
+import { DownloadSection, OrderSteps } from '@components'
 import Hero from '@components/Landing/Hero'
-import Maps from '../components/Landing/Maps'
+import ContactUs from '@components/ContactUs'
 
 export default function LandingPage() {
   return (
@@ -9,7 +9,6 @@ export default function LandingPage() {
       <OrderSteps />
       <DownloadSection />
       <ContactUs />
-      <Maps />
     </>
   )
 }

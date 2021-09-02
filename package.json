@@ -20,14 +20,13 @@
     "@radix-ui/react-id": "^0.0.6",
     "@radix-ui/react-polymorphic": "^0.0.13",
     "@stitches/react": "^1.0.0",
-    "formik": "^2.2.9",
     "framer-motion": "^4.1.17",
     "next": "11.1.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-hook-form": "^7.14.2",
     "react-intersection-observer": "^8.32.0",
-    "sharp": "^0.29.0",
-    "yup": "^0.32.9"
+    "sharp": "^0.29.0"
   },
   "devDependencies": {
     "@types/react": "17.0.14",

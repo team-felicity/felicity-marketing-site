@@ -1,5 +1,3 @@
-import { m } from 'framer-motion'
-
 import { styled, mapThemeToCSSProp } from '@config/stitches'
 
 export const textStyles = {
@@ -10,7 +8,7 @@ export const textStyles = {
     weight: mapThemeToCSSProp('fontWeight'),
   },
 }
-export default styled(m.span, {
+export default styled('span', {
   ...textStyles,
   defaultVariants: {
     size: '3',

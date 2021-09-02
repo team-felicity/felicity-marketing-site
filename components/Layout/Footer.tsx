@@ -9,7 +9,7 @@ import { styled } from '@config/stitches'
 import { Text, View, Flex, Link, Container } from '@components'
 import { textStyles } from '@components/Text'
 import Button from '@components/Button'
-import Logo from './LogoSVG'
+import Logo from '@assets/logo/header-logo.png'
 
 import Facebook from 'public/facebook.svg'
 import Instagram from 'public/instagram.svg'
@@ -59,7 +59,9 @@ export default function Footer() {
         align="center"
       >
         <Flex justify="center" align="center">
-          <Logo />
+          <div style={{ width: 50 }}>
+            <Image src={Logo} alt="Felicity Logo" layout="responsive" />
+          </div>
           <CompanyName>FELICITY</CompanyName>
         </Flex>
 

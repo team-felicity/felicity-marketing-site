@@ -6,7 +6,7 @@ import {
   View,
 } from '@components'
 import Hero from '@components/Landing/Hero'
-import Maps from '../components/Landing/Maps'
+import ContactUs from '@components/ContactUs'
 import Waves from 'public/waves.svg'
 import Image from 'next/image'
 
@@ -18,7 +18,7 @@ export default function LandingPage() {
       <RecentPostSection />
       <OrderSteps />
       <DownloadSection />
-      <Maps />
+      <ContactUs />
     </>
   )
 }

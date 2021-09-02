@@ -10,7 +10,7 @@ import { TABLET_SIZE } from 'utils'
 
 export default function Hero() {
   return (
-    <View as="section" css={{ flexGrow: 1, position: 'relative' }}>
+    <View as="section" css={{ flexGrow: 1, backgroundColor: '$white1' }}>
       <Container
         size="large2"
         css={{

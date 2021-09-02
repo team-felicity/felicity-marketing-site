@@ -1,9 +1,9 @@
 import Image from 'next/image'
-import { Text, View, Button, Flex, ScrollReveal } from '@components'
+import { Text, View, Flex, ScrollReveal } from '@components'
 import Photo from 'public/sample.png'
 import { textStyles } from '@components/Text'
 import { styled } from '@config/stitches'
-import { motion } from 'framer-motion'
+import { buttonStyles } from '@components/Button'
 
 interface Props {
   direction: 'row' | 'column' | 'rowReverse' | 'columnReverse'
@@ -71,27 +71,7 @@ export default function RecentCard({ direction }: Props) {
           </Text>
         </ScrollReveal>
         <ScrollReveal>
-          <Button
-            as={motion.a}
-            href="#"
-            variant="secondary"
-            size="large"
-            css={{
-              marginTop: '$4',
-              fontSize: '$3',
-              width: 'fit-content',
-              padding: '1rem 1rem',
-              height: 'unset',
-              marginBottom: '$5',
-              '@desktop': {
-                fontSize: '$4',
-                padding: '1rem 6rem',
-              },
-              '@tablet': {
-                padding: '1rem 9rem',
-              },
-            }}
-          >
+          <Button href="#" variant="secondary" size="large">
             Continue Reading
           </Button>
         </ScrollReveal>
@@ -153,4 +133,12 @@ const AuthorText = styled('p', {
     color: 'primary5',
     weight: 'semibold',
   },
+})
+
+const Button = styled('a', buttonStyles, {
+  marginTop: '$4',
+  fontSize: '$3',
+  width: '50%',
+  height: 'unset',
+  marginBottom: '$5',
 })

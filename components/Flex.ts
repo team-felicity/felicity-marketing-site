@@ -1,8 +1,6 @@
-import { m } from 'framer-motion'
-
 import { mapThemeToCSSProp, styled } from '@config/stitches'
 
-export default styled(m.div, {
+export default styled('div', {
   display: 'flex',
   flexDirection: '$$fd' as string,
   justifyContent: '$$jc',

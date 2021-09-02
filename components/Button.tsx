@@ -1,14 +1,15 @@
-import { ComponentProps, forwardRef } from 'react'
-import { motion } from 'framer-motion'
+import { forwardRef } from 'react'
+import { m } from 'framer-motion'
 
 import type * as Polymorphic from '@radix-ui/react-polymorphic'
+import type { ElementRef, ComponentProps } from 'react'
 
 import {
   styled,
   theme,
   keyframes,
   mapThemeToCSSProp,
-  KeysToPropMap,
+  css,
 } from '@config/stitches'
 
 // undecided default animation whileTap/onClick
@@ -24,16 +25,11 @@ import {
 //   />
 // ))
 
-const radiusMapKey = 'borderRadius'
-const radiiMap = mapThemeToCSSProp(radiusMapKey) as KeysToPropMap<
-  typeof radiusMapKey
->
-
 export const TouchableOpacity = forwardRef<
   HTMLButtonElement,
-  ComponentProps<typeof motion.button>
+  ComponentProps<typeof m.button>
 >((props, ref) => (
-  <motion.button
+  <m.button
     {...props}
     ref={ref}
     whileTap={props.whileTap || { opacity: 0.4 }}
@@ -48,7 +44,10 @@ const pulse = keyframes({
   '50%': { opacity: 0.5 },
 })
 
-const StyledButton = styled(motion.button, {
+// converted styles to reusable css for object composition
+// sample usecase is styling dialog close button
+// const Close = styled(Dialog.Close, buttonStyles, { color: '$primar1' })
+const buttonStyles = css({
   background: 'none',
   border: '0px solid $black1',
   padding: '0 $3',
@@ -80,7 +79,7 @@ const StyledButton = styled(motion.button, {
   },
 
   variants: {
-    radius: radiiMap,
+    radius: mapThemeToCSSProp('borderRadius'),
     size: {
       small: { height: '$5' },
       medium: { height: '$6' },
@@ -139,12 +138,17 @@ const StyledButton = styled(motion.button, {
   },
 })
 
+const StyledButton = styled(m.button, buttonStyles)
+
 type PolymorphicButton = Polymorphic.ForwardRefComponent<
-  typeof motion.button,
+  'button',
   Polymorphic.OwnProps<typeof StyledButton>
 >
 
-const Button = forwardRef(({ disabled, loading, ...rest }, ref) => {
+const Button = forwardRef<
+  ElementRef<typeof StyledButton>,
+  ComponentProps<typeof StyledButton>
+>(({ disabled, loading, ...rest }, ref) => {
   const isDisabled = (disabled || loading) as boolean | undefined
   return (
     <StyledButton

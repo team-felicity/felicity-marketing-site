@@ -1,24 +1,22 @@
 import { forwardRef } from 'react'
 import NextLink, { LinkProps } from 'next/link'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
-import type * as Polymorphic from '@radix-ui/react-polymorphic'
+import type { ElementRef, ComponentProps } from 'react'
 
 import { styled } from '@config/stitches'
 
-const StyledLink = styled(motion.a, {})
+const StyledLink = styled(m.a, {})
 
-type PolymorphicLink = Polymorphic.ForwardRefComponent<
-  typeof motion.a,
-  Polymorphic.OwnProps<typeof StyledLink>
->
-
-const Link = forwardRef(({ href, ...rest }, ref) => {
+const Link = forwardRef<
+  ElementRef<typeof StyledLink>,
+  ComponentProps<typeof StyledLink>
+>(({ href, ...rest }, ref) => {
   return (
     <NextLink href={href as LinkProps['href']} passHref>
       <StyledLink ref={ref} {...rest} />
     </NextLink>
   )
-}) as PolymorphicLink
+})
 
 export default Link

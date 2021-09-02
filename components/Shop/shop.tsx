@@ -79,7 +79,7 @@ function ShopContent() {
         Get Notified when we launch!
       </SloganText>
 
-      <FlexRow>
+      <FlexRow justify={{ '@desktop': 'start', '@phone': 'center' }}>
         <View>
           <TextField variant="outline" />
         </View>
@@ -100,7 +100,7 @@ function ShopContent() {
       >
         *For the meantime, use our application!
       </Subtitle>
-      <FlexRow gap="3">
+      <FlexRow gap="3" justify={{ '@desktop': 'start', '@phone': 'center' }}>
         <Link href="http://facebok.com" target="_blank">
           <Image src={Appstore} alt="appstore" />
         </Link>
@@ -194,12 +194,13 @@ const FlexCol = styled(Flex, {
   },
 })
 
-const ImageContainer = styled(View, {
+const ImageContainer = styled(Container, {
   pt: '$5',
+  width: '50vw',
+  justifyContent: 'center',
   '@desktop': {
     pt: '0',
     position: 'absolute',
-    width: '50vw',
     left: '-8%',
     top: '20%',
   },

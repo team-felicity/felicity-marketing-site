@@ -1,5 +1,4 @@
-import { Formik, Field, Form } from 'formik'
-import * as yup from 'yup'
+import { useForm } from 'react-hook-form'
 
 import { styled } from '@config/stitches'
 
@@ -7,18 +6,20 @@ import { Text, Button, Grid, TextField, Container, TextArea } from '@components'
 import { TouchableOpacity } from '@components/Button'
 import { textStyles } from '@components/Text'
 
-const validationSchema = yup.object().shape({
-  fname: yup.string().required('Please fill out this field'),
-  lname: yup.string().required('Please fill out this field'),
-  email: yup
-    .string()
-    .email('Please fill in a valid email')
-    .required('Please fill out this field'),
-  message: yup.string().required('Please fill out this field'),
-})
-const initialValues = { fname: '', lname: '', email: '', message: '' }
+interface FormFields {
+  fname: string
+  lname: string
+  email: string
+  message: string
+}
 
 export default function ContactUs() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormFields>({ mode: 'onTouched' })
+
   return (
     <Container size="medium" css={{ p: '$5' }}>
       <ContactUsHeader>Contact Us</ContactUsHeader>
@@ -27,71 +28,56 @@ export default function ContactUs() {
         from you. Your feedback helps us cater the events you love and services
         you expect.
       </Text>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        initialErrors={{}} // default is adding error messages to all fields but it feels like the form is shouting at you
-        onSubmit={() => {
-          alert('congrats')
-        }}
-      >
-        {({ errors, touched, values, handleChange, handleBlur }) => {
-          const getErrorMessage = (name: keyof typeof initialValues) =>
-            touched[name] && errors[name] ? errors[name] : ''
 
-          return (
-            <FormGrid as={Form}>
-              <Grid flow={{ '@initial': 'row', '@desktop': 'column' }} gap="4">
-                <Field
-                  as={TextField}
-                  placeholder="First Name"
-                  variant="flushed"
-                  name="fname"
-                  error={getErrorMessage('fname')}
-                />
-                <Field
-                  as={TextField}
-                  placeholder="Last Name"
-                  variant="flushed"
-                  name="lname"
-                  error={getErrorMessage('lname')}
-                />
-              </Grid>
+      <FormGrid as="form" onSubmit={handleSubmit(() => alert('congrats'))}>
+        <Grid flow={{ '@initial': 'row', '@desktop': 'column' }} gap="4">
+          <TextField
+            placeholder="First Name"
+            variant="flushed"
+            {...register('fname', { required: 'Please fill out this field' })}
+            error={errors.fname?.message}
+          />
+          <TextField
+            placeholder="Last Name"
+            variant="flushed"
+            {...register('lname', { required: 'Please fill out this field' })}
+            error={errors.lname?.message}
+          />
+        </Grid>
 
-              <Field
-                as={TextField}
-                placeholder="Email"
-                variant="flushed"
-                name="email"
-                error={getErrorMessage('email')}
-              />
-              <TextArea
-                placeholder="Message"
-                name="message"
-                value={values.message}
-                error={getErrorMessage('message')}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                rows={7}
-              />
-              <Button
-                type="button"
-                size="large"
-                variant="primary"
-                as={TouchableOpacity}
-                radius="10"
-                css={{
-                  mt: '$2',
-                  width: '100%',
-                  '@desktop': { width: '25%' },
-                }}
-              >
-                Submit
-              </Button>
-            </FormGrid>
-          )
-        }}
-      </Formik>
+        <TextField
+          placeholder="Email"
+          variant="flushed"
+          {...register('email', {
+            required: 'Please fill out this field',
+            pattern: {
+              value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/,
+              message: 'Please fill in a valid email',
+            },
+          })}
+          error={errors.email?.message}
+        />
+        <TextArea
+          placeholder="Message"
+          rows={7}
+          {...register('message', { required: 'Please fill out this field' })}
+          error={errors.message?.message}
+        />
+        <Button
+          type="button"
+          size="large"
+          variant="primary"
+          as={TouchableOpacity}
+          radius="10"
+          css={{
+            mt: '$2',
+            width: '100%',
+            '@desktop': { width: '25%' },
+          }}
+        >
+          Submit
+        </Button>
+      </FormGrid>
     </Container>
   )
 }

@@ -8,9 +8,13 @@ import Youtube from 'public/youtube.svg'
 import Email from 'public/email.svg'
 import Phone from 'public/phone-call.svg'
 import Logo from 'public/logo.svg'
+import { useRouter } from 'next/router'
 import { textStyles } from '@components/Text'
 
 export default function Footer() {
+  const { pathname } = useRouter()
+
+  if (pathname === '/shop') return null
   return (
     <View
       as="footer"

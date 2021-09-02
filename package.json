@@ -13,7 +13,6 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@googlemaps/js-api-loader": "^1.12.2",
     "@heroicons/react": "^1.0.3",
     "@next/bundle-analyzer": "^11.1.2",
     "@radix-ui/react-accordion": "^0.0.18",

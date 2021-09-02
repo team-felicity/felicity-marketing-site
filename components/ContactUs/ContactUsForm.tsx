@@ -51,7 +51,7 @@ export default function ContactUs() {
           {...register('email', {
             required: 'Please fill out this field',
             pattern: {
-              value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,})+$/,
+              value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
               message: 'Please fill in a valid email',
             },
           })}

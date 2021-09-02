@@ -3,7 +3,6 @@ import { Text, View, Button, Flex, ScrollReveal } from '@components'
 import Photo from 'public/sample.png'
 import { textStyles } from '@components/Text'
 import { styled } from '@config/stitches'
-import { motion } from 'framer-motion'
 
 interface Props {
   direction: 'row' | 'column' | 'rowReverse' | 'columnReverse'
@@ -72,8 +71,6 @@ export default function RecentCard({ direction }: Props) {
         </ScrollReveal>
         <ScrollReveal>
           <Button
-            as={motion.a}
-            href="#"
             variant="secondary"
             size="large"
             css={{

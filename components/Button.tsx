@@ -47,7 +47,7 @@ const pulse = keyframes({
 // converted styles to reusable css for object composition
 // sample usecase is styling dialog close button
 // const Close = styled(Dialog.Close, buttonStyles, { color: '$primar1' })
-const buttonStyles = css({
+export const buttonStyles = css({
   background: 'none',
   border: '0px solid $black1',
   padding: '0 $3',

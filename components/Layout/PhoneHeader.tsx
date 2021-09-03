@@ -128,8 +128,11 @@ export default function PhoneHeader() {
 }
 
 const StyledContent = styled(Dialog.Content, {
+  position: 'fixed',
+  inset: 0,
+
   width: '100vw',
-  height: '100vh',
+  height: '100%',
   display: 'grid',
   gridAutoFlow: 'row',
   gridTemplateRows: 'auto 1fr auto',

@@ -15,7 +15,7 @@ export default function BlogList() {
       }}
     >
       <Container
-        size="medium"
+        size="large"
         css={{
           display: 'grid',
           gapy: '2rem',
@@ -29,12 +29,10 @@ export default function BlogList() {
         <Title size={{ '@initial': '10', '@tablet': '12', '@desktop': '14' }}>
           OUR BLOG
         </Title>
-        <PostCard>
+        <Flex direction="column" gap="8">
           <RecentCard direction="row" from="blog" />
-        </PostCard>
-        <PostCard>
           <RecentCard direction="rowReverse" from="blog" />
-        </PostCard>
+        </Flex>
         <Button
           as={motion.a}
           href="#"
@@ -48,7 +46,7 @@ export default function BlogList() {
             width: 'fit-content',
             padding: '1rem 2rem',
             height: 'unset',
-            marginBottom: '$5',
+            marginBottom: '$8',
             '@desktop': {
               fontSize: '$4',
               padding: '1rem 5rem',
@@ -72,11 +70,5 @@ const Title = styled('h1', {
   defaultVariants: {
     color: 'primary4',
     weight: 'bold',
-  },
-})
-
-const PostCard = styled(View, {
-  '@desktop': {
-    py: '$5',
   },
 })

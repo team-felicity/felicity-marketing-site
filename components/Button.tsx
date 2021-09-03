@@ -58,6 +58,7 @@ export const buttonStyles = css({
   boxShadow: 'inset 0 0 0 $$borderWidth $$borderColor',
   $$borderColor: 'currentColor',
   $$borderWidth: '1px',
+  $$accentColor: 'currentColor',
 
   transition: 'all .15s ease',
   userSelect: 'none',
@@ -98,13 +99,13 @@ export const buttonStyles = css({
     },
     variant: {
       secondary: {
+        $$accentColor: '$colors$primary1',
+        $$borderColor: '$$accentColor',
         $$borderWidth: '2px',
-        color: '$primary1',
+        color: '$$accentColor',
 
         '&:not(&:disabled):hover': {
-          $$borderColor: '$colors$primary1',
-
-          background: '$$borderColor',
+          background: '$$accentColor',
           color: '$white1',
         },
       },

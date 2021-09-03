@@ -138,7 +138,11 @@ const AuthorText = styled('p', {
 const Button = styled('a', buttonStyles, {
   marginTop: '$4',
   fontSize: '$3',
-  width: '50%',
+  width: '100%',
   height: 'unset',
   marginBottom: '$5',
+
+  '@phone': {
+    width: '50%',
+  },
 })

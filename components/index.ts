@@ -9,6 +9,7 @@ export { default as DownloadSection } from './DownloadApp/DownloadSection'
 export { default as OrderSteps } from './DownloadApp/OrderSteps'
 export { default as ScrollReveal } from './ScrollReveal'
 export { default as RecentPostSection } from '@components/RecentPost/RecentSection'
+export { default as BlogList } from '@components/Blog/BlogList'
 
 export { TextField, TextArea } from './TextField'
 export * as Sheet from './Sheet'

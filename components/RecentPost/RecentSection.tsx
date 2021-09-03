@@ -31,9 +31,9 @@ export default function RecentPostSection() {
         <TomatoView>
           <Image src={Tomato} alt="tomato" objectFit="contain" />
         </TomatoView>
-        <View style={{ position: 'relative', zIndex: 1 }}>
+        <PostCard>
           <RecentCard direction="row" />
-        </View>
+        </PostCard>
       </View>
 
       <View
@@ -44,9 +44,9 @@ export default function RecentPostSection() {
         <BrocoliView>
           <Image src={Brocoli} alt="brocoli" objectFit="contain" />
         </BrocoliView>
-        <View style={{ position: 'relative', zIndex: 1 }}>
+        <PostCard>
           <RecentCard direction="rowReverse" />
-        </View>
+        </PostCard>
       </View>
     </Container>
   )
@@ -88,5 +88,20 @@ const Title = styled('h1', {
   defaultVariants: {
     color: 'white1',
     weight: 'bold',
+  },
+})
+
+const PostCard = styled(View, {
+  position: 'relative',
+  zIndex: 1,
+  my: '$4',
+  pt: '$6',
+  pb: '$2',
+  px: '$6',
+  borderRadius: 50,
+  backgroundColor: '$white1',
+  boxShadow: '1px 2px 6px 1px #D0D0D0',
+  '@desktop': {
+    pt: '$4',
   },
 })

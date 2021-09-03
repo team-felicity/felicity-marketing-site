@@ -7,20 +7,27 @@ import { motion } from 'framer-motion'
 
 interface Props {
   direction: 'row' | 'column' | 'rowReverse' | 'columnReverse'
+  from?: 'blog'
 }
 
-export default function RecentCard({ direction }: Props) {
+export default function RecentCard({ direction, from }: Props) {
   return (
-    <Layout
+    <Flex
       direction={{
         '@initial': 'column',
         '@phone': direction,
         '@tablet': direction,
       }}
-      gapX="5"
+      gapX={from === 'blog' ? '8' : '5'}
     >
       <ScrollReveal>
-        <ImageContainer>
+        <ImageContainer
+          css={{
+            '@desktop': {
+              width: from === 'blog' ? '25rem' : '20rem',
+            },
+          }}
+        >
           <StyledImage src={Photo} alt="photo" placeholder="blur" />
         </ImageContainer>
       </ScrollReveal>
@@ -83,12 +90,12 @@ export default function RecentCard({ direction }: Props) {
               padding: '1rem 1rem',
               height: 'unset',
               marginBottom: '$5',
+              '@tablet': {
+                padding: from === 'blog' ? '1rem 9rem' : '1rem 7rem',
+              },
               '@desktop': {
                 fontSize: '$4',
-                padding: '1rem 6rem',
-              },
-              '@tablet': {
-                padding: '1rem 9rem',
+                padding: from === 'blog' ? '1rem 12rem' : '1rem 9rem',
               },
             }}
           >
@@ -96,22 +103,9 @@ export default function RecentCard({ direction }: Props) {
           </Button>
         </ScrollReveal>
       </ContentFlex>
-    </Layout>
+    </Flex>
   )
 }
-
-const Layout = styled(Flex, {
-  my: '$4',
-  pt: '$6',
-  pb: '$2',
-  px: '$6',
-  borderRadius: 50,
-  backgroundColor: '$white1',
-  boxShadow: '1px 2px 6px 1px #D0D0D0',
-  '@desktop': {
-    pt: '$4',
-  },
-})
 
 const Blogtitle = styled('h1', {
   ...textStyles,
@@ -135,7 +129,6 @@ const ImageContainer = styled(View, {
   },
   '@desktop': {
     pt: '$5',
-    width: '20rem',
   },
 })
 

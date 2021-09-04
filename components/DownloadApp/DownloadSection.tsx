@@ -38,10 +38,18 @@ export default function DownloadSection() {
           </ScrollReveal>
           <ScrollReveal>
             <FlexRow>
-              <Link href="http://facebok.com" target="_blank">
+              <Link
+                href="http://facebok.com"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 <Image src={Appstore} alt="appstore" />
               </Link>
-              <Link href="http://facebok.com" target="_blank">
+              <Link
+                href="http://facebok.com"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 <Image src={Playstore} alt="playstore" />
               </Link>
             </FlexRow>

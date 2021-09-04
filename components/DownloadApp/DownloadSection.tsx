@@ -12,6 +12,7 @@ export default function DownloadSection() {
     <View
       as="section"
       css={{ '@initial': { py: '$6' }, '@desktop': { py: '$9' } }}
+      id="download"
     >
       <Container
         as={Flex}

@@ -1,8 +1,9 @@
 import Image from 'next/image'
-import { Text, View, Button, Flex, ScrollReveal } from '@components'
+import { Text, View, Flex, ScrollReveal } from '@components'
 import Photo from 'public/sample.png'
 import { textStyles } from '@components/Text'
 import { styled } from '@config/stitches'
+import { buttonStyles } from '@components/Button'
 import { motion } from 'framer-motion'
 
 interface Props {
@@ -25,6 +26,7 @@ export default function RecentCard({ direction, from }: Props) {
           css={{
             '@desktop': {
               width: from === 'blog' ? '25rem' : '20rem',
+              pt: from === 'blog' ? '$0' : '$5',
             },
           }}
         >
@@ -90,6 +92,8 @@ export default function RecentCard({ direction, from }: Props) {
               padding: '1rem 1rem',
               height: 'unset',
               marginBottom: '$5',
+              $$accentColor:
+                from === 'blog' ? '$colors$primary4' : '$colors$primary1',
               '@tablet': {
                 padding: from === 'blog' ? '1rem 9rem' : '1rem 7rem',
               },
@@ -127,9 +131,6 @@ const ImageContainer = styled(View, {
   '@tablet': {
     width: '20rem',
   },
-  '@desktop': {
-    pt: '$5',
-  },
 })
 
 const StyledImage = styled(Image, {
@@ -146,4 +147,12 @@ const AuthorText = styled('p', {
     color: 'primary5',
     weight: 'semibold',
   },
+})
+
+const Button = styled('a', buttonStyles, {
+  marginTop: '$4',
+  fontSize: '$3',
+  width: '50%',
+  height: 'unset',
+  marginBottom: '$5',
 })

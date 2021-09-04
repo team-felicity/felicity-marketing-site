@@ -44,12 +44,12 @@ export default function BlogList() {
             marginTop: '$8',
             fontSize: '$3',
             width: 'fit-content',
-            padding: '1rem 2rem',
+            padding: '0.8rem 2rem',
             height: 'unset',
             marginBottom: '$8',
             '@desktop': {
               fontSize: '$4',
-              padding: '1rem 5rem',
+              padding: '0.8rem 4rem',
             },
           }}
         >

@@ -47,7 +47,7 @@ const pulse = keyframes({
 // converted styles to reusable css for object composition
 // sample usecase is styling dialog close button
 // const Close = styled(Dialog.Close, buttonStyles, { color: '$primar1' })
-const buttonStyles = css({
+export const buttonStyles = css({
   background: 'none',
   border: '0px solid $black1',
   padding: '0 $3',
@@ -58,6 +58,7 @@ const buttonStyles = css({
   boxShadow: 'inset 0 0 0 $$borderWidth $$borderColor',
   $$borderColor: 'currentColor',
   $$borderWidth: '1px',
+  $$accentColor: 'currentColor',
 
   transition: 'all .15s ease',
   userSelect: 'none',
@@ -98,13 +99,13 @@ const buttonStyles = css({
     },
     variant: {
       secondary: {
+        $$accentColor: '$colors$primary1',
+        $$borderColor: '$$accentColor',
         $$borderWidth: '2px',
-        color: '$primary1',
+        color: '$$accentColor',
 
         '&:not(&:disabled):hover': {
-          $$borderColor: '$colors$primary1',
-
-          background: '$$borderColor',
+          background: '$$accentColor',
           color: '$white1',
         },
       },

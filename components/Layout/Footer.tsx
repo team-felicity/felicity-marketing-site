@@ -139,6 +139,7 @@ function ContactInfo({ label }: { label: string }) {
             opacity: 0,
           }}
           onClick={handleClipboardClick}
+          aria-label="Copy to Clipboard"
         >
           {copied ? (
             <ClipboardCheckIcon height="20px" width="20px" />

@@ -1,8 +1,6 @@
-import { m } from 'framer-motion'
-
 import { styled } from '@config/stitches'
 
-export default styled(m.div, {
+export default styled('div', {
   mx: 'auto',
   px: '$5',
 

@@ -1,8 +1,9 @@
 import Image from 'next/image'
-import { Text, View, Button, Flex, ScrollReveal } from '@components'
+import { Text, View, Flex, ScrollReveal } from '@components'
 import Photo from 'public/sample.png'
 import { textStyles } from '@components/Text'
 import { styled } from '@config/stitches'
+import { buttonStyles } from '@components/Button'
 
 interface Props {
   direction: 'row' | 'column' | 'rowReverse' | 'columnReverse'
@@ -149,5 +150,17 @@ const AuthorText = styled('p', {
   defaultVariants: {
     color: 'primary5',
     weight: 'semibold',
+  },
+})
+
+const Button = styled('a', buttonStyles, {
+  marginTop: '$4',
+  fontSize: '$3',
+  width: '100%',
+  height: 'unset',
+  marginBottom: '$5',
+
+  '@phone': {
+    width: '50%',
   },
 })

@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 import {
   DownloadSection,
   OrderSteps,
@@ -7,19 +9,19 @@ import {
 } from '@components'
 import Hero from '@components/Landing/Hero'
 import ContactUs from '@components/ContactUs'
+
 import Waves from 'public/waves.svg'
-import Image from 'next/image'
 
 export default function LandingPage() {
   return (
-    <>
+    <View css={{ linearGradient: '#60BB93,#85AAC1' }}>
       <Hero />
       <Wave />
       <RecentPostSection />
       <OrderSteps />
       <DownloadSection />
       <ContactUs />
-    </>
+    </View>
   )
 }
 

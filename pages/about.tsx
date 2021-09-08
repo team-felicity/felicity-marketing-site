@@ -1,3 +1,4 @@
+import { SuccessScreen } from '@components'
 export default function AboutPage() {
-  return <div />
+  return <SuccessScreen />
 }

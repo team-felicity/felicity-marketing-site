@@ -14,7 +14,7 @@
     "lint:eslint": "eslint --fix --max-warnings=0",
     "type-check": "tsc --pretty --noEmit",
     "prepare": "husky install",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "test:watch": "jest --watch"
   },
   "dependencies": {

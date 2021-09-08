@@ -115,28 +115,16 @@ export const stitches = createStitches({
     mr: (v: Stitches.PropertyValue<'margin'>) => ({ marginRight: v }),
     mb: (v: Stitches.PropertyValue<'margin'>) => ({ marginBottom: v }),
     ml: (v: Stitches.PropertyValue<'margin'>) => ({ marginLeft: v }),
-    mx: (v: Stitches.PropertyValue<'margin'>) => ({
-      marginRight: v,
-      marginLeft: v,
-    }),
-    my: (v: Stitches.PropertyValue<'margin'>) => ({
-      marginTop: v,
-      marginBottom: v,
-    }),
+    mx: (v: Stitches.PropertyValue<'marginInline'>) => ({ marginInline: v }),
+    my: (v: Stitches.PropertyValue<'marginBlock'>) => ({ marginBlock: v }),
 
     p: (v: Stitches.PropertyValue<'padding'>) => ({ padding: v }),
     pt: (v: Stitches.PropertyValue<'padding'>) => ({ paddingTop: v }),
     pr: (v: Stitches.PropertyValue<'padding'>) => ({ paddingRight: v }),
     pb: (v: Stitches.PropertyValue<'padding'>) => ({ paddingBottom: v }),
     pl: (v: Stitches.PropertyValue<'padding'>) => ({ paddingLeft: v }),
-    px: (v: Stitches.PropertyValue<'padding'>) => ({
-      paddingLeft: v,
-      paddingRight: v,
-    }),
-    py: (v: Stitches.PropertyValue<'padding'>) => ({
-      paddingTop: v,
-      paddingBottom: v,
-    }),
+    px: (v: Stitches.PropertyValue<'paddingInline'>) => ({ paddingInline: v }),
+    py: (v: Stitches.PropertyValue<'paddingBlock'>) => ({ paddingBlock: v }),
 
     gapy: (v: Stitches.PropertyValue<'rowGap'>) => ({ rowGap: v }),
     gapx: (v: Stitches.PropertyValue<'columnGap'>) => ({ columnGap: v }),

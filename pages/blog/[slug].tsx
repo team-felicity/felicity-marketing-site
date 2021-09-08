@@ -42,7 +42,11 @@ export default function BlogDetail({
       <div>
         <Container size="medium" as={Flex} justify="center" css={{ p: '$4 0' }}>
           <Image
-            src={`http://localhost:1337${coverImage.url}`}
+            src={
+              process.env.NODE_ENV === 'development'
+                ? `http://localhost:1337${coverImage.url}`
+                : coverImage.url
+            }
             width={coverImage.width}
             height={coverImage.height}
             alt={coverImage.url}

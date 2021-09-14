@@ -22,7 +22,7 @@ import components from '@components/BlogComponents'
 
 export default function BlogDetail({
   contentSource,
-  meta: { author, coverImage, title, created_at },
+  meta: { author, coverImage, title, created_at, readTimeEstimate },
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <article>
@@ -34,6 +34,9 @@ export default function BlogDetail({
               <MetaDetail>{author.name}</MetaDetail>
               <MetaDetail>
                 {toDefaultDateFormat(new Date(created_at))}
+              </MetaDetail>
+              <MetaDetail color="primary1">
+                {readTimeEstimate} min read
               </MetaDetail>
             </Flex>
 
@@ -127,6 +130,7 @@ const MetaDetail = styled('span', {
   defaultVariants: {
     color: 'primary7',
     size: '2',
+    weight: 'semibold',
   },
 })
 

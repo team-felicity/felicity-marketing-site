@@ -5,6 +5,9 @@ import Image from 'next/image'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { ArrowRightIcon } from '@heroicons/react/solid'
+import rehypeSanitize from 'rehype-sanitize'
+import rehypeSlug from 'rehype-slug'
+import remarkUnwrapImages from 'remark-unwrap-images'
 
 import { styled } from '@config/stitches'
 
@@ -167,7 +170,12 @@ export const getStaticProps: GetStaticProps<
 > = async ({ params }) => {
   const { content, ...meta } = (await getArticle(params?.slug)) || {}
 
-  const contentSource = await serialize(content)
+  const contentSource = await serialize(content, {
+    mdxOptions: {
+      remarkPlugins: [remarkUnwrapImages],
+      rehypePlugins: [rehypeSanitize, rehypeSlug],
+    },
+  })
 
   return {
     props: {

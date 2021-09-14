@@ -1,24 +1,29 @@
-import { ComponentProps } from 'react'
+import { styled } from '@config/stitches'
+import { LinkIcon } from '@heroicons/react/outline'
+import type { ComponentProps, ReactNode } from 'react'
 import { Flex, View } from '.'
 
 const components = {
-  a: (props: ComponentProps<'a'>) => (
-    <a {...props} target="_blank" rel="noopener" />
+  a: (props: ComponentProps<typeof A>) => (
+    <A {...props} target="_blank" rel="noopener" />
   ),
-  img: (props: ComponentProps<'img'>) => (
-    <Flex justify="center">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        {...props}
-        src={
-          process.env.NODE_ENV === 'development'
-            ? `http://localhost:1337${props.src}`
-            : props.src
-        }
-        alt={props.alt}
-      />
-    </Flex>
-  ),
+  img: (props: ComponentProps<'img'>) => {
+    const src =
+      process.env.NODE_ENV === 'development'
+        ? `http://localhost:1337${props.src}`
+        : props.src
+    return (
+      <Flex justify="center">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          {...props}
+          style={{ width: '100%', objectFit: 'cover' }}
+          src={src}
+          alt={props.alt}
+        />
+      </Flex>
+    )
+  },
   blockquote: (props: ComponentProps<'blockquote'>) => (
     <View
       as="blockquote"
@@ -27,13 +32,105 @@ const components = {
         mb: '$5',
         pl: '$4',
         mx: '0',
-        borderLeft: `1px solid $black1`,
+        borderLeft: `$sizes$1 solid rgb(238, 238, 238)`,
         color: '$gray1',
+
+        '& p': {
+          py: '1rem',
+          my: 0,
+        },
       }}
     >
       {props.children}
     </View>
   ),
+  h1: ({ children, ...rest }: ComponentProps<'h1'>) => {
+    return (
+      <HeadingLink id={rest.id}>
+        <h1 {...rest} id={rest.id}>
+          {children}
+        </h1>
+      </HeadingLink>
+    )
+  },
+  h2: ({ children, ...rest }: ComponentProps<'h1'>) => {
+    return (
+      <HeadingLink id={rest.id}>
+        <h2 {...rest} id={rest.id}>
+          {children}
+        </h2>
+      </HeadingLink>
+    )
+  },
+  h3: ({ children, ...rest }: ComponentProps<'h1'>) => {
+    return (
+      <HeadingLink id={rest.id}>
+        <h3 {...rest} id={rest.id}>
+          {children}
+        </h3>
+      </HeadingLink>
+    )
+  },
+  h4: ({ children, ...rest }: ComponentProps<'h1'>) => {
+    return (
+      <HeadingLink id={rest.id}>
+        <h4 {...rest} id={rest.id}>
+          {children}
+        </h4>
+      </HeadingLink>
+    )
+  },
+  h5: ({ children, ...rest }: ComponentProps<'h1'>) => {
+    return (
+      <HeadingLink id={rest.id}>
+        <h5 {...rest} id={rest.id}>
+          {children}
+        </h5>
+      </HeadingLink>
+    )
+  },
+  h6: ({ children, ...rest }: ComponentProps<'h1'>) => {
+    return (
+      <HeadingLink id={rest.id}>
+        <h6 {...rest} id={rest.id}>
+          {children}
+        </h6>
+      </HeadingLink>
+    )
+  },
+}
+
+const A = styled('a', {
+  color: '$primary1',
+  '&:hover': {
+    textDecoration: 'underline',
+    color: '$primary1',
+  },
+})
+
+const HeaderA = styled('a', {
+  textDecoration: 'none',
+  color: 'inherit',
+  display: 'inline-flex',
+  alignItems: 'center',
+
+  svg: {
+    opacity: 0,
+  },
+  '&:hover svg': {
+    opacity: 1,
+  },
+})
+
+function HeadingLink({ children, id }: { children: ReactNode; id?: string }) {
+  return (
+    <HeaderA href={`#${id}`} rel="noopener">
+      {children}
+      <Flex as="span" justify="center" css={{ ml: '$2', color: '$gray1' }}>
+        <LinkIcon aria-hidden width={16} />
+      </Flex>
+    </HeaderA>
+  )
 }
 
 export default components

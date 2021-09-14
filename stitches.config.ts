@@ -165,15 +165,16 @@ export const { css, styled, config, getCssText, globalCss, keyframes, theme } =
 export type CSS = Stitches.CSS<typeof config>
 
 export const globalStyles = globalCss({
-  '@import':
-    "url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap')",
-
   '*, ::after, ::before': {
     boxSizing: 'border-box',
   },
 
   body: {
     fontFamily: '$default',
+  },
+
+  html: {
+    scrollPaddingTop: 90,
   },
 
   'body, html': {

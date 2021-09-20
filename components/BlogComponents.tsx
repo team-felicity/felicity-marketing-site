@@ -1,9 +1,10 @@
-import { styled } from '@config/stitches'
+import { styled, css } from '@config/stitches'
 import { LinkIcon } from '@heroicons/react/outline'
 import type { ComponentProps, ReactNode } from 'react'
-import { Flex, View } from '.'
+import { Flex, View, Container } from './index'
 
 const components = {
+  p: (props: ComponentProps<typeof P>) => <P {...props} />,
   a: (props: ComponentProps<typeof A>) => (
     <A {...props} target="_blank" rel="noopener" />
   ),
@@ -47,13 +48,13 @@ const components = {
   h1: ({ children, ...rest }: ComponentProps<'h1'>) => {
     return (
       <HeadingLink id={rest.id}>
-        <h1 {...rest} id={rest.id}>
+        <h1 {...rest} id={rest.id} className={h1Styles()}>
           {children}
         </h1>
       </HeadingLink>
     )
   },
-  h2: ({ children, ...rest }: ComponentProps<'h1'>) => {
+  h2: ({ children, ...rest }: ComponentProps<'h2'>) => {
     return (
       <HeadingLink id={rest.id}>
         <h2 {...rest} id={rest.id}>
@@ -62,7 +63,7 @@ const components = {
       </HeadingLink>
     )
   },
-  h3: ({ children, ...rest }: ComponentProps<'h1'>) => {
+  h3: ({ children, ...rest }: ComponentProps<'h3'>) => {
     return (
       <HeadingLink id={rest.id}>
         <h3 {...rest} id={rest.id}>
@@ -71,7 +72,7 @@ const components = {
       </HeadingLink>
     )
   },
-  h4: ({ children, ...rest }: ComponentProps<'h1'>) => {
+  h4: ({ children, ...rest }: ComponentProps<'h4'>) => {
     return (
       <HeadingLink id={rest.id}>
         <h4 {...rest} id={rest.id}>
@@ -80,7 +81,7 @@ const components = {
       </HeadingLink>
     )
   },
-  h5: ({ children, ...rest }: ComponentProps<'h1'>) => {
+  h5: ({ children, ...rest }: ComponentProps<'h5'>) => {
     return (
       <HeadingLink id={rest.id}>
         <h5 {...rest} id={rest.id}>
@@ -89,7 +90,7 @@ const components = {
       </HeadingLink>
     )
   },
-  h6: ({ children, ...rest }: ComponentProps<'h1'>) => {
+  h6: ({ children, ...rest }: ComponentProps<'h6'>) => {
     return (
       <HeadingLink id={rest.id}>
         <h6 {...rest} id={rest.id}>
@@ -100,12 +101,50 @@ const components = {
   },
 }
 
+export const ContentContainer = styled(Container, {
+  fontSize: '16px',
+
+  '@tablet': {
+    fontSize: '18px',
+  },
+})
+
+const P = styled('p', {
+  lineHeight: 2,
+
+  '@tablet': {
+    lineHeight: 1.8,
+  },
+
+  [`${Container} > &:first-of-type::first-letter`]: {
+    initialLetter: 2,
+    color: '$primary7',
+    fontSize: '3.75em',
+    lineHeight: '0.9',
+    textTransform: 'uppercase',
+    display: 'block',
+    float: 'left',
+    paddingTop: '$1',
+    mr: '$2',
+    fontWeight: 'bold',
+
+    '@tablet': {
+      lineHeight: '0.8',
+    },
+  },
+})
+
 const A = styled('a', {
   color: '$primary1',
   '&:hover': {
     textDecoration: 'underline',
     color: '$primary1',
   },
+})
+
+const h1Styles = css({
+  fontSize: '2em',
+  my: '0.67em',
 })
 
 const HeaderA = styled('a', {

@@ -175,6 +175,7 @@ export const globalStyles = globalCss({
 
   html: {
     scrollPaddingTop: 90,
+    scrollBehavior: 'smooth',
   },
 
   'body, html': {

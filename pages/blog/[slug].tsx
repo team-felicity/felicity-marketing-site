@@ -11,14 +11,14 @@ import remarkUnwrapImages from 'remark-unwrap-images'
 
 import { styled } from '@config/stitches'
 
-import { Button, Container, Flex, View, Text } from '@components'
+import { Button, Container, Flex, Text } from '@components'
 
 import { getAllArticleSlugs, getArticle } from 'utils/api'
 import { Article } from 'utils/types'
 import { toDefaultDateFormat } from 'utils/functions'
 import { textStyles } from '@components/Text'
 import { BaseInput, sharedStyles } from '@components/TextField'
-import components from '@components/BlogComponents'
+import components, { ContentContainer } from '@components/BlogComponents'
 
 export default function BlogDetail({
   contentSource,
@@ -28,20 +28,14 @@ export default function BlogDetail({
     <article>
       <Header>
         <Container size="medium">
-          <View css={{ position: 'relative', isolation: 'isolate' }}>
-            <Title as="h1">{title}</Title>
-            <Flex gap="3">
-              <MetaDetail>{author.name}</MetaDetail>
-              <MetaDetail>
-                {toDefaultDateFormat(new Date(created_at))}
-              </MetaDetail>
-              <MetaDetail color="primary1">
-                {readTimeEstimate} min read
-              </MetaDetail>
-            </Flex>
-
-            <CoolInitial>{title.slice(0, 1)}</CoolInitial>
-          </View>
+          <Title as="h1">{title}</Title>
+          <Flex gap="3">
+            <MetaDetail>{author.name}</MetaDetail>
+            <MetaDetail>{toDefaultDateFormat(new Date(created_at))}</MetaDetail>
+            <MetaDetail color="primary1">
+              {readTimeEstimate} min read
+            </MetaDetail>
+          </Flex>
         </Container>
       </Header>
 
@@ -79,21 +73,6 @@ export default function BlogDetail({
   )
 }
 
-const ContentContainer = styled(Container, {
-  '& > p:first-of-type::first-letter': {
-    initialLetter: 2,
-    color: '$primary7',
-    fontSize: '60px',
-    lineHeight: '0.70',
-    textTransform: 'uppercase',
-    display: 'block',
-    float: 'left',
-    paddingTop: '$1',
-    mr: '$2',
-    fontWeight: 'bold',
-  },
-})
-
 const SubscribeText = styled('span', {
   ...textStyles,
   color: '$primary7',
@@ -107,21 +86,6 @@ const SubscribeText = styled('span', {
 const InputWrapper = styled('div', sharedStyles, {
   px: '2px',
   width: 'fit-content',
-})
-
-const CoolInitial = styled('span', {
-  ...textStyles,
-  textTransform: 'capitalize',
-  position: 'absolute',
-  top: '50%',
-  left: '3%',
-  transform: 'translateY(-50%)',
-  color: '$white1',
-  fontWeight: '$bold',
-  zIndex: '-1',
-  fontSize: 'max(14vw, 10.5rem)',
-  pointerEvents: 'none',
-  userSelect: 'none',
 })
 
 const MetaDetail = styled('span', {

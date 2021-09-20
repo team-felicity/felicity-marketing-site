@@ -22,11 +22,11 @@ import components, { ContentContainer } from '@components/BlogComponents'
 
 export default function BlogDetail({
   contentSource,
-  meta: { author, coverImage, title, created_at, readTimeEstimate },
+  meta: { author, coverImage, title, created_at, readTimeEstimate, categories },
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <article>
-      <Header>
+      <TitleWrapper>
         <Container size="medium">
           <Title as="h1">{title}</Title>
           <Flex gap="3">
@@ -37,7 +37,7 @@ export default function BlogDetail({
             </MetaDetail>
           </Flex>
         </Container>
-      </Header>
+      </TitleWrapper>
 
       <div>
         <Container size="medium" as={Flex} justify="center" css={{ p: '$4 0' }}>
@@ -66,6 +66,25 @@ export default function BlogDetail({
                 <ArrowRightIcon width={16} fill="white" />
               </Button>
             </InputWrapper>
+          </Flex>
+          <Flex direction="column" css={{ mt: '$8' }}>
+            <Text css={{ textTransform: 'uppercase' }}>Categories</Text>
+            <Flex gap="4" css={{ ml: '$1', mt: '$2' }}>
+              {categories.map(({ name }) => (
+                <Text
+                  key={name}
+                  color="white1"
+                  css={{
+                    textTransform: 'uppercase',
+                    backgroundColor: '$primary4',
+                    p: '0.5rem 1rem',
+                    userSelect: 'none',
+                  }}
+                >
+                  {name}
+                </Text>
+              ))}
+            </Flex>
           </Flex>
         </ContentContainer>
       </div>
@@ -112,7 +131,7 @@ const Title = styled('h1', {
   },
 })
 
-const Header = styled('header', {
+const TitleWrapper = styled('div', {
   mt: '$4',
   py: 'min(2.5vw, 3em)',
 

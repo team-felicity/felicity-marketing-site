@@ -112,10 +112,6 @@ export const ContentContainer = styled(Container, {
 const P = styled('p', {
   lineHeight: 2,
 
-  '@tablet': {
-    lineHeight: 1.8,
-  },
-
   [`${Container} > &:first-of-type::first-letter`]: {
     initialLetter: 2,
     color: '$primary7',

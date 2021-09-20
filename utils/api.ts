@@ -1,21 +1,21 @@
 import { gqlClient } from './fetcher'
-import { Article } from './types'
+import { Article, CoverImage } from './types'
 
-interface RelativeArticleMeta {
+export interface RelativeArticleMeta {
   title: string
   slug: string
 }
 
 export async function getRelativeArticles(createdAt: string): Promise<{
-  prev: RelativeArticleMeta
-  next: RelativeArticleMeta
+  prev: RelativeArticleMeta | null
+  next: RelativeArticleMeta | null
 }> {
   const { prev, next } = await gqlClient(
     `
 		query {
 			previousArticle: articles(
 				limit: 1
-				where: { created_at_lt: ${createdAt}}
+				where: { created_at_lt: "${createdAt}"}
 			) {
 				title
 				slug
@@ -23,7 +23,7 @@ export async function getRelativeArticles(createdAt: string): Promise<{
 
 			nextArticle: articles(
 				limit: 1
-				where: { created_at_gt: ${createdAt}}
+				where: { created_at_gt: "${createdAt}"}
 			) {
 				title
 				slug
@@ -34,8 +34,8 @@ export async function getRelativeArticles(createdAt: string): Promise<{
   )
     .then((res) => res.data)
     .then((data) => ({
-      prev: data.previousArticle[0],
-      next: data.nextArticle[0],
+      prev: data.previousArticle[0] || null,
+      next: data.nextArticle[0] || null,
     }))
 
   return { prev, next }
@@ -78,4 +78,40 @@ export async function getArticle(slug = ''): Promise<Article> {
 		`,
     { slug }
   ).then((res) => res.data.articles[0])
+}
+
+export interface RelatedArticleMeta extends RelativeArticleMeta {
+  coverImage: CoverImage
+}
+
+export async function getRelatedArticles({
+  categories,
+  slug,
+}: {
+  categories: string[]
+  slug?: string
+}): Promise<RelatedArticleMeta[]> {
+  return gqlClient(
+    `
+		query {
+			articles(
+				where: {
+					categories: { name: ${JSON.stringify(categories)} }
+					slug_ne: "${slug}"
+				}
+				limit: 3
+			) {
+				title
+				slug
+				coverImage {
+					url
+					width
+					height
+					formats
+				}
+			}
+		}
+		`,
+    { categories, slug }
+  ).then((res) => res.data.articles)
 }

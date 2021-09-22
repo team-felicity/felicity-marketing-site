@@ -20,7 +20,7 @@ export default function Layout({ children, hideFooter = false }: Props) {
         <meta name="description" content="Discover Fresh and Healthy Food" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Flex direction="column" css={{ minHeight: '100vh' }}>
+      <Flex direction="column" css={{ height: '100%' }}>
         <Header />
         <View as="main" css={{ flexGrow: 1, backgroundColor: '$white1' }}>
           {children}

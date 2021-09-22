@@ -113,7 +113,12 @@ export default function PhoneHeader() {
 
         <Flex gap="2" justify="center">
           {socialMediaLinks.map((item) => (
-            <Link href={item.href} target="_blank" key={item.href}>
+            <Link
+              href={item.href}
+              rel="noreferrer noopener"
+              target="_blank"
+              key={item.href}
+            >
               <Image src={item.SVG} alt={item.alt} />
             </Link>
           ))}

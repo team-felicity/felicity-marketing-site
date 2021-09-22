@@ -74,7 +74,12 @@ export default function Footer() {
           <FooterColumnTitle>Follow us on:</FooterColumnTitle>
           <Flex justify="center">
             {socialMediaLinks.map((item) => (
-              <Link href={item.href} target="_blank" key={item.href}>
+              <Link
+                href={item.href}
+                rel="noreferrer noopener"
+                target="_blank"
+                key={item.href}
+              >
                 <Image src={item.image} alt={item.alt} />
               </Link>
             ))}
@@ -133,6 +138,7 @@ function ContactInfo({ label }: { label: string }) {
             opacity: 0,
           }}
           onClick={handleClipboardClick}
+          aria-label="Copy to Clipboard"
         >
           {copied ? (
             <ClipboardCheckIcon height="20px" width="20px" />

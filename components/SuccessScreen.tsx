@@ -1,6 +1,6 @@
 import { styled } from '@config/stitches'
 import Image from 'next/image'
-import { Container, View, Flex, Link } from '@components'
+import { Container, View, Flex, Link, Grid } from '@components'
 import { textStyles } from '@components/Text'
 import BrocoliImg from 'public/brocoli.png'
 import BowlImg from 'public/foodbowl.png'
@@ -8,67 +8,56 @@ import LemonImg from 'public/lemon.png'
 import CheckImg from 'public/check.svg'
 import { ArrowRightIcon } from '@heroicons/react/outline'
 
+const IMAGE_HEIGHT = 65
+
 export default function SuccessScreen() {
   return (
-    <View
+    <Grid
+      flow="row"
       css={{
-        display: 'grid',
-        backgroundColor: '$white1',
-        minHeight: '60vh',
-        overflow: 'hidden',
-        '@tablet': {
-          height: '70vh',
-        },
+        placeItems: 'center',
+        height: '100%',
+        py: IMAGE_HEIGHT,
       }}
     >
-      <BoxBg />
-      <Container
-        as={Flex}
-        size="large"
-        direction="column"
-        gap="3"
-        css={{
-          alignSelf: 'center',
-          position: 'relative',
-        }}
-      >
-        <Check>
+      <View css={{ backgroundColor: '$primary7', width: '100%' }}>
+        <Container
+          as={Flex}
+          direction="column"
+          gap="3"
+          css={{
+            mt: -(IMAGE_HEIGHT / 2),
+            pb: '$6',
+          }}
+        >
           <Image src={CheckImg} alt="check" />
-        </Check>
 
-        <Title
-          size={{
-            '@initial': '7',
-            '@tablet': '10',
-            '@desktop': '12',
-          }}
-        >
-          Thank you!
-        </Title>
-        <Subtitle
-          size={{
-            '@initial': '3',
-            '@tablet': '5',
-            '@desktop': '6',
-          }}
-        >
-          We’ll get back with you as soon as possible
-        </Subtitle>
-        <Link href="#">
-          <Flex gap="3" css={{ justifyContent: 'center' }}>
-            <LinkText
-              size={{
-                '@initial': '3',
-                '@tablet': '6',
-                '@desktop': '7',
+          <Title size={{ '@initial': '8', '@phone': '10', '@tablet': '12' }}>
+            Thank you!
+          </Title>
+          <Subtitle size={{ '@initial': '4', '@phone': '6' }}>
+            We’ll get back with you as soon as possible
+          </Subtitle>
+          <Link href="/blog">
+            <Flex
+              gap="2"
+              css={{
+                justifyContent: 'center',
+                fontSize: '$4',
+                '@phone': { fontSize: '$6' },
               }}
             >
-              Read our latest blog
-            </LinkText>
-            <ArrowRightIcon width="1.5rem" color="#60BB93" />
-          </Flex>
-        </Link>
-      </Container>
+              <LinkText css={{ fontSize: 'inherit' }}>
+                Read our latest blog
+              </LinkText>
+              <ArrowRightIcon
+                color="#60BB93"
+                style={{ width: '1em', fontSize: 'inherit' }}
+              />
+            </Flex>
+          </Link>
+        </Container>
+      </View>
 
       <Bowl>
         <Image src={BowlImg} alt="foodbowl" />
@@ -79,7 +68,7 @@ export default function SuccessScreen() {
       <Lemon>
         <Image src={LemonImg} alt="lemon" />
       </Lemon>
-    </View>
+    </Grid>
   )
 }
 
@@ -114,48 +103,30 @@ const LinkText = styled('p', {
 const Bowl = styled(View, {
   position: 'fixed',
   right: '-100%',
-  '@tablet': {
+  '@phone': {
     transform: 'translateY(-40%)',
     right: '-6%',
-    width: '13vw',
+    width: 'max(125px,13vw)',
     top: '50%',
   },
 })
 const Brocoli = styled(View, {
-  position: 'fixed',
-  left: '-100%',
-  '@tablet': {
-    transform: 'translateY(-40%)',
-    left: '-3%',
-    width: '12vw',
-    top: '60%',
+  display: 'none',
+  '@phone': {
+    position: 'fixed',
+    top: '50%',
+    left: '-5rem',
+    display: 'block',
+    width: 'max(150px,12vw)',
   },
 })
 const Lemon = styled(View, {
-  position: 'fixed',
-  top: '-100%',
-  '@tablet': {
-    left: '30%',
+  display: 'none',
+
+  '@phone': {
+    display: 'block',
+    position: 'fixed',
+    left: '20%',
     top: '-5%',
-    width: '15vw',
-  },
-})
-
-const Check = styled(View, {
-  alignSelf: 'center',
-})
-
-const BoxBg = styled(View, {
-  backgroundColor: '$primary7',
-  position: 'absolute',
-  width: '100%',
-  height: '30vh',
-  transform: 'translateY(50%)',
-  '@tablet': {
-    height: '25vh',
-    transform: 'translateY(90%)',
-  },
-  '@desktop': {
-    transform: 'translateY(100%)',
   },
 })

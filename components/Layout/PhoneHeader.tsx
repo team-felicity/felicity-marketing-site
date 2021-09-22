@@ -113,7 +113,12 @@ export default function PhoneHeader() {
 
         <Flex gap="2" justify="center">
           {socialMediaLinks.map((item) => (
-            <Link href={item.href} target="_blank" key={item.href}>
+            <Link
+              href={item.href}
+              rel="noreferrer noopener"
+              target="_blank"
+              key={item.href}
+            >
               <Image src={item.SVG} alt={item.alt} />
             </Link>
           ))}
@@ -128,8 +133,11 @@ export default function PhoneHeader() {
 }
 
 const StyledContent = styled(Dialog.Content, {
+  position: 'fixed',
+  inset: 0,
+
   width: '100vw',
-  height: '100vh',
+  height: '100%',
   display: 'grid',
   gridAutoFlow: 'row',
   gridTemplateRows: 'auto 1fr auto',

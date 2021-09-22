@@ -53,6 +53,7 @@ export default function Header() {
         >
           {navLinks.map(({ href, title }) => (
             <NavLink
+              rel="noreferrer noopener"
               href={href}
               key={title}
               active={
@@ -76,13 +77,13 @@ const isHomeUrl = (val: string) => val === '/'
 const HeaderWrapper = styled(View, {
   boxShadow: '$headerShadow',
   backgroundColor: '$white1',
+  position: 'sticky',
+  top: 0,
+  left: 0,
+  right: 0,
+  zIndex: '$max',
 
-  '@desktop': {
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: '$1',
-  },
+  '@desktop': { position: 'absolute' },
 })
 
 const HeaderContainer = styled(Container, {

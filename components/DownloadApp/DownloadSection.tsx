@@ -12,6 +12,7 @@ export default function DownloadSection() {
     <View
       as="section"
       css={{ '@initial': { py: '$6' }, '@desktop': { py: '$9' } }}
+      id="download"
     >
       <Container
         as={Flex}
@@ -38,10 +39,18 @@ export default function DownloadSection() {
           </ScrollReveal>
           <ScrollReveal>
             <FlexRow>
-              <Link href="http://facebok.com" target="_blank">
+              <Link
+                href="http://facebok.com"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 <Image src={Appstore} alt="appstore" />
               </Link>
-              <Link href="http://facebok.com" target="_blank">
+              <Link
+                href="http://facebok.com"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 <Image src={Playstore} alt="playstore" />
               </Link>
             </FlexRow>

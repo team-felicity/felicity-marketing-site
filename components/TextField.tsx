@@ -9,7 +9,7 @@ import Text from './Text'
 import Flex from './Flex'
 import Grid from './Grid'
 
-const sharedStyles = css({
+export const sharedStyles = css({
   $$borderWidth: '1px',
 
   padding: '0 12px',
@@ -21,7 +21,7 @@ const sharedStyles = css({
   outline: 'none',
   width: '100%',
 
-  '&:active, &:focus': { borderColor: '$black1' },
+  '&:active, &:focus-within': { borderColor: '$black1' },
   '&::placeholder': { color: '$gray3' },
 
   variants: {

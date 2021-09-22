@@ -68,6 +68,7 @@ export const buttonStyles = css({
   // used when morphing to Link/a
   display: 'grid',
   placeItems: 'center',
+  gridAutoFlow: 'column',
 
   '&:disabled': {
     cursor: 'not-allowed',

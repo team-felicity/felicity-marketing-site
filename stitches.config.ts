@@ -12,7 +12,8 @@ export const stitches = createStitches({
       primary4: '#2B657D',
       primary5: '#455A64',
       primary6: '#61C295',
-      primary7: '#EEFAFF',
+      primary7: '#344953',
+      primary8: '#EEFAFF',
       // grays
       gray1: '#9C9595',
       gray2: '#888888',
@@ -115,28 +116,16 @@ export const stitches = createStitches({
     mr: (v: Stitches.PropertyValue<'margin'>) => ({ marginRight: v }),
     mb: (v: Stitches.PropertyValue<'margin'>) => ({ marginBottom: v }),
     ml: (v: Stitches.PropertyValue<'margin'>) => ({ marginLeft: v }),
-    mx: (v: Stitches.PropertyValue<'margin'>) => ({
-      marginRight: v,
-      marginLeft: v,
-    }),
-    my: (v: Stitches.PropertyValue<'margin'>) => ({
-      marginTop: v,
-      marginBottom: v,
-    }),
+    mx: (v: Stitches.PropertyValue<'marginInline'>) => ({ marginInline: v }),
+    my: (v: Stitches.PropertyValue<'marginBlock'>) => ({ marginBlock: v }),
 
     p: (v: Stitches.PropertyValue<'padding'>) => ({ padding: v }),
     pt: (v: Stitches.PropertyValue<'padding'>) => ({ paddingTop: v }),
     pr: (v: Stitches.PropertyValue<'padding'>) => ({ paddingRight: v }),
     pb: (v: Stitches.PropertyValue<'padding'>) => ({ paddingBottom: v }),
     pl: (v: Stitches.PropertyValue<'padding'>) => ({ paddingLeft: v }),
-    px: (v: Stitches.PropertyValue<'padding'>) => ({
-      paddingLeft: v,
-      paddingRight: v,
-    }),
-    py: (v: Stitches.PropertyValue<'padding'>) => ({
-      paddingTop: v,
-      paddingBottom: v,
-    }),
+    px: (v: Stitches.PropertyValue<'paddingInline'>) => ({ paddingInline: v }),
+    py: (v: Stitches.PropertyValue<'paddingBlock'>) => ({ paddingBlock: v }),
 
     gapy: (v: Stitches.PropertyValue<'rowGap'>) => ({ rowGap: v }),
     gapx: (v: Stitches.PropertyValue<'columnGap'>) => ({ columnGap: v }),
@@ -177,20 +166,17 @@ export const { css, styled, config, getCssText, globalCss, keyframes, theme } =
 export type CSS = Stitches.CSS<typeof config>
 
 export const globalStyles = globalCss({
-  '@import':
-    "url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap')",
-
-  html: {
-    scrollBehavior: 'smooth',
-    scrollPaddingTop: '70px', // default header height
-  },
-
   '*, ::after, ::before': {
     boxSizing: 'border-box',
   },
 
   body: {
     fontFamily: '$default',
+  },
+
+  html: {
+    scrollPaddingTop: 90,
+    scrollBehavior: 'smooth',
   },
 
   'body, html': {

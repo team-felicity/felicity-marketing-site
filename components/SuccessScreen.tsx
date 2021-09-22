@@ -20,7 +20,7 @@ export default function SuccessScreen() {
         py: IMAGE_HEIGHT,
       }}
     >
-      <View css={{ backgroundColor: '$primary7', width: '100%' }}>
+      <View css={{ backgroundColor: '$primary8', width: '100%' }}>
         <Container
           as={Flex}
           direction="column"

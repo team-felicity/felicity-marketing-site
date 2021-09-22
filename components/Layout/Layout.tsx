@@ -26,7 +26,7 @@ export default function Layout({ children, hideFooter = false }: Props) {
           as="main"
           css={{
             flexGrow: 1,
-            background: 'linear-gradient(#60BB93,#85AAC1)',
+            backgroundColor: '$white1',
           }}
         >
           {children}

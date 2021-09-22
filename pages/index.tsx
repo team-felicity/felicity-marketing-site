@@ -12,14 +12,14 @@ import Image from 'next/image'
 
 export default function LandingPage() {
   return (
-    <>
+    <View css={{ background: 'linear-gradient(#60BB93,#85AAC1)' }}>
       <Hero />
       <Wave />
       <RecentPostSection />
       <OrderSteps />
       <DownloadSection />
       <ContactUs />
-    </>
+    </View>
   )
 }
 

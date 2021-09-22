@@ -1,4 +1,4 @@
-import { gqlClient } from './fetcher'
+import { gqlClient, restClient } from './fetcher'
 import { Article, CoverImage } from './types'
 
 export interface RelativeArticleMeta {
@@ -114,4 +114,8 @@ export async function getRelatedArticles({
 		`,
     { categories, slug }
   ).then((res) => res.data.articles)
+}
+
+export async function subscribeToBlog(email: string) {
+  return restClient('subscribers', { body: JSON.stringify({ email }) })
 }

@@ -1,6 +1,7 @@
 import type { ParsedUrlQuery } from 'querystring'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 
+import { SyntheticEvent, useState } from 'react'
 import Image from 'next/image'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
@@ -21,6 +22,7 @@ import {
   getRelativeArticles,
   RelatedArticleMeta,
   RelativeArticleMeta,
+  subscribeToBlog,
 } from 'utils/api'
 import { Article } from 'utils/types'
 import { toDefaultDateFormat } from 'utils/functions'
@@ -35,6 +37,14 @@ export default function BlogDetail({
   prev,
   relatedArticles,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const [email, setEmail] = useState('')
+
+  const handleSubmit = async (event: SyntheticEvent) => {
+    event.preventDefault()
+    await subscribeToBlog(email)
+    setEmail('')
+  }
+
   return (
     <div>
       <article>
@@ -74,10 +84,23 @@ export default function BlogDetail({
           <ContentContainer size="medium">
             <MDXRemote {...contentSource} components={components} />
 
-            <Flex direction="column" align="center" css={{ mt: '$8' }}>
+            <Flex
+              as="form"
+              direction="column"
+              align="center"
+              css={{ mt: '$8' }}
+              onSubmit={handleSubmit}
+            >
               <SubscribeText>Subscribe & Stay Connected</SubscribeText>
               <InputWrapper as={Flex} align="center" css={{ px: '2px' }}>
-                <BaseInput variant="unstyled" placeholder="@E-mail" />
+                <BaseInput
+                  required
+                  type="email"
+                  variant="unstyled"
+                  placeholder="@E-mail"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
                 <Button variant="primary">
                   <Text color="white1" weight="semibold" css={{ mr: '$1' }}>
                     Subscribe
@@ -201,8 +224,6 @@ export default function BlogDetail({
                               : item.coverImage.url
                           }
                           layout="fill"
-                          // width={item.coverImage.width}
-                          // height={item.coverImage.height}
                           objectFit="cover"
                           alt={item.coverImage.url}
                         />

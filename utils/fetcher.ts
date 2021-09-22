@@ -27,6 +27,7 @@ export function restClient(
 ) {
   const finalConfig: RequestInit = {
     method: body ? 'POST' : 'GET',
+    body,
     ...config,
     headers: {
       'Content-Type': 'application/json',
@@ -34,5 +35,8 @@ export function restClient(
     },
   }
 
-  return fetch(endpoint, finalConfig).then(defaultResolver)
+  return fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/${endpoint}`,
+    finalConfig
+  ).then(defaultResolver)
 }

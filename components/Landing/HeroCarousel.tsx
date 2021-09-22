@@ -72,6 +72,7 @@ export default function HeroCarousel() {
         >
           {carouselImages.map((item, index) => (
             <Image
+              priority
               key={index}
               src={item}
               width={1100}
@@ -111,21 +112,25 @@ function Wavez() {
         },
       }}
     >
-      {typeof window === 'object' && window.innerWidth > 900 ? (
-        <Image
-          src={DesktopVector}
-          alt="vector"
-          layout="fill"
-          placeholder="blur"
-        />
-      ) : (
-        <Image
-          src={PhoneVector}
-          alt="vector"
-          layout="fill"
-          placeholder="blur"
-        />
-      )}
+      <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+        {typeof window === 'object' && window.innerWidth > 900 ? (
+          <Image
+            src={DesktopVector}
+            alt="vector"
+            layout="fill"
+            placeholder="blur"
+            quality={10}
+          />
+        ) : (
+          <Image
+            src={PhoneVector}
+            alt="vector"
+            layout="fill"
+            placeholder="blur"
+            quality={10}
+          />
+        )}
+      </div>
     </Flex>
   )
 }

@@ -12,14 +12,19 @@ export default function DownloadSection() {
     <View
       as="section"
       css={{ '@initial': { py: '$6' }, '@desktop': { py: '$9' } }}
+      id="download"
     >
       <Container
         as={Flex}
         size="large2"
         justify="between"
         gap="3"
-        direction={{ '@initial': 'columnReverse', '@desktop': 'row' }}
         align="center"
+        css={{
+          flexDirection: 'column-reverse',
+
+          '@desktop': { flexDirection: 'row' },
+        }}
       >
         <Container size="medium" as={FlexCol} css={{ m: 0, p: 0 }}>
           <ScrollReveal>
@@ -34,10 +39,18 @@ export default function DownloadSection() {
           </ScrollReveal>
           <ScrollReveal>
             <FlexRow>
-              <Link href="http://facebok.com" target="_blank">
+              <Link
+                href="http://facebok.com"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 <Image src={Appstore} alt="appstore" />
               </Link>
-              <Link href="http://facebok.com" target="_blank">
+              <Link
+                href="http://facebok.com"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 <Image src={Playstore} alt="playstore" />
               </Link>
             </FlexRow>

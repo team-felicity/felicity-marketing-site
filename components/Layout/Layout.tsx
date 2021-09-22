@@ -9,9 +9,10 @@ import Footer from './Footer'
 
 interface Props {
   children: ReactNode
+  hideFooter?: boolean
 }
 
-export default function Layout({ children }: Props) {
+export default function Layout({ children, hideFooter = false }: Props) {
   return (
     <>
       <Head>
@@ -24,7 +25,7 @@ export default function Layout({ children }: Props) {
         <View as="main" css={{ flexGrow: 1 }}>
           {children}
         </View>
-        <Footer />
+        {hideFooter ? null : <Footer />}
       </Flex>
     </>
   )

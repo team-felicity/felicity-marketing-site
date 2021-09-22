@@ -1,16 +1,17 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 import { styled } from '@config/stitches'
 
-import { Container, Grid, View, Flex, Button } from '@components'
+import { Container, Grid, View, Flex } from '@components'
 import { textStyles } from '@components/Text'
+import { buttonStyles } from '@components/Button'
 import HeroCarousel from './HeroCarousel'
 import ScrollReveal from '@components/ScrollReveal'
 import { TABLET_SIZE } from 'utils'
 
 export default function Hero() {
   return (
-    <View as="section" css={{ flexGrow: 1, position: 'relative' }}>
+    <View as="section" css={{ flexGrow: 1, backgroundColor: '$white1' }}>
       <Container
         size="large2"
         css={{
@@ -44,7 +45,7 @@ function HeroContent() {
       css={{ gridArea: 'content', px: '$5' }}
     >
       <SloganText
-        as={motion.h1}
+        as={m.h1}
         size={{
           '@initial': '11',
           '@tablet': '12',
@@ -62,7 +63,7 @@ function HeroContent() {
         Food
       </SloganText>
       <CompanyDescription
-        as={motion.p}
+        as={m.p}
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
@@ -84,25 +85,20 @@ function HeroContent() {
               : 0,
         }}
       >
-        <Button
-          as={motion.a}
-          href="#"
+        <CTA
+          href="#download"
           variant="primary"
           radius="pill"
           size="large"
+          fitContent
           css={{
-            marginTop: '$4',
             fontSize: '$4',
-            width: 'fit-content',
             padding: '1rem 3rem',
             height: 'unset',
-            marginBottom: '$5',
-
-            '@tablet': { marginBottom: 'unset' },
           }}
         >
           Download App
-        </Button>
+        </CTA>
       </ScrollReveal>
     </Flex>
   )
@@ -137,4 +133,11 @@ const CompanyDescription = styled('p', {
     color: 'primary5',
     size: '4',
   },
+})
+
+const CTA = styled('a', buttonStyles, {
+  marginTop: '$4',
+  marginBottom: '$5',
+
+  '@tablet': { marginBottom: 'unset' },
 })

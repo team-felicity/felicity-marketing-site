@@ -1,27 +1,15 @@
 import { forwardRef } from 'react'
-import { motion } from 'framer-motion'
 import { ExclamationCircleIcon } from '@heroicons/react/outline'
 
-import type * as Polymorphic from '@radix-ui/react-polymorphic'
+import type { ElementRef, ComponentProps, ReactElement } from 'react'
 
-import {
-  CSSProps,
-  KeysToPropMap,
-  mapThemeToCSSProp,
-  styled,
-  theme,
-} from '@config/stitches'
+import { css, mapThemeToCSSProp, styled, theme } from '@config/stitches'
 
 import Text from './Text'
 import Flex from './Flex'
 import Grid from './Grid'
 
-const radiusMapKey: CSSProps = 'borderRadius'
-const radiiMap = mapThemeToCSSProp(radiusMapKey) as KeysToPropMap<
-  typeof radiusMapKey
->
-
-const StyledInput = styled(motion.input, {
+const sharedStyles = css({
   $$borderWidth: '1px',
 
   padding: '0 12px',
@@ -33,17 +21,20 @@ const StyledInput = styled(motion.input, {
   outline: 'none',
   width: '100%',
 
-  '&:not(&[data-error="true"]):active, &:not(&[data-error="true"]):focus': {
-    borderColor: '$black1',
-  },
+  '&:active, &:focus': { borderColor: '$black1' },
   '&::placeholder': { color: '$gray3' },
 
   variants: {
-    radius: radiiMap,
-    size: {
-      small: { height: '32px' },
-      medium: { height: '40px' },
-      large: { height: '$7', fontSize: '$4' },
+    radius: mapThemeToCSSProp('borderRadius'),
+    status: {
+      error: {
+        borderColor: '$error',
+        caretColor: '$error',
+        color: '$error',
+
+        '&::placeholder': { color: `${theme.colors.error.value}66` },
+        '&:active, &:focus': { borderColor: '$error' },
+      },
     },
     variant: {
       outline: {},
@@ -61,7 +52,6 @@ const StyledInput = styled(motion.input, {
   defaultVariants: {
     variant: 'outline',
     radius: '1',
-    size: 'medium',
   },
 })
 
@@ -70,51 +60,81 @@ const StyledErrorIcon = styled(ExclamationCircleIcon, {
   width: '100%',
 })
 
-interface CustomInputProps {
+export const BaseInput = styled('input', sharedStyles, {
+  variants: {
+    size: {
+      small: { height: '32px' },
+      medium: { height: '40px' },
+      large: { height: '$7', fontSize: '$4' },
+    },
+  },
+
+  defaultVariants: {
+    size: 'medium',
+  },
+})
+
+export const BaseTextArea = styled('textarea', sharedStyles, {
+  py: '$2',
+  resize: 'vertical',
+  height: 'unset',
+})
+
+type HasError = {
   error?: string
 }
 
-type PolymorphicInput = Polymorphic.ForwardRefComponent<
-  typeof motion.input,
-  Polymorphic.OwnProps<typeof StyledInput> & CustomInputProps
->
-
-const Button = forwardRef(({ error = '', ...rest }, ref) => {
-  const css = rest.css || {}
-  const props = {
-    ...rest,
-    ref,
-    css,
-    'data-error': !!error,
-  }
-
-  if (!error) return <StyledInput {...props} />
-
-  props.css.borderColor = '$error'
-  props.css.caretColor = '$error'
-  props.css.color = '$error'
-  props.css['&::placeholder'] = { color: `${theme.colors.error.value}66` }
-
+// wrapper component that adds error to text field
+function TextFieldWrapper({
+  error,
+  children,
+}: { children: ReactElement } & HasError) {
   return (
     <Flex direction="column" gap="2">
-      <StyledInput {...props} />
-      <Grid
-        align="start"
-        gap="1"
-        css={{ gridTemplateColumns: '$sizes$4 auto' }}
-      >
-        <StyledErrorIcon />
-        <Flex gap="1">
-          <Text color="error" size="2" weight="semibold" as="b">
-            Error:
-          </Text>
-          <Text color="error" size="2" css={{ wordBreak: 'break-word' }}>
-            {error}
-          </Text>
-        </Flex>
-      </Grid>
+      {children}
+      {error ? (
+        <Grid
+          align="start"
+          gap="1"
+          css={{ gridTemplateColumns: '$sizes$4 auto' }}
+        >
+          <StyledErrorIcon />
+          <Flex gap="1">
+            <Text color="error" size="2" weight="semibold" as="b">
+              Error:
+            </Text>
+            <Text color="error" size="2" css={{ wordBreak: 'break-word' }}>
+              {error}
+            </Text>
+          </Flex>
+        </Grid>
+      ) : null}
     </Flex>
   )
-}) as PolymorphicInput
+}
 
-export default Button
+// NOTE: not polymorphic since both have specific unique styles that differ from each other
+
+type TextFieldProps = ComponentProps<typeof BaseInput> & HasError
+export const TextField = forwardRef<
+  ElementRef<typeof BaseInput>,
+  TextFieldProps
+>(({ error = '', ...rest }, ref) => {
+  return (
+    <TextFieldWrapper error={error}>
+      <BaseInput {...rest} ref={ref} status={error ? 'error' : undefined} />
+    </TextFieldWrapper>
+  )
+})
+
+type TextAreaProps = ComponentProps<typeof BaseTextArea> & HasError
+export const TextArea = forwardRef<
+  ElementRef<typeof BaseTextArea>,
+  TextAreaProps
+>(({ error = '', ...rest }, ref) => {
+  return (
+    <TextFieldWrapper error={error}>
+      <BaseTextArea {...rest} ref={ref} status={error ? 'error' : undefined} />
+    </TextFieldWrapper>
+  )
+})

@@ -233,6 +233,7 @@ const RelativeArticleTitle = styled('span', {
   cursor: 'pointer',
   transition: 'all 200ms ease',
   display: 'block',
+  color: '$black1',
 
   '&:hover': {
     color: '$primary6',
@@ -328,5 +329,6 @@ export const getStaticProps: GetStaticProps<
       relatedArticles,
     },
     notFound: !params?.slug,
+    revalidate: 60,
   }
 }

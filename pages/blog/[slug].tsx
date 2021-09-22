@@ -312,7 +312,7 @@ export const getStaticPaths = async () => {
   const slugs = await getAllArticleSlugs()
 
   return {
-    fallback: false,
+    fallback: 'blocking',
     paths: slugs.map((slug) => ({ params: { slug } })),
   }
 }
@@ -327,29 +327,34 @@ export const getStaticProps: GetStaticProps<
   },
   ParsedUrlQuery & { slug: string }
 > = async ({ params }) => {
-  const { content, ...meta } = (await getArticle(params?.slug)) || {}
-  const { prev, next } = await getRelativeArticles(meta.created_at)
-  const relatedArticles = await getRelatedArticles({
-    categories: meta.categories.map(({ name }) => name),
-    slug: params?.slug,
-  })
+  try {
+    const { content, ...meta } = (await getArticle(params?.slug)) || {}
+    const { prev, next } = await getRelativeArticles(meta.created_at)
+    const relatedArticles = await getRelatedArticles({
+      categories: meta.categories.map(({ name }) => name),
+      slug: params?.slug,
+    })
 
-  const contentSource = await serialize(content, {
-    mdxOptions: {
-      remarkPlugins: [remarkUnwrapImages],
-      rehypePlugins: [rehypeSanitize, rehypeSlug],
-    },
-  })
+    const contentSource = await serialize(content, {
+      mdxOptions: {
+        remarkPlugins: [remarkUnwrapImages],
+        rehypePlugins: [rehypeSanitize, rehypeSlug],
+      },
+    })
 
-  return {
-    props: {
-      contentSource,
-      meta,
-      prev,
-      next,
-      relatedArticles,
-    },
-    notFound: !params?.slug,
-    revalidate: 60,
+    return {
+      props: {
+        contentSource,
+        meta,
+        prev,
+        next,
+        relatedArticles,
+      },
+      revalidate: 60,
+    }
+  } catch {
+    return {
+      notFound: true,
+    }
   }
 }

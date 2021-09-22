@@ -13,6 +13,7 @@ export const stitches = createStitches({
       primary5: '#455A64',
       primary6: '#61C295',
       primary7: '#344953',
+      primary8: '#EEFAFF',
       // grays
       gray1: '#9C9595',
       gray2: '#888888',
@@ -181,6 +182,10 @@ export const globalStyles = globalCss({
   'body, html': {
     margin: 0,
     padding: 0,
+  },
+
+  '#__next, body, html': {
+    height: '100%',
   },
 
   a: {

@@ -3,6 +3,7 @@ import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 
 import { SyntheticEvent, useState } from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { ArrowRightIcon } from '@heroicons/react/solid'
@@ -38,11 +39,13 @@ export default function BlogDetail({
   relatedArticles,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [email, setEmail] = useState('')
+  const router = useRouter()
 
   const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault()
     await subscribeToBlog(email)
     setEmail('')
+    router.push('/thank-you')
   }
 
   return (

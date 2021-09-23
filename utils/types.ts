@@ -7,6 +7,8 @@ export interface Article {
   coverImage: CoverImage
   categories: Category[]
   readTimeEstimate: number
+  excerpt: string
+  slug: string
 }
 
 export interface Author {

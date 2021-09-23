@@ -1,16 +1,16 @@
 import { gqlClient, restClient } from './fetcher'
-import { Article, CoverImage } from './types'
+import { Article, Author, CoverImage } from './types'
 
 export interface RelativeArticleMeta {
   title: string
   slug: string
 }
 
-export async function getRelativeArticles(createdAt: string): Promise<{
-  prev: RelativeArticleMeta | null
-  next: RelativeArticleMeta | null
-}> {
-  const { prev, next } = await gqlClient(
+export async function getRelativeArticles(createdAt: string) {
+  const { next, prev } = await gqlClient<{
+    previousArticle: RelativeArticleMeta[] | null
+    nextArticle: RelativeArticleMeta[] | null
+  }>(
     `
 		query {
 			previousArticle: articles(
@@ -34,21 +34,23 @@ export async function getRelativeArticles(createdAt: string): Promise<{
   )
     .then((res) => res.data)
     .then((data) => ({
-      prev: data.previousArticle[0] || null,
-      next: data.nextArticle[0] || null,
+      prev: data.previousArticle?.[0] || null,
+      next: data.nextArticle?.[0] || null,
     }))
 
   return { prev, next }
 }
 
-export async function getAllArticleSlugs(): Promise<string[]> {
-  return await gqlClient(`{ articles { slug } }`).then((res) =>
+export async function getAllArticleSlugs() {
+  return await gqlClient<{ articles: Array<{ slug: string }> }>(
+    `{ articles { slug } }`
+  ).then((res) =>
     res.data.articles.map((article: { slug: string }) => article.slug)
   )
 }
 
-export async function getArticle(slug = ''): Promise<Article> {
-  return gqlClient(
+export async function getArticle(slug = '') {
+  return gqlClient<{ articles: Article[] }>(
     `
 		query {
 			articles(where: { slug: "${slug}"}) {
@@ -90,8 +92,8 @@ export async function getRelatedArticles({
 }: {
   categories: string[]
   slug?: string
-}): Promise<RelatedArticleMeta[]> {
-  return gqlClient(
+}) {
+  return gqlClient<{ articles: RelatedArticleMeta[] }>(
     `
 		query {
 			articles(
@@ -118,4 +120,40 @@ export async function getRelatedArticles({
 
 export async function subscribeToBlog(email: string) {
   return restClient('subscribers', { body: JSON.stringify({ email }) })
+}
+
+export type ArticleCard = Pick<
+  Article,
+  | 'title'
+  | 'created_at'
+  | 'excerpt'
+  | 'readTimeEstimate'
+  | 'slug'
+  | 'coverImage'
+> & { author: Pick<Author, 'name'> }
+
+export type ArticlesListMeta = Array<ArticleCard>
+
+export async function articlesList(props: { limit?: number } = {}) {
+  const { limit } = props
+  return gqlClient<{ articles: ArticlesListMeta }>(`
+		query {
+			${limit !== undefined ? `articles(limit: ${limit})` : 'articles'} {
+				title
+				author {
+					name
+				}
+				coverImage {
+					url
+					width
+					height
+					formats
+				}
+				created_at
+				excerpt
+				readTimeEstimate
+				slug
+			}
+		}
+	`).then((res) => res.data.articles)
 }

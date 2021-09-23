@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 
 import { styled } from '@config/stitches'
@@ -5,20 +6,16 @@ import { styled } from '@config/stitches'
 import { Text, Button, Grid, TextField, Container, TextArea } from '@components'
 import { TouchableOpacity } from '@components/Button'
 import { textStyles } from '@components/Text'
-
-interface FormFields {
-  fname: string
-  lname: string
-  email: string
-  message: string
-}
+import { contact, ContactFields } from 'utils/api'
 
 export default function ContactUs() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormFields>({ mode: 'onTouched' })
+  } = useForm<ContactFields>({ mode: 'onTouched' })
+
+  const router = useRouter()
 
   return (
     <Container size="medium" css={{ p: '$5' }}>
@@ -29,19 +26,28 @@ export default function ContactUs() {
         you expect.
       </Text>
 
-      <FormGrid as="form" onSubmit={handleSubmit(() => alert('congrats'))}>
+      <FormGrid
+        as="form"
+        onSubmit={handleSubmit((values) => {
+          contact(values).then(() => router.push('/thank-you'))
+        })}
+      >
         <Grid flow={{ '@initial': 'row', '@desktop': 'column' }} gap="4">
           <TextField
             placeholder="First Name"
             variant="flushed"
-            {...register('fname', { required: 'Please fill out this field' })}
-            error={errors.fname?.message}
+            {...register('firstName', {
+              required: 'Please fill out this field',
+            })}
+            error={errors.firstName?.message}
           />
           <TextField
             placeholder="Last Name"
             variant="flushed"
-            {...register('lname', { required: 'Please fill out this field' })}
-            error={errors.lname?.message}
+            {...register('lastName', {
+              required: 'Please fill out this field',
+            })}
+            error={errors.lastName?.message}
           />
         </Grid>
 
@@ -64,7 +70,7 @@ export default function ContactUs() {
           error={errors.message?.message}
         />
         <Button
-          type="button"
+          type="submit"
           size="large"
           variant="primary"
           as={TouchableOpacity}

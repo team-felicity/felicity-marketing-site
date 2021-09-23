@@ -157,3 +157,14 @@ export async function articlesList(props: { limit?: number } = {}) {
 		}
 	`).then((res) => res.data.articles)
 }
+
+export interface ContactFields {
+  firstName: string
+  lastName: string
+  email: string
+  message: string
+}
+
+export function contact(values: ContactFields) {
+  return restClient('messages', { body: JSON.stringify(values) })
+}

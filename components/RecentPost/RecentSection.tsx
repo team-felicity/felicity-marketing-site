@@ -1,12 +1,17 @@
-import { Container, View } from '@components'
+import { Container, Flex, View } from '@components'
 import RecentCard from './RecentCard'
 import { styled } from '@config/stitches'
 import Image from 'next/image'
 import Tomato from 'public/tomato.png'
 import Brocoli from 'public/brocoli.png'
 import { textStyles } from '@components/Text'
+import { ArticlesListMeta } from 'utils/api'
 
-export default function RecentPostSection() {
+export default function RecentPostSection({
+  articles,
+}: {
+  articles: ArticlesListMeta
+}) {
   return (
     <Container
       size="large"
@@ -14,11 +19,9 @@ export default function RecentPostSection() {
         display: 'grid',
         gapy: '2rem',
         mb: '$7',
-        mt: '$9',
-        '@desktop': {
-          mt: '$6',
-          height: '54vw',
-        },
+        my: 'clamp(1.5rem, 5vw, 5rem)',
+
+        '@desktop': { mt: '$6' },
       }}
     >
       <View
@@ -28,25 +31,31 @@ export default function RecentPostSection() {
       >
         <Title size={{ '@initial': '6', '@desktop': '14' }}>RECENT POST</Title>
 
-        <TomatoView>
-          <Image src={Tomato} alt="tomato" objectFit="contain" />
-        </TomatoView>
-        <PostCard>
-          <RecentCard direction="row" />
-        </PostCard>
-      </View>
-
-      <View
-        css={{
-          position: 'relative',
-        }}
-      >
-        <BrocoliView>
-          <Image src={Brocoli} alt="brocoli" objectFit="contain" />
-        </BrocoliView>
-        <PostCard>
-          <RecentCard direction="rowReverse" />
-        </PostCard>
+        <Flex direction="column" gap="8">
+          {articles.map((article, index) => (
+            <View key={article.slug} css={{ position: 'relative' }}>
+              {index % 2 ? (
+                <>
+                  <BrocoliView>
+                    <Image src={Brocoli} alt="brocoli" objectFit="contain" />
+                  </BrocoliView>
+                  <PostCard>
+                    <RecentCard direction="rowReverse" data={article} />
+                  </PostCard>
+                </>
+              ) : (
+                <>
+                  <TomatoView>
+                    <Image src={Tomato} alt="tomato" objectFit="contain" />
+                  </TomatoView>
+                  <PostCard>
+                    <RecentCard direction="row" data={article} />
+                  </PostCard>
+                </>
+              )}
+            </View>
+          ))}
+        </Flex>
       </View>
     </Container>
   )

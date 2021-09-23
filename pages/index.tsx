@@ -1,3 +1,4 @@
+import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import Image from 'next/image'
 
 import {
@@ -11,13 +12,16 @@ import Hero from '@components/Landing/Hero'
 import ContactUs from '@components/ContactUs'
 
 import Waves from 'public/waves.svg'
+import { articlesList } from 'utils/api'
 
-export default function LandingPage() {
+export default function LandingPage({
+  articles,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <View css={{ linearGradient: '#60BB93,#85AAC1' }}>
       <Hero />
       <Wave />
-      <RecentPostSection />
+      <RecentPostSection articles={articles} />
       <OrderSteps />
       <DownloadSection />
       <ContactUs />
@@ -43,4 +47,14 @@ function Wave() {
       </Grid>
     </View>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const articles = await articlesList({ limit: 2 })
+  return {
+    props: {
+      articles,
+    },
+    revalidate: 60,
+  }
 }

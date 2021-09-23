@@ -1,11 +1,28 @@
+import { useState } from 'react'
 import RecentCard from '@components/RecentPost/RecentCard'
 import { Container, View, Button, Flex } from '@components'
 import { styled } from '@config/stitches'
 import { textStyles } from '@components/Text'
-import { motion } from 'framer-motion'
 import { ArrowSmDownIcon } from '@heroicons/react/solid'
+import { ArticlesListMeta } from 'utils/api'
 
-export default function BlogList() {
+const ARTICLES_TO_SHOW = 2
+
+export default function BlogList({ articles }: { articles: ArticlesListMeta }) {
+  const [loading, setLoading] = useState(false)
+  const [cursor, setCursor] = useState(1)
+
+  const articlesList = articles.slice(0, cursor * ARTICLES_TO_SHOW)
+
+  const handleClick = () => {
+    setLoading(true)
+
+    setTimeout(() => {
+      setLoading(false)
+      setCursor((prev) => prev + 1)
+    }, 500)
+  }
+
   return (
     <View
       css={{
@@ -29,35 +46,50 @@ export default function BlogList() {
         <Title size={{ '@initial': '10', '@tablet': '12', '@desktop': '14' }}>
           OUR BLOG
         </Title>
-        <Flex direction="column" gap="8">
-          <RecentCard direction="row" from="blog" />
-          <RecentCard direction="rowReverse" from="blog" />
-        </Flex>
-        <Button
-          as={motion.a}
-          href="#"
-          variant="primary"
-          size="large"
-          radius="pill"
+        <Flex
+          direction="column"
+          gap="8"
           css={{
-            justifySelf: 'center',
-            marginTop: '$8',
-            fontSize: '$3',
-            width: 'fit-content',
-            padding: '0.8rem 2rem',
-            height: 'unset',
-            marginBottom: '$8',
-            '@desktop': {
-              fontSize: '$4',
-              padding: '0.8rem 4rem',
+            '& > div': {
+              '&:last-of-type': { mb: '$8' },
             },
           }}
         >
-          <Flex direction="row" gap="4">
-            Load More
-            <ArrowSmDownIcon width="25" />
-          </Flex>
-        </Button>
+          {articlesList.map((article) => (
+            <RecentCard
+              direction="row"
+              from="blog"
+              key={article.slug}
+              data={article}
+            />
+          ))}
+        </Flex>
+        {articlesList.length < articles.length ? (
+          <Button
+            onClick={handleClick}
+            loading={loading}
+            variant="primary"
+            size="large"
+            radius="pill"
+            css={{
+              justifySelf: 'center',
+              fontSize: '$3',
+              width: 'fit-content',
+              padding: '0.8rem 2rem',
+              height: 'unset',
+              marginBottom: '$8',
+              '@desktop': {
+                fontSize: '$4',
+                padding: '0.8rem 4rem',
+              },
+            }}
+          >
+            <Flex direction="row" gap="4">
+              Load More
+              <ArrowSmDownIcon width="25" />
+            </Flex>
+          </Button>
+        ) : null}
       </Container>
     </View>
   )

@@ -53,6 +53,7 @@ export default function Header() {
         >
           {navLinks.map(({ href, title }) => (
             <NavLink
+              rel="noreferrer noopener"
               href={href}
               key={title}
               active={

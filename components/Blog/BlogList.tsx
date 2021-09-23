@@ -20,7 +20,7 @@ export default function BlogList({ articles }: { articles: ArticlesListMeta }) {
     setTimeout(() => {
       setLoading(false)
       setCursor((prev) => prev + 1)
-    }, 500)
+    }, 200)
   }
 
   return (

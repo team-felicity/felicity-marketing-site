@@ -28,7 +28,7 @@ export default function RecentCard({ direction, from, data }: Props) {
           css={{
             '@desktop': {
               width: from === 'blog' ? '25rem' : '20rem',
-              // pt: from === 'blog' ? '$0' : '$5',
+              pt: from === 'blog' ? '$0' : '0.875rem',
             },
           }}
         >

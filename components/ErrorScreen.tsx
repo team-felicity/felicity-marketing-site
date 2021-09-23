@@ -6,29 +6,17 @@ import FoodBowlImg from 'public/foodbowl2.png'
 import SliceImg from 'public/slice.png'
 import { buttonStyles } from '@components/Button'
 
-const IMAGE_HEIGHT = 65
-
 export default function ErrorScreen() {
   return (
-    <Grid
-      flow="row"
-      css={{
-        placeItems: 'center',
-        height: '100%',
-        py: IMAGE_HEIGHT,
-      }}
-    >
+    <Grid flow="row" css={{ placeItems: 'center', height: '100%' }}>
       <View css={{ backgroundColor: '$primary8', width: '100%' }}>
-        <Container
-          as={Flex}
-          direction="column"
-          gap="3"
-          css={{
-            mt: -(IMAGE_HEIGHT / 2),
-            pb: '$6',
-          }}
-        >
-          <Title size={{ '@initial': '12', '@phone': '13' }}>404</Title>
+        <Container as={Flex} direction="column" gap="3" css={{ pb: '$6' }}>
+          <Title
+            size={{ '@initial': '12', '@phone': '13' }}
+            css={{ my: '-0.5em 0.5rem', lineHeight: 1 }}
+          >
+            404
+          </Title>
           <Title size={{ '@initial': '7', '@phone': '8' }}>
             Page Not Found
           </Title>

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 
@@ -15,6 +16,7 @@ export default function ContactUs() {
     formState: { errors },
   } = useForm<ContactFields>({ mode: 'onTouched' })
 
+  const [loading, setLoading] = useState(false)
   const router = useRouter()
 
   return (
@@ -29,6 +31,7 @@ export default function ContactUs() {
       <FormGrid
         as="form"
         onSubmit={handleSubmit((values) => {
+          setLoading(true)
           contact(values).then(() => router.push('/thank-you'))
         })}
       >
@@ -73,6 +76,7 @@ export default function ContactUs() {
           type="submit"
           size="large"
           variant="primary"
+          loading={loading}
           as={TouchableOpacity}
           radius="10"
           css={{

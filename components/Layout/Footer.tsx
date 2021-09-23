@@ -15,7 +15,6 @@ import Facebook from 'public/facebook.svg'
 import Instagram from 'public/instagram.svg'
 import Twitter from 'public/twitter.svg'
 import Youtube from 'public/youtube.svg'
-import { useRouter } from 'next/router'
 
 const socialMediaLinks = [
   {
@@ -41,9 +40,6 @@ const socialMediaLinks = [
 ]
 
 export default function Footer() {
-  const { pathname } = useRouter()
-
-  if (pathname === '/shop') return null
   return (
     <View
       as="footer"

@@ -21,18 +21,54 @@ import Appstore from 'public/appstore.png'
 import Playstore from 'public/googleplay.png'
 import Waves from 'public/shopwave.svg'
 
+const socialMediaLinks = [
+  {
+    href: 'https://facebook.com',
+    image: Facebook,
+    alt: 'Facebook logo icon',
+  },
+  {
+    href: 'https://twitter.com',
+    image: Twitter,
+    alt: 'Twitter logo icon',
+  },
+  {
+    href: 'https://instagram.com',
+    image: Instagram,
+    alt: 'Instagram logo icon',
+  },
+  {
+    href: 'https://youtube.com',
+    image: Youtube,
+    alt: 'Youtube logo icon',
+  },
+  {
+    href: 'https://gmail.com',
+    image: Email,
+    alt: 'Email logo icon',
+  },
+]
+
 export default function Shop() {
   return (
-    <View as="section" css={{ flexGrow: 1, backgroundColor: '$white1' }}>
+    <View
+      as="section"
+      css={{
+        backgroundColor: '$white1',
+        position: 'fixed',
+      }}
+    >
       <Container
         size="large2"
         css={{
+          gridTemplateRows: 'auto 1fr',
           gridTemplateAreas: ' "carousel" "content"',
           padding: 0,
-          minHeight: '90vh',
+          height: '86vh',
+          '@tablet': { height: '89vh' },
           '@desktop': {
-            minHeight: '77vh',
-            gridTemplateColumns: '780px 1fr',
+            height: '77vh',
+            gridTemplateColumns: '50vw 1fr',
             gridTemplateAreas: '"carousel content content"',
           },
         }}
@@ -52,13 +88,13 @@ function ShopContent() {
   return (
     <Flex
       direction="column"
-      gapY="3"
       css={{
         gridArea: 'content',
         px: '$5',
         pt: '$4',
-        '@desktop': { pt: '$8' },
+        '@desktop': { pt: '10vh' },
       }}
+      gap="3"
     >
       <HeaderText
         size={{
@@ -72,14 +108,14 @@ function ShopContent() {
       <SloganText
         size={{
           '@initial': '7',
-          '@tablet': '11',
+          '@tablet': '9',
           '@desktop': '12',
         }}
       >
         Get Notified when we launch!
       </SloganText>
 
-      <FlexRow justify={{ '@desktop': 'start', '@phone': 'center' }}>
+      <FlexRow justify={{ '@phone': 'center', '@desktop': 'start' }}>
         <View>
           <TextField variant="outline" />
         </View>
@@ -91,10 +127,11 @@ function ShopContent() {
           Get Started
         </Button>
       </FlexRow>
+
       <Subtitle
         size={{
           '@initial': '2',
-          '@tablet': '4',
+          '@tablet': '3',
           '@desktop': '5',
         }}
       >
@@ -111,21 +148,11 @@ function ShopContent() {
 
       <FlexCol align="center">
         <FlexRow justify="center" gap="4">
-          <Link href="http://www.facebook.com" target="_blank">
-            <Image src={Facebook} alt="fb" />
-          </Link>
-          <Link href="http://www.twitter.com" target="_blank">
-            <Image src={Twitter} alt="twttr" />
-          </Link>
-          <Link href="http://www.instagram.com" target="_blank">
-            <Image src={Instagram} alt="insta" />
-          </Link>
-          <Link href="http://www.youtube.com" target="_blank">
-            <Image src={Youtube} alt="youtube" />
-          </Link>
-          <Link href="http://www.gmail.com" target="_blank">
-            <Image src={Email} alt="email" />
-          </Link>
+          {socialMediaLinks.map((item) => (
+            <Link href={item.href} target="_blank" key={item.href}>
+              <Image src={item.image} alt={item.alt} />
+            </Link>
+          ))}
         </FlexRow>
       </FlexCol>
     </Flex>
@@ -202,6 +229,6 @@ const ImageContainer = styled(Container, {
     pt: '0',
     position: 'absolute',
     left: '-8%',
-    top: '20%',
+    top: '15%',
   },
 })

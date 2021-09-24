@@ -15,7 +15,7 @@ import Waves from 'public/shopwave.svg'
 import { BaseInput, sharedStyles } from '@components/TextField'
 import { ArrowRightIcon } from '@heroicons/react/solid'
 import { SyntheticEvent, useState } from 'react'
-import { subscribeToBlog } from 'utils/api'
+import { notifyOnLaunch } from 'utils/api'
 import { useRouter } from 'next/router'
 
 const socialMediaLinks = [
@@ -85,7 +85,7 @@ function ShopContent() {
 
   const handleSubmit = async (event: SyntheticEvent) => {
     event.preventDefault()
-    await subscribeToBlog(email)
+    await notifyOnLaunch(email)
     setEmail('')
     router.push('/thank-you')
   }
@@ -151,12 +151,16 @@ function ShopContent() {
         *For the meantime, use our application!
       </Subtitle>
       <FlexRow gap="3" justify={{ '@initial': 'center', '@tablet': 'start' }}>
-        <Link href="http://facebok.com" target="_blank">
+        <Link href="#" target="_blank">
           <Download>
             <Image src={Appstore} alt="appstore" />
           </Download>
         </Link>
-        <Link href="http://facebok.com" target="_blank">
+        <Link
+          href="https://play.google.com/store/apps/details?id=com.felicityincorporated.felicity"
+          rel="noreferrer noopener"
+          target="_blank"
+        >
           <Download>
             <Image src={Playstore} alt="playstore" />
           </Download>

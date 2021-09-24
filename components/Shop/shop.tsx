@@ -1,14 +1,6 @@
 import { styled } from '@config/stitches'
 import Image from 'next/image'
-import {
-  Container,
-  Grid,
-  View,
-  Flex,
-  Button,
-  Link,
-  TextField,
-} from '@components'
+import { Container, Grid, View, Flex, Button, Link } from '@components'
 import { textStyles } from '@components/Text'
 import Facebook from 'public/shopfacebook.svg'
 import Instagram from 'public/shopinstagram.svg'
@@ -20,6 +12,11 @@ import Logo from 'public/shoplogo.svg'
 import Appstore from 'public/appstore.png'
 import Playstore from 'public/googleplay.png'
 import Waves from 'public/shopwave.svg'
+import { BaseInput, sharedStyles } from '@components/TextField'
+import { ArrowRightIcon } from '@heroicons/react/solid'
+import { SyntheticEvent, useState } from 'react'
+import { subscribeToBlog } from 'utils/api'
+import { useRouter } from 'next/router'
 
 const socialMediaLinks = [
   {
@@ -55,7 +52,6 @@ export default function Shop() {
       as="section"
       css={{
         backgroundColor: '$white1',
-        position: 'fixed',
       }}
     >
       <Container
@@ -64,10 +60,9 @@ export default function Shop() {
           gridTemplateRows: 'auto 1fr',
           gridTemplateAreas: ' "carousel" "content"',
           padding: 0,
-          height: '86vh',
-          '@tablet': { height: '89vh' },
-          '@desktop': {
-            height: '77vh',
+          height: '82vh',
+          '@tablet': {
+            height: '78vh',
             gridTemplateColumns: '50vw 1fr',
             gridTemplateAreas: '"carousel content content"',
           },
@@ -85,6 +80,15 @@ export default function Shop() {
 }
 
 function ShopContent() {
+  const [email, setEmail] = useState('')
+  const router = useRouter()
+
+  const handleSubmit = async (event: SyntheticEvent) => {
+    event.preventDefault()
+    await subscribeToBlog(email)
+    setEmail('')
+    router.push('/thank-you')
+  }
   return (
     <Flex
       direction="column"
@@ -114,19 +118,28 @@ function ShopContent() {
       >
         Get Notified when we launch!
       </SloganText>
-
-      <FlexRow justify={{ '@phone': 'center', '@desktop': 'start' }}>
-        <View>
-          <TextField variant="outline" />
-        </View>
-        <Button
-          size="large"
-          variant="primary"
-          // disabled
-        >
-          Get Started
-        </Button>
-      </FlexRow>
+      <Flex
+        as="form"
+        direction="column"
+        align={{ '@initial': 'center', '@tablet': 'start' }}
+        onSubmit={handleSubmit}
+      >
+        <InputWrapper as={Flex} align="center">
+          <BaseInput
+            required
+            type="email"
+            variant="unstyled"
+            placeholder="@E-mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Button variant="primary" fitContent>
+            <ButtonText>Notify</ButtonText>
+            <ButtonText>Me</ButtonText>
+            <ArrowRightIcon width={16} fill="white" />
+          </Button>
+        </InputWrapper>
+      </Flex>
 
       <Subtitle
         size={{
@@ -137,20 +150,26 @@ function ShopContent() {
       >
         *For the meantime, use our application!
       </Subtitle>
-      <FlexRow gap="3" justify={{ '@desktop': 'start', '@phone': 'center' }}>
+      <FlexRow gap="3" justify={{ '@initial': 'center', '@tablet': 'start' }}>
         <Link href="http://facebok.com" target="_blank">
-          <Image src={Appstore} alt="appstore" />
+          <Download>
+            <Image src={Appstore} alt="appstore" />
+          </Download>
         </Link>
         <Link href="http://facebok.com" target="_blank">
-          <Image src={Playstore} alt="playstore" />
+          <Download>
+            <Image src={Playstore} alt="playstore" />
+          </Download>
         </Link>
       </FlexRow>
 
       <FlexCol align="center">
-        <FlexRow justify="center" gap="4">
+        <FlexRow justify="center" gap="3">
           {socialMediaLinks.map((item) => (
             <Link href={item.href} target="_blank" key={item.href}>
-              <Image src={item.image} alt={item.alt} />
+              <Socials>
+                <Image src={item.image} alt={item.alt} />
+              </Socials>
             </Link>
           ))}
         </FlexRow>
@@ -163,7 +182,9 @@ function Wave() {
   return (
     <View
       css={{
+        position: 'fixed',
         overflow: 'hidden',
+        bottom: '-1vw',
       }}
     >
       <Grid
@@ -181,9 +202,19 @@ function Wave() {
 const HeaderText = styled('h1', {
   ...textStyles,
   textAlign: 'center',
-  '@desktop': { textAlign: 'start' },
+  '@tablet': { textAlign: 'start' },
   defaultVariants: {
     color: 'primary1',
+    weight: 'semibold',
+  },
+})
+
+const ButtonText = styled('p', {
+  ...textStyles,
+  mr: '$1',
+  defaultVariants: {
+    size: '4',
+    color: 'white1',
     weight: 'semibold',
   },
 })
@@ -191,7 +222,7 @@ const HeaderText = styled('h1', {
 const SloganText = styled('h1', {
   ...textStyles,
   textAlign: 'center',
-  '@desktop': { textAlign: 'start' },
+  '@tablet': { textAlign: 'start' },
   defaultVariants: {
     color: 'primary5',
     weight: 'bold',
@@ -203,7 +234,7 @@ const Subtitle = styled('p', {
 
   opacity: 0.85,
   textAlign: 'center',
-  '@desktop': { textAlign: 'start' },
+  '@tablet': { textAlign: 'start' },
   defaultVariants: {
     color: 'primary5',
   },
@@ -223,12 +254,32 @@ const FlexCol = styled(Flex, {
 
 const ImageContainer = styled(Container, {
   pt: '$5',
-  width: '50vw',
+  width: '40vw',
   justifyContent: 'center',
-  '@desktop': {
+  '@tablet': {
+    width: '50vw',
     pt: '0',
     position: 'absolute',
     left: '-8%',
-    top: '15%',
+    top: '25%',
   },
+})
+
+const Download = styled(View, {
+  width: '20vh',
+  '@tablet': {
+    width: '15vw',
+  },
+})
+
+const Socials = styled(View, {
+  width: '5vh',
+  '@tablet': {
+    width: '3vw',
+  },
+})
+
+const InputWrapper = styled('div', sharedStyles, {
+  px: '2px',
+  width: 'fit-content',
 })

@@ -1,11 +1,13 @@
-const defaultResolver = async (res: Response) => {
-  if (res.ok) return await res.json()
+export type GQLResponse<T> = { data: T }
+
+async function defaultResolver<T>(res: Response) {
+  if (res.ok) return (await res.json()) as Promise<T>
 
   const err = await res.text()
   return Promise.reject(new Error(err))
 }
 
-export function gqlClient(
+export function gqlClient<T>(
   query: string,
   variables: Record<string, unknown> = {}
 ) {
@@ -18,7 +20,7 @@ export function gqlClient(
       query,
       variables,
     }),
-  }).then(defaultResolver)
+  }).then(defaultResolver) as Promise<GQLResponse<T>>
 }
 
 export function restClient(

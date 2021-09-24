@@ -9,10 +9,7 @@ import { textStyles } from '@components/Text'
 
 export default function DownloadSection() {
   return (
-    <View
-      as="section"
-      css={{ '@initial': { py: '$6' }, '@desktop': { py: '$9' } }}
-    >
+    <View as="section" css={{ py: 'clamp(4rem, 5vw, 5.5rem)' }} id="download">
       <Container
         as={Flex}
         size="large2"

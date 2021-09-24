@@ -1,31 +1,52 @@
 import Image from 'next/image'
 import { Text, View, Flex, ScrollReveal } from '@components'
-import Photo from 'public/sample.png'
 import { textStyles } from '@components/Text'
 import { styled } from '@config/stitches'
 import { buttonStyles } from '@components/Button'
+import { m } from 'framer-motion'
+import { ArticleCard } from 'utils/api'
 
 interface Props {
   direction: 'row' | 'column' | 'rowReverse' | 'columnReverse'
+  from?: 'blog'
+  data: ArticleCard
 }
 
-export default function RecentCard({ direction }: Props) {
+export default function RecentCard({ direction, from, data }: Props) {
   return (
-    <Layout
+    <Flex
       direction={{
         '@initial': 'column',
         '@phone': direction,
         '@tablet': direction,
       }}
-      gapX="5"
+      justify="between"
+      gapX={from === 'blog' ? '8' : '5'}
     >
       <ScrollReveal>
-        <ImageContainer>
-          <StyledImage src={Photo} alt="photo" placeholder="blur" />
+        <ImageContainer
+          css={{
+            '@desktop': {
+              width: from === 'blog' ? '25rem' : '20rem',
+              pt: from === 'blog' ? '$0' : '0.875rem',
+            },
+          }}
+        >
+          <StyledImage
+            src={
+              process.env.NODE_ENV === 'development'
+                ? `http://localhost:1337${data.coverImage.url}`
+                : data.coverImage.url
+            }
+            width={data.coverImage.width}
+            height={data.coverImage.height}
+            objectFit="cover"
+            alt={data.coverImage.url}
+          />
         </ImageContainer>
       </ScrollReveal>
 
-      <ContentFlex>
+      <ContentFlex css={{ width: '100%' }}>
         <ScrollReveal>
           <Blogtitle
             size={{
@@ -33,7 +54,7 @@ export default function RecentCard({ direction }: Props) {
               '@desktop': '8',
             }}
           >
-            Contact Us
+            {data.title}
           </Blogtitle>
         </ScrollReveal>
         <ScrollReveal>
@@ -44,7 +65,7 @@ export default function RecentCard({ direction }: Props) {
                 '@desktop': '3',
               }}
             >
-              Author name,
+              {data.author.name},
             </AuthorText>
             <AuthorText
               size={{
@@ -52,46 +73,50 @@ export default function RecentCard({ direction }: Props) {
                 '@desktop': '3',
               }}
             >
-              August 30, 2021
+              {/* .slice(3) removes day (Mon) */}
+              {new Date(data.created_at).toDateString().slice(3)}
             </AuthorText>
           </Flex>
         </ScrollReveal>
         <ScrollReveal>
-          <Text>
-            We want to provide you a great experience which is why we want to
-            hear from you. Your feedback helps us cater the events you love and
-            services you expect. We want to provide you a great experience which
-            is why we want to hear from you. Your feedback helps us cater the
-            events you love and services you expec
-          </Text>
+          <Text>{data.excerpt}</Text>
         </ScrollReveal>
         <ScrollReveal>
           <Text color="primary3" weight="medium">
-            6 min read
+            {data.readTimeEstimate} min read
           </Text>
         </ScrollReveal>
         <ScrollReveal>
-          <Button href="#" variant="secondary" size="large">
+          <Button
+            as={m.a}
+            href={`/blog/${data.slug}`}
+            variant="secondary"
+            size="large"
+            css={{
+              marginTop: '$4',
+              fontSize: '$3',
+              width: 'fit-content',
+              padding: '1rem 1rem',
+              height: 'unset',
+              marginBottom: '$5',
+              $$accentColor:
+                from === 'blog' ? '$colors$primary4' : '$colors$primary1',
+              '@tablet': {
+                padding: from === 'blog' ? '1rem 9rem' : '1rem 7rem',
+              },
+              '@desktop': {
+                fontSize: '$4',
+                padding: from === 'blog' ? '1rem 12rem' : '1rem 9rem',
+              },
+            }}
+          >
             Continue Reading
           </Button>
         </ScrollReveal>
       </ContentFlex>
-    </Layout>
+    </Flex>
   )
 }
-
-const Layout = styled(Flex, {
-  my: '$4',
-  pt: '$6',
-  pb: '$2',
-  px: '$6',
-  borderRadius: 50,
-  backgroundColor: '$white1',
-  boxShadow: '1px 2px 6px 1px #D0D0D0',
-  '@desktop': {
-    pt: '$4',
-  },
-})
 
 const Blogtitle = styled('h1', {
   ...textStyles,
@@ -111,10 +136,6 @@ const ImageContainer = styled(View, {
   width: '100%',
   pb: '$3',
   '@tablet': {
-    width: '20rem',
-  },
-  '@desktop': {
-    pt: '$5',
     width: '20rem',
   },
 })

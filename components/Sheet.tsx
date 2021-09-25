@@ -128,12 +128,13 @@ export const Content = forwardRef<
 >(({ children, ...rest }, ref) => (
   <StyledContent {...rest} ref={ref}>
     {children}
-    <Dialog.Close
-      as={StyledCloseButton}
-      variant="ghost"
-      whileTap={{ filter: 'brightness(0.5)' }}
-    >
-      <XIcon width="1rem" />
+    <Dialog.Close asChild>
+      <StyledCloseButton
+        variant="ghost"
+        whileTap={{ filter: 'brightness(0.5)' }}
+      >
+        <XIcon width="1rem" />
+      </StyledCloseButton>
     </Dialog.Close>
   </StyledContent>
 ))

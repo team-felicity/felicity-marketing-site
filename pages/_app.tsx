@@ -6,7 +6,7 @@ import { IdProvider } from '@radix-ui/react-id'
 import { globalStyles } from '@config/stitches'
 
 import Layout from '@components/Layout'
-import { domAnimation, LazyMotion } from 'framer-motion'
+import { LazyMotion } from 'framer-motion'
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -16,6 +16,9 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
 
+const loadFeatures = () =>
+  import('../utils/animationFeatures').then((res) => res.default)
+
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   globalStyles() // compiles stitches global styles
 
@@ -23,7 +26,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <IdProvider>
-      <LazyMotion features={domAnimation}>
+      <LazyMotion features={loadFeatures}>
         {getLayout(<Component {...pageProps} />)}
       </LazyMotion>
     </IdProvider>

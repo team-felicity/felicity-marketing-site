@@ -122,6 +122,10 @@ export async function subscribeToBlog(email: string) {
   return restClient('subscribers', { body: JSON.stringify({ email }) })
 }
 
+export async function notifyOnLaunch(email: string) {
+  return restClient('launch-subscribers', { body: JSON.stringify({ email }) })
+}
+
 export type ArticleCard = Pick<
   Article,
   | 'title'

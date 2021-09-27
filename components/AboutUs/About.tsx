@@ -1,70 +1,162 @@
-import { Container, View, Button, Flex } from '@components'
+import { Container, View, Flex, ScrollReveal, Text } from '@components'
 import { styled } from '@config/stitches'
 import { textStyles } from '@components/Text'
-import { motion } from 'framer-motion'
-import { ArrowSmDownIcon } from '@heroicons/react/solid'
+import SampleImage from 'public/sample.png'
+import Image from 'next/image'
+import Logo from '@assets/logo/header-logo.png'
+import HalfCircle from './HalfCircle'
+import OurTeam from './OurTeam'
+import OwnerQuote from './OwnerQuote'
 
 export default function AboutUs() {
   return (
     <View
+      as="section"
       css={{
-        display: 'grid',
-        background: 'linear-gradient(#E5FAF1,#FFFFFF)',
-        weight: '100%',
+        flexGrow: 1,
+        background: 'linear-gradient(#CBE5C6,#E5FAF1)',
       }}
     >
       <Container
-        size="large"
+        size="large2"
         css={{
           display: 'grid',
-          gapy: '2rem',
-          mt: '$5',
           justifyContent: 'center',
-          '@desktop': {
-            mt: '$8',
+          pt: '$5',
+          '@tablet': {
+            height: '100vh',
           },
         }}
       >
         <Title size={{ '@initial': '10', '@tablet': '12', '@desktop': '14' }}>
           ABOUT US
         </Title>
-        <Flex direction="column" gap="8"></Flex>
-        <Button
-          as={motion.a}
-          href="#"
-          variant="primary"
-          size="large"
-          radius="pill"
-          css={{
-            justifySelf: 'center',
-            marginTop: '$8',
-            fontSize: '$3',
-            width: 'fit-content',
-            padding: '0.8rem 2rem',
-            height: 'unset',
-            marginBottom: '$8',
-            '@desktop': {
-              fontSize: '$4',
-              padding: '0.8rem 4rem',
-            },
-          }}
-        >
-          <Flex direction="row" gap="4">
-            Load More
-            <ArrowSmDownIcon width="25" />
-          </Flex>
-        </Button>
+        <Mission />
       </Container>
+      <OwnerQuote />
+      <OurTeam />
     </View>
   )
 }
 
 const Title = styled('h1', {
   ...textStyles,
-  mb: '$6',
   textAlign: 'center',
   defaultVariants: {
     color: 'primary4',
     weight: 'bold',
+  },
+})
+
+function Mission() {
+  return (
+    <Flex direction={{ '@initial': 'column', '@tablet': 'row' }} gap="6">
+      <ScrollReveal>
+        <ImageContainer>
+          <Behind>
+            <HalfCircle fill="#20577A" />
+          </Behind>
+          <StyledImage src={SampleImage} alt="try" />
+        </ImageContainer>
+      </ScrollReveal>
+
+      <ContentFlex css={{ '@tablet': { width: '30vw' } }}>
+        <ScrollReveal>
+          <ContentTitle
+            size={{
+              '@initial': '9',
+              '@desktop': '12',
+            }}
+          >
+            Our <EmphasizedText>Mission</EmphasizedText>
+          </ContentTitle>
+        </ScrollReveal>
+        <ScrollReveal>
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Id donec
+            ultrices tincidunt arcu non sodales neque. Orci phasellus egestas
+            tellus rutrum tellus pellentesque eu tincidunt tortor.
+          </Text>
+          <Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Id donec
+            ultrices tincidunt arcu non sodales neque. Orci phasellus egestas
+            tellus rutrum tellus pellentesque eu tincidunt tortor.
+          </Text>
+        </ScrollReveal>
+        <ScrollReveal>
+          <Flex justify="start" align="center" gap="3">
+            <div style={{ width: 50 }}>
+              <Image src={Logo} alt="Felicity Logo" layout="responsive" />
+            </div>
+            <CompanyName>FELICITY</CompanyName>
+          </Flex>
+        </ScrollReveal>
+      </ContentFlex>
+    </Flex>
+  )
+}
+
+const ContentFlex = styled(Flex, {
+  flexDirection: 'column',
+  gap: '$4',
+})
+
+const StyledImage = styled(Image, {
+  borderTopLeftRadius: '200px',
+  borderBottomLeftRadius: '200px',
+  borderBottomRightRadius: '200px',
+  objectFit: 'contain',
+})
+
+const ContentTitle = styled('h1', {
+  ...textStyles,
+
+  defaultVariants: {
+    color: 'primary5',
+    weight: 'bold',
+  },
+})
+
+const EmphasizedText = styled('span', {
+  ...textStyles,
+
+  fontSize: 'inherit',
+  fontWeight: 'inherit',
+
+  defaultVariants: {
+    color: 'primary3',
+  },
+})
+
+const CompanyName = styled('h1', {
+  ...textStyles,
+
+  defaultVariants: {
+    color: 'primary4',
+    size: '6',
+    weight: 'bold',
+  },
+})
+
+const Behind = styled(View, {
+  position: 'absolute',
+  alignContent: 'center',
+  width: '8rem',
+  bottom: '-9%',
+  left: '-7%',
+  '@tablet': {
+    width: '13rem',
+    left: '-5%',
+  },
+})
+const ImageContainer = styled(View, {
+  position: 'relative',
+  alignSelf: 'center',
+  width: '15rem',
+
+  '@tablet': {
+    width: '30rem',
   },
 })

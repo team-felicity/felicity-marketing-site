@@ -4,6 +4,7 @@ import { styled } from '@config/stitches'
 import { textStyles } from '@components/Text'
 import SampleImage from 'public/sample.png'
 import HalfCircle from './HalfCircle'
+import WindowImage from 'public/window.png'
 
 const data = [
   {
@@ -45,11 +46,8 @@ export default function OurTeam() {
         size="large2"
         as={Grid}
         css={{
-          gapy: '3rem',
-          mb: '$5',
-          '@desktop': {
-            pt: '$5',
-          },
+          gapy: '8rem',
+          mb: '$8',
         }}
       >
         <ScrollReveal>
@@ -61,6 +59,12 @@ export default function OurTeam() {
           {data.map((data) => (
             <ScrollReveal key={data.id}>
               <FlexCol>
+                {data.id == 2 ? (
+                  <Window>
+                    <Image src={WindowImage} alt="window" />
+                  </Window>
+                ) : null}
+
                 <ImageContainer>
                   <Behind>
                     <HalfCircle fill={data.color} />
@@ -70,7 +74,6 @@ export default function OurTeam() {
                     alt={data.columnTitle}
                   />
                 </ImageContainer>
-
                 <ColumnTitle>{data.columnTitle}</ColumnTitle>
                 <Subtitles>{data.subtitle}</Subtitles>
               </FlexCol>
@@ -107,6 +110,7 @@ const OuterFlex = styled(Flex, {
 })
 
 const FlexCol = styled(Flex, {
+  position: 'relative',
   flexDirection: 'column',
   defaultVariants: {
     gap: '4',
@@ -126,22 +130,30 @@ const ColumnTitle = styled('h1', {
 const Subtitles = styled('p', {
   ...textStyles,
   textAlign: 'center',
-  px: '$2',
-  '@desktop': {
-    px: '$5',
-  },
 })
 
 const ImageContainer = styled(View, {
   position: 'relative',
   alignSelf: 'center',
-  width: '15rem',
+  width: '12rem',
   pt: '$4',
+  '@tablet': { width: '15rem' },
 })
 const Behind = styled(View, {
   alignSelf: 'center',
   position: 'absolute',
-  width: '8rem',
+  width: '6.5rem',
   right: '55%',
   bottom: '-8%',
+  '@tablet': { width: '8rem' },
+})
+const Window = styled(View, {
+  display: 'none',
+  '@desktop': {
+    position: 'absolute',
+    width: '27rem',
+    left: '-2%',
+    bottom: '-18%',
+    display: 'block',
+  },
 })

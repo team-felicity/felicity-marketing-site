@@ -11,54 +11,58 @@ export default function OwnerQuote() {
   return (
     <View
       as="section"
-      css={{ py: 'clamp(4rem, 5vw, 5.5rem)', backgroundColor: '$white1' }}
-      id="qoute"
+      css={{
+        py: 'clamp(4rem, 5vw, 5.5rem)',
+        backgroundColor: '$white1',
+        overflow: 'hidden',
+      }}
     >
       <View css={{ backgroundColor: '$primary8', width: '100%' }}>
-        <Container
+        <OuterFlex
           as={Flex}
-          size="large2"
-          justify="between"
           gap={{ '@tablet': '9' }}
-          css={{
-            pt: '$4',
-            mt: '$9',
-            pb: '$9',
-            justifyContent: 'center',
-            flexDirection: 'column',
-            '@tablet': { flexDirection: 'row', pb: '$1' },
-          }}
+          align={{ '@initial': 'center', '@tablet': 'start' }}
         >
           <ScrollReveal>
             <OwnerImage>
               <StyledOwnerImage src={SampleImage} objectFit="cover" alt="try" />
             </OwnerImage>
           </ScrollReveal>
-
-          <ContentFlex css={{ '@tablet': { width: '30vw' } }}>
-            <View
-              css={{
-                paddingTop: '15%',
-                marginTop: '-20%',
-                '@tablet': { paddingTop: 0 },
-              }}
-            >
+          <View
+            css={{
+              position: 'relative',
+              paddingTop: '$9',
+              '@tablet': {
+                padding: 0,
+              },
+            }}
+          >
+            <Behind>
               <Image src={QuoteImg} alt="quote" />
-            </View>
-            <ScrollReveal>
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Id
-              </Text>
-            </ScrollReveal>
-            <ScrollReveal>
-              <Flex direction="column" justify="start" align="start">
-                <OwnerName>Name of Owner</OwnerName>
-                <Text>Owner</Text>
-              </Flex>
-            </ScrollReveal>
-          </ContentFlex>
-        </Container>
+            </Behind>
+            <ContentFlex
+              css={{ '@tablet': { width: '30vw', marginTop: '5%' } }}
+            >
+              <ScrollReveal>
+                <Quote>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Id
+                </Quote>
+              </ScrollReveal>
+              <ScrollReveal>
+                <Flex
+                  direction="column"
+                  justify="start"
+                  align={{ '@initial': 'center', '@tablet': 'start' }}
+                >
+                  <OwnerName>Name of Owner</OwnerName>
+                  <Text>Owner</Text>
+                </Flex>
+              </ScrollReveal>
+            </ContentFlex>
+          </View>
+        </OuterFlex>
       </View>
       <Bowl>
         <Image src={BowlImg} alt="foodbowl" />
@@ -70,7 +74,7 @@ export default function OwnerQuote() {
   )
 }
 
-const ContentFlex = styled(Flex, {
+const ContentFlex = styled(Container, {
   flexDirection: 'column',
   gap: '$5',
   alignSelf: 'center',
@@ -84,22 +88,36 @@ const StyledOwnerImage = styled(Image, {
   borderBottomLeftRadius: '300px',
   borderTopRightRadius: '300px',
 })
+const OuterFlex = styled(Flex, {
+  pt: '$4',
+  mt: '$9',
+  pb: '$9',
+  mb: '-30%',
+  justifyContent: 'center',
+  flexDirection: 'column',
+  '@tablet': {
+    flexDirection: 'row',
+    pb: '$1',
+    mb: '0',
+  },
+})
 
 const Bowl = styled(View, {
-  position: 'absolute',
-  right: '-100%',
-  '@phone': {
-    transform: 'translateY(80%)',
-    right: '-6%',
-    width: 'max(125px,12vw)',
-    top: '95%',
+  position: 'relative',
+  left: '-100%',
+  overflow: 'hidden',
+  '@tablet': {
+    transform: 'translateY(-160%)',
+    left: '94%',
+    width: 'max(125px,10vw)',
+    top: '50%',
   },
 })
 const Brocoli = styled(View, {
   display: 'none',
-  '@phone': {
+  '@tablet': {
     position: 'relative',
-    mt: '-5%',
+    mt: '-15%',
     left: '-5rem',
     display: 'block',
     width: 'max(150px,12vw)',
@@ -116,12 +134,25 @@ const OwnerName = styled('h1', {
   },
 })
 
+const Quote = styled('p', {
+  ...textStyles,
+  textAlign: 'center',
+  px: '$2',
+  '@tablet': { textAlign: 'start', px: '0' },
+})
+
 const OwnerImage = styled(View, {
   position: 'relative',
-  alignSelf: 'center',
   width: '15rem',
   my: '-4em 1rem',
   '@tablet': {
     width: '18rem',
   },
+})
+
+const Behind = styled(View, {
+  position: 'absolute',
+  top: '-6%',
+  width: '10rem',
+  '@tablet': { top: '-45%' },
 })

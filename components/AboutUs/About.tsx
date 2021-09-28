@@ -1,4 +1,4 @@
-import { Container, View, Flex, ScrollReveal, Text } from '@components'
+import { Container, View, Flex, ScrollReveal } from '@components'
 import { styled } from '@config/stitches'
 import { textStyles } from '@components/Text'
 import SampleImage from 'public/sample.png'
@@ -24,7 +24,7 @@ export default function AboutUs() {
           justifyContent: 'center',
           pt: '$5',
           '@tablet': {
-            height: '100vh',
+            height: '95vh',
           },
         }}
       >
@@ -50,7 +50,12 @@ const Title = styled('h1', {
 
 function Mission() {
   return (
-    <Flex direction={{ '@initial': 'column', '@tablet': 'row' }} gap="6">
+    <Flex
+      gap="6"
+      css={{ py: '$8' }}
+      direction={{ '@initial': 'column', '@tablet': 'row' }}
+      align={{ '@initial': 'center', '@tablet': 'start' }}
+    >
       <ScrollReveal>
         <ImageContainer>
           <Behind>
@@ -72,21 +77,25 @@ function Mission() {
           </ContentTitle>
         </ScrollReveal>
         <ScrollReveal>
-          <Text>
+          <Description>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Id donec
+            ultrices tincidunt arcu non sodales neque. Orci phasellus egestas
+            tellus rutrum tellus pellentesque eu tincidun
+          </Description>
+          <Description>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Id donec
             ultrices tincidunt arcu non sodales neque. Orci phasellus egestas
             tellus rutrum tellus pellentesque eu tincidunt tortor.
-          </Text>
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Id donec
-            ultrices tincidunt arcu non sodales neque. Orci phasellus egestas
-            tellus rutrum tellus pellentesque eu tincidunt tortor.
-          </Text>
+          </Description>
         </ScrollReveal>
         <ScrollReveal>
-          <Flex justify="start" align="center" gap="3">
+          <Flex
+            align="center"
+            gap="3"
+            justify={{ '@initial': 'center', '@tablet': 'start' }}
+          >
             <div style={{ width: 50 }}>
               <Image src={Logo} alt="Felicity Logo" layout="responsive" />
             </div>
@@ -112,11 +121,18 @@ const StyledImage = styled(Image, {
 
 const ContentTitle = styled('h1', {
   ...textStyles,
-
+  textAlign: 'center',
+  '@tablet': { textAlign: 'start' },
   defaultVariants: {
     color: 'primary5',
     weight: 'bold',
   },
+})
+
+const Description = styled('p', {
+  ...textStyles,
+  textAlign: 'center',
+  '@tablet': { textAlign: 'start' },
 })
 
 const EmphasizedText = styled('span', {
@@ -144,7 +160,7 @@ const Behind = styled(View, {
   position: 'absolute',
   alignContent: 'center',
   width: '8rem',
-  bottom: '-9%',
+  bottom: '-8%',
   left: '-7%',
   '@tablet': {
     width: '13rem',
@@ -152,10 +168,9 @@ const Behind = styled(View, {
   },
 })
 const ImageContainer = styled(View, {
-  position: 'relative',
   alignSelf: 'center',
+  position: 'relative',
   width: '15rem',
-
   '@tablet': {
     width: '30rem',
   },

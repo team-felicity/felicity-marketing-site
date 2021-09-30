@@ -4,7 +4,6 @@ import { styled } from '@config/stitches'
 import { textStyles } from '@components/Text'
 import SampleImage from 'public/sample.png'
 import HalfCircle from './HalfCircle'
-import WindowImage from 'public/window.png'
 
 const data = [
   {
@@ -58,13 +57,16 @@ export default function OurTeam() {
         <OuterFlex>
           {data.map((data) => (
             <ScrollReveal key={data.id}>
-              <FlexCol>
-                {data.id == 2 ? (
-                  <Window>
-                    <Image src={WindowImage} alt="window" />
-                  </Window>
-                ) : null}
-
+              <FlexCol
+                css={{
+                  '@desktop': {
+                    background:
+                      data.id === 2 ? 'rgba(117, 183, 198, 0.32)' : undefined,
+                    p: '$6 $4 7rem',
+                    rt: '$pill',
+                  },
+                }}
+              >
                 <ImageContainer>
                   <Behind>
                     <HalfCircle fill={data.color} />
@@ -137,6 +139,8 @@ const ImageContainer = styled(View, {
   alignSelf: 'center',
   width: '12rem',
   pt: '$4',
+  filter: 'drop-shadow(-8px 15px 24px rgba(0,0,0,0.18))',
+  userSelect: 'none',
   '@tablet': { width: '15rem' },
 })
 const Behind = styled(View, {
@@ -146,14 +150,4 @@ const Behind = styled(View, {
   right: '55%',
   bottom: '-8%',
   '@tablet': { width: '8rem' },
-})
-const Window = styled(View, {
-  display: 'none',
-  '@desktop': {
-    position: 'absolute',
-    width: '27rem',
-    left: '-2%',
-    bottom: '-18%',
-    display: 'block',
-  },
 })

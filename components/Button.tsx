@@ -1,7 +1,6 @@
 import { forwardRef } from 'react'
 import { m } from 'framer-motion'
 
-import type * as Polymorphic from '@radix-ui/react-polymorphic'
 import type { ElementRef, ComponentProps } from 'react'
 
 import {
@@ -121,6 +120,10 @@ export const buttonStyles = css({
         backgroundSize: '200% auto',
         transition: 'all 0.2s ease',
 
+        '&:active': {
+          filter: 'brightness(0.9)',
+        },
+
         '&:hover': {
           backgroundPosition: 'center',
         },
@@ -142,32 +145,16 @@ export const buttonStyles = css({
 
 const StyledButton = styled(m.button, buttonStyles)
 
-type PolymorphicButton = Polymorphic.ForwardRefComponent<
-  'button',
-  Polymorphic.OwnProps<typeof StyledButton>
->
-
 const Button = forwardRef<
   ElementRef<typeof StyledButton>,
   ComponentProps<typeof StyledButton>
 >(({ disabled, loading, ...rest }, ref) => {
   const isDisabled = (disabled || loading) as boolean | undefined
   return (
-    <StyledButton
-      ref={ref}
-      {...rest}
-      disabled={isDisabled}
-      loading={loading}
-      // make sure to only use motion elements for the `as` prop
-      // causes build error if component is casted to non-motion element
-      whileTap={!isDisabled ? rest.whileTap : undefined}
-      whileDrag={!isDisabled ? rest.whileDrag : undefined}
-      whileHover={!isDisabled ? rest.whileHover : undefined}
-      whileFocus={!isDisabled ? rest.whileFocus : undefined}
-    >
+    <StyledButton ref={ref} {...rest} disabled={isDisabled} loading={loading}>
       {loading ? 'Loading...' : rest.children}
     </StyledButton>
   )
-}) as PolymorphicButton
+})
 
-export default Button
+export default styled(Button)

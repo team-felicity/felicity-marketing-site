@@ -45,7 +45,7 @@ export const sharedStyles = css({
         borderRightWidth: 0,
         rb: 0,
       },
-      unstyled: { borderWidth: 0 },
+      unstyled: { border: 'none' },
     },
   },
 

@@ -168,6 +168,7 @@ const Behind = styled(View, {
   },
 })
 const ImageContainer = styled(View, {
+  userSelect: 'none',
   alignSelf: 'center',
   position: 'relative',
   width: '15rem',

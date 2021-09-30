@@ -136,11 +136,7 @@ function ShopContent() {
             onChange={(e) => setEmail(e.target.value)}
             css={{ px: '1em' }}
           />
-          <Button
-            variant="primary"
-            fitContent
-            css={{ flexShrink: 0, height: '100%', borderRadius: 0 }}
-          >
+          <Button variant="primary" fitContent>
             <Text size="4" weight="semibold" color="white1" css={{ mr: '$2' }}>
               Notify Me
             </Text>
@@ -277,4 +273,10 @@ const InputWrapper = styled('div', {
   borderRadius: '1em',
   boxShadow: '7px 5px 10px rgba(43, 101, 125, 0.14)',
   width: 'fit-content',
+
+  [`& ${Button}`]: {
+    flexShrink: 0,
+    height: '100%',
+    borderRadius: 0,
+  },
 })

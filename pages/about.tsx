@@ -1,3 +1,5 @@
+import { AboutUs } from '@components'
+
 export default function AboutPage() {
-  return 'about page'
+  return <AboutUs />
 }

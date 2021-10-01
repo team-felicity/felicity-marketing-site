@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form'
 import { styled } from '@config/stitches'
 
 import { Text, Button, Grid, TextField, Container, TextArea } from '@components'
-import { TouchableOpacity } from '@components/Button'
 import { textStyles } from '@components/Text'
 import { contact, ContactFields } from 'utils/api'
 
@@ -77,7 +76,6 @@ export default function ContactUs() {
           size="large"
           variant="primary"
           loading={loading}
-          as={TouchableOpacity}
           radius="10"
           css={{
             mt: '$2',

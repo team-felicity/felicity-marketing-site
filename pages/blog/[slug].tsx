@@ -28,7 +28,7 @@ import {
 import { Article } from 'utils/types'
 import { toDefaultDateFormat } from 'utils/functions'
 import { textStyles } from '@components/Text'
-import { BaseInput, sharedStyles } from '@components/TextField'
+import { BaseInput } from '@components/TextField'
 import components, { ContentContainer } from '@components/BlogComponents'
 
 export default function BlogDetail({
@@ -95,22 +95,25 @@ export default function BlogDetail({
               onSubmit={handleSubmit}
             >
               <SubscribeText>Subscribe & Stay Connected</SubscribeText>
-              <InputWrapper as={Flex} align="center" css={{ px: '2px' }}>
-                <BaseInput
-                  required
-                  type="email"
-                  variant="unstyled"
-                  placeholder="@E-mail"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <Button variant="primary">
-                  <Text color="white1" weight="semibold" css={{ mr: '$1' }}>
-                    Subscribe
-                  </Text>
-                  <ArrowRightIcon width={16} fill="white" />
-                </Button>
-              </InputWrapper>
+              <Flex>
+                <InputWrapper as={Flex} align="center">
+                  <BaseInput
+                    required
+                    type="email"
+                    variant="unstyled"
+                    placeholder="@E-mail"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    css={{ px: '1em' }}
+                  />
+                  <Button variant="primary" fitContent>
+                    <Text weight="semibold" color="white1" css={{ mr: '$1' }}>
+                      Subscribe
+                    </Text>
+                    <ArrowRightIcon width={16} fill="white" />
+                  </Button>
+                </InputWrapper>
+              </Flex>
             </Flex>
             <Flex direction="column" css={{ my: '$8' }}>
               <Text css={{ textTransform: 'uppercase' }}>Categories</Text>
@@ -274,9 +277,19 @@ const SubscribeText = styled('span', {
   letterSpacing: '-0.01em',
 })
 
-const InputWrapper = styled('div', sharedStyles, {
-  px: '2px',
+const InputWrapper = styled('div', {
+  p: 0,
+  overflow: 'hidden',
+  border: '1px solid #60BB93',
+  borderRadius: '1em',
+  boxShadow: '7px 5px 10px rgba(43, 101, 125, 0.14)',
   width: 'fit-content',
+
+  [`& ${Button}`]: {
+    flexShrink: 0,
+    height: '100%',
+    borderRadius: 0,
+  },
 })
 
 const MetaDetail = styled('span', {

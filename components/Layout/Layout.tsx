@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import MessengerCustomerChat from 'react-messenger-customer-chat'
 
 import type { ReactNode } from 'react'
 
@@ -25,11 +24,6 @@ export default function Layout({ children, hideFooter = false }: Props) {
         <Header />
         <View as="main" css={{ flexGrow: 1, backgroundColor: '$white1' }}>
           {children}
-
-          <MessengerCustomerChat
-            pageId={process.env.NEXT_PUBLIC_MESSENGER_PAGE_ID}
-            appId={process.env.NEXT_PUBLIC_MESSENGER_APP_ID}
-          />
         </View>
         {hideFooter ? null : <Footer />}
       </Flex>

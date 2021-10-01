@@ -1,4 +1,3 @@
-import Script from 'next/script'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 import { getCssText } from '@config/stitches'
@@ -17,9 +16,8 @@ export default class MyDocument extends Document {
             dangerouslySetInnerHTML={{ __html: getCssText() }}
           />
 
-          <Script
+          <script
             id="messenger-chat"
-            strategy="lazyOnload"
             dangerouslySetInnerHTML={{
               __html: `
             var chatbox = document.getElementById('fb-customer-chat');

@@ -19,8 +19,6 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <div id="fb-root" />
-          <div id="fb-customer-chat" className="fb-customerchat" />
         </body>
       </Html>
     )

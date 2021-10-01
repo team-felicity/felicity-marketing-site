@@ -2,7 +2,7 @@ import type { ReactElement, ReactNode } from 'react'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 
-import Script from 'next/script'
+import MessengerChat from 'react-messenger-customer-chat'
 import { IdProvider } from '@radix-ui/react-id'
 import { LazyMotion } from 'framer-motion'
 
@@ -27,39 +27,15 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>)
 
   return (
-    <>
-      <IdProvider>
-        <LazyMotion features={loadFeatures}>
-          {getLayout(<Component {...pageProps} />)}
-        </LazyMotion>
-      </IdProvider>
-
-      <Script
-        id="messenger-chat"
-        dangerouslySetInnerHTML={{
-          __html: `
-            var chatbox = document.getElementById('fb-customer-chat');
-            chatbox.setAttribute("page_id", "${process.env.NEXT_PUBLIC_MESSENGER_PAGE_ID}");
-            chatbox.setAttribute("attribution", "biz_inbox");
-
-            window.fbAsyncInit = function() {
-              FB.init({
-                xfbml            : true,
-                version          : 'v12.0'
-              });
-            };
-
-            (function(d, s, id) {
-              var js, fjs = d.getElementsByTagName(s)[0];
-              if (d.getElementById(id)) return;
-              js = d.createElement(s); js.id = id;
-              js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-              fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-          `,
-        }}
+    <IdProvider>
+      <LazyMotion features={loadFeatures}>
+        {getLayout(<Component {...pageProps} />)}
+      </LazyMotion>
+      <MessengerChat
+        pageId={process.env.NEXT_PUBLIC_MESSENGER_PAGE_ID}
+        appId={process.env.NEXT_PUBLIC_MESSENGER_APP_ID}
       />
-    </>
+    </IdProvider>
   )
 }
 export default MyApp

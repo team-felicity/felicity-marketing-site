@@ -1,6 +1,6 @@
 import { styled } from '@config/stitches'
 import Image from 'next/image'
-import { Container, Grid, View, Flex, Button, Link } from '@components'
+import { Container, Grid, View, Flex, Button, Link, Text } from '@components'
 import { textStyles } from '@components/Text'
 import Facebook from 'public/shopfacebook.svg'
 import Instagram from 'public/shopinstagram.svg'
@@ -12,7 +12,7 @@ import Logo from 'public/shoplogo.svg'
 import Appstore from 'public/appstore.png'
 import Playstore from 'public/googleplay.png'
 import Waves from 'public/shopwave.svg'
-import { BaseInput, sharedStyles } from '@components/TextField'
+import { BaseInput } from '@components/TextField'
 import { ArrowRightIcon } from '@heroicons/react/solid'
 import { SyntheticEvent, useState } from 'react'
 import { notifyOnLaunch } from 'utils/api'
@@ -96,7 +96,8 @@ function ShopContent() {
         gridArea: 'content',
         px: '$5',
         pt: '$4',
-        '@desktop': { pt: '10vh' },
+        '@desktop': { px: 0 },
+        '@tablet': { pt: '10vh' },
       }}
       gap="3"
     >
@@ -130,12 +131,15 @@ function ShopContent() {
             type="email"
             variant="unstyled"
             placeholder="@E-mail"
+            size={{ '@desktop': 'large' }}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            css={{ px: '1em' }}
           />
           <Button variant="primary" fitContent>
-            <ButtonText>Notify</ButtonText>
-            <ButtonText>Me</ButtonText>
+            <Text size="4" weight="semibold" color="white1" css={{ mr: '$2' }}>
+              Notify Me
+            </Text>
             <ArrowRightIcon width={16} fill="white" />
           </Button>
         </InputWrapper>
@@ -152,18 +156,14 @@ function ShopContent() {
       </Subtitle>
       <FlexRow gap="3" justify={{ '@initial': 'center', '@tablet': 'start' }}>
         <Link href="#" target="_blank">
-          <Download>
-            <Image src={Appstore} alt="appstore" />
-          </Download>
+          <Image src={Appstore} alt="appstore" />
         </Link>
         <Link
           href="https://play.google.com/store/apps/details?id=com.felicityincorporated.felicity"
           rel="noreferrer noopener"
           target="_blank"
         >
-          <Download>
-            <Image src={Playstore} alt="playstore" />
-          </Download>
+          <Image src={Playstore} alt="playstore" />
         </Link>
       </FlexRow>
 
@@ -209,16 +209,6 @@ const HeaderText = styled('h1', {
   '@tablet': { textAlign: 'start' },
   defaultVariants: {
     color: 'primary1',
-    weight: 'semibold',
-  },
-})
-
-const ButtonText = styled('p', {
-  ...textStyles,
-  mr: '$1',
-  defaultVariants: {
-    size: '4',
-    color: 'white1',
     weight: 'semibold',
   },
 })
@@ -269,13 +259,6 @@ const ImageContainer = styled(Container, {
   },
 })
 
-const Download = styled(View, {
-  width: '20vh',
-  '@tablet': {
-    width: '15vw',
-  },
-})
-
 const Socials = styled(View, {
   width: '5vh',
   '@tablet': {
@@ -283,7 +266,17 @@ const Socials = styled(View, {
   },
 })
 
-const InputWrapper = styled('div', sharedStyles, {
-  px: '2px',
+const InputWrapper = styled('div', {
+  p: 0,
+  overflow: 'hidden',
+  border: '1px solid #60BB93',
+  borderRadius: '1em',
+  boxShadow: '7px 5px 10px rgba(43, 101, 125, 0.14)',
   width: 'fit-content',
+
+  [`& ${Button}`]: {
+    flexShrink: 0,
+    height: '100%',
+    borderRadius: 0,
+  },
 })

@@ -1,4 +1,4 @@
-import { Container, Flex, View } from '@components'
+import { Container, Flex, View, ScrollReveal } from '@components'
 import RecentCard from './RecentCard'
 import { styled } from '@config/stitches'
 import Image from 'next/image'
@@ -29,7 +29,11 @@ export default function RecentPostSection({
           position: 'relative',
         }}
       >
-        <Title size={{ '@initial': '6', '@desktop': '14' }}>RECENT POST</Title>
+        <ScrollReveal>
+          <Title size={{ '@initial': '11', '@desktop': '14' }}>
+            RECENT POST
+          </Title>
+        </ScrollReveal>
 
         <Flex direction="column" gap="8">
           {articles.map((article, index) => (

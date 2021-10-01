@@ -1,6 +1,5 @@
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import Image from 'next/image'
-
 import {
   DownloadSection,
   OrderSteps,
@@ -18,7 +17,7 @@ export default function LandingPage({
   articles,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <View css={{ linearGradient: '#60BB93,#85AAC1' }}>
+    <View css={{ linearGradient: '#60BB93,#85AAC1', overflow: 'hidden' }}>
       <Hero />
       <Wave />
       <RecentPostSection articles={articles} />
@@ -31,11 +30,7 @@ export default function LandingPage({
 
 function Wave() {
   return (
-    <View
-      css={{
-        overflow: 'hidden',
-      }}
-    >
+    <View css={{ overflow: 'hidden' }}>
       <Grid
         css={{
           mt: '-1px',

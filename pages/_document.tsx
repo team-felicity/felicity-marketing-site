@@ -19,6 +19,13 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <div id="fb-root"></div>
+          <div
+            id="fb-customer-chat"
+            // @ts-expect-error facebook's instructions
+            page_id={process.env.NEXT_PUBLIC_MESSENGER_PAGE_ID}
+            className="fb-customerchat"
+          ></div>
         </body>
       </Html>
     )

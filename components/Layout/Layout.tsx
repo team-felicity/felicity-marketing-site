@@ -28,7 +28,6 @@ export default function Layout({ children, hideFooter = false }: Props) {
 
           <MessengerCustomerChat
             pageId={process.env.NEXT_PUBLIC_MESSENGER_PAGE_ID}
-            appId={process.env.NEXT_PUBLIC_MESSENGER_APP_ID}
           />
         </View>
         {hideFooter ? null : <Footer />}

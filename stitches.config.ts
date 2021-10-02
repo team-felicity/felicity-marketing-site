@@ -184,10 +184,6 @@ export const globalStyles = globalCss({
     padding: 0,
   },
 
-  '#__next, body, html': {
-    height: '100%',
-  },
-
   a: {
     textDecoration: 'none',
     cursor: 'pointer',

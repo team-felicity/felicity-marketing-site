@@ -16,7 +16,6 @@ export default function SuccessScreen() {
       flow="row"
       css={{
         placeItems: 'center',
-        height: '100%',
         py: IMAGE_HEIGHT,
       }}
     >

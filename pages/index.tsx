@@ -17,7 +17,7 @@ export default function LandingPage({
   articles,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <View css={{ linearGradient: '#60BB93,#85AAC1', overflow: 'hidden' }}>
+    <View css={{ linearGradient: '#60BB93,#85AAC1' }}>
       <Hero />
       <Wave />
       <RecentPostSection articles={articles} />

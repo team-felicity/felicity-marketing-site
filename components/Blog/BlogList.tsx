@@ -28,7 +28,6 @@ export default function BlogList({ articles }: { articles: ArticlesListMeta }) {
       css={{
         display: 'grid',
         background: 'linear-gradient(#FFFFFF,#85C2C2)',
-        weight: '100%',
       }}
     >
       <Container

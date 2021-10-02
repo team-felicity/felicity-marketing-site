@@ -306,12 +306,16 @@ const Title = styled('h1', {
   ...textStyles,
   wordBreak: 'break-word',
   hyphens: 'auto',
+  fontSize: '$8',
+
+  '@desktop': {
+    fontSize: '$12',
+  },
 
   '&::first-letter': { textTransform: 'capitalize' },
 
   defaultVariants: {
     color: 'primary7',
-    size: '12',
     weight: 'bold',
   },
 })

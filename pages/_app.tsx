@@ -1,12 +1,13 @@
 import type { ReactElement, ReactNode } from 'react'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
+
 import { IdProvider } from '@radix-ui/react-id'
+import { LazyMotion } from 'framer-motion'
 
 import { globalStyles } from '@config/stitches'
 
 import Layout from '@components/Layout'
-import { LazyMotion } from 'framer-motion'
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode

@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
-import dynamic from 'next/dynamic'
 
 import { styled } from '@config/stitches'
 
 import { Flex, Link, Container, View } from '@components'
 import { LogoWithCompanyName, NavLink, NavLinkText } from './HeaderComponents'
+import PhoneHeader from './PhoneHeader'
 
 const navLinks = [
   {
@@ -28,8 +28,6 @@ const navLinks = [
     title: 'Shop',
   },
 ]
-
-const PhoneHeader = dynamic(() => import('./PhoneHeader'))
 
 export default function Header() {
   const { pathname } = useRouter()

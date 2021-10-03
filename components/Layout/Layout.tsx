@@ -27,31 +27,32 @@ export default function Layout({
   hideFooter = false,
   css = {},
   mainContentcss = {},
-  meta = {
-    title: 'Felicity | Fresh and Healthy',
-    description: 'Discover Fresh and Healthy Food',
-    imageUrl: 'https://felicity.com.ph/social.png',
-  },
+  meta = {},
 }: Props) {
   const router = useRouter()
+
+  const finalMetaData = {
+    title: meta.title || 'Felicity | Fresh and Healthy',
+    description: meta.description || 'Discover Fresh and Healthy Food',
+    imageUrl: meta.imageUrl || 'https://felicity.com.ph/social.png',
+    url: meta.url || `https://felicity.com.ph${router.pathname}`,
+    type: meta.type || 'website',
+  }
 
   return (
     <>
       <Head>
         <title>{meta.title}</title>
-        <meta name="description" content={meta.description} />
+        <meta name="description" content={finalMetaData.description} />
         <link rel="icon" href="/favicon.ico" />
 
         <meta name="viewport" content="width=device-width" />
 
-        <meta
-          property="og:url"
-          content={meta.url || `https://felicity.com.ph${router.pathname}`}
-        />
-        <meta property="og:title" content={meta.title} />
-        <meta property="og:description" content={meta.description} />
-        <meta property="og:image" content={meta.imageUrl} />
-        <meta property="og:type" content="website" />
+        <meta property="og:url" content={finalMetaData.url} />
+        <meta property="og:title" content={finalMetaData.title} />
+        <meta property="og:description" content={finalMetaData.description} />
+        <meta property="og:image" content={finalMetaData.imageUrl} />
+        <meta property="og:type" content={finalMetaData.type} />
 
         {/* TODO: change twitter handle when twitter account gets created */}
         {/* <meta name="twitter:site" content="@felicityph" /> */}

@@ -151,28 +151,31 @@ export default function BlogDetail({
       >
         <Flex justify="between">
           {prev ? (
-            <Flex direction="column" css={{ maxWidth: '30%' }}>
-              <RelativeArticleLabel>Previous Article</RelativeArticleLabel>
-
-              <Link href={`/blog/${prev.slug}`}>
+            <Link href={`/blog/${prev.slug}`} css={{ width: '30%' }}>
+              <RelativeArticleContainer as={Flex} direction="column">
+                <RelativeArticleLabel>Previous Article</RelativeArticleLabel>
                 <RelativeArticleTitle>{prev.title}</RelativeArticleTitle>
-              </Link>
-            </Flex>
+              </RelativeArticleContainer>
+            </Link>
           ) : (
             // placeholder to maintain space betweenness
             <View css={{ width: '1px', height: '1px' }} />
           )}
           {next ? (
-            <Flex direction="column" align="end" css={{ maxWidth: '30%' }}>
-              <RelativeArticleLabel css={{ textAlign: 'end' }}>
-                Next Article
-              </RelativeArticleLabel>
-              <Link href={`/blog/${next.slug}`}>
+            <Link href={`/blog/${next.slug}`} css={{ width: '30%' }}>
+              <RelativeArticleContainer
+                as={Flex}
+                direction="column"
+                align="end"
+              >
+                <RelativeArticleLabel css={{ textAlign: 'end' }}>
+                  Next Article
+                </RelativeArticleLabel>
                 <RelativeArticleTitle css={{ textAlign: 'end' }}>
                   {next.title}
                 </RelativeArticleTitle>
-              </Link>
-            </Flex>
+              </RelativeArticleContainer>
+            </Link>
           ) : (
             // placeholder to maintain space betweenness
             <View css={{ width: '1px', height: '1px' }} />
@@ -210,7 +213,7 @@ export default function BlogDetail({
                   css={{
                     transition: 'all 200ms ease',
                     '&:hover': {
-                      transform: 'translateY(-1rem)',
+                      transform: 'translateY(-0.5rem)',
                     },
                   }}
                 >
@@ -252,6 +255,7 @@ export default function BlogDetail({
 const RelativeArticleLabel = styled('span', {
   textTransform: 'uppercase',
   fontWeight: '$medium',
+  color: '$black1',
 })
 const RelativeArticleTitle = styled('span', {
   textTransform: 'uppercase',
@@ -261,8 +265,9 @@ const RelativeArticleTitle = styled('span', {
   transition: 'all 200ms ease',
   display: 'block',
   color: '$black1',
-
-  '&:hover': {
+})
+const RelativeArticleContainer = styled('div', {
+  [`&:hover ${RelativeArticleTitle}`]: {
     color: '$primary6',
   },
 })

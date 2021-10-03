@@ -58,7 +58,7 @@ export default function RecentCard({ direction, from, data }: Props) {
           </Blogtitle>
         </ScrollReveal>
         <ScrollReveal>
-          <Flex direction={{ '@initial': 'column', '@desktop': 'row' }} gap="2">
+          <Flex gap="2">
             <AuthorText
               size={{
                 '@initial': '2',
@@ -120,6 +120,11 @@ export default function RecentCard({ direction, from, data }: Props) {
 
 const Blogtitle = styled('h1', {
   ...textStyles,
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  display: '-webkit-box',
+  '-webkit-line-clamp': 2,
+  '-webkit-box-orient': 'vertical',
 
   defaultVariants: {
     color: 'primary5',
@@ -147,7 +152,7 @@ const StyledImage = styled(Image, {
   objectFit: 'contain',
 })
 
-const AuthorText = styled('p', {
+const AuthorText = styled('span', {
   ...textStyles,
 
   defaultVariants: {

@@ -1,14 +1,14 @@
-import { ComponentProps, forwardRef } from 'react'
-import { motion } from 'framer-motion'
+import { forwardRef } from 'react'
+import { m } from 'framer-motion'
 
-import type * as Polymorphic from '@radix-ui/react-polymorphic'
+import type { ElementRef, ComponentProps } from 'react'
 
 import {
   styled,
   theme,
   keyframes,
   mapThemeToCSSProp,
-  KeysToPropMap,
+  css,
 } from '@config/stitches'
 
 // undecided default animation whileTap/onClick
@@ -24,16 +24,11 @@ import {
 //   />
 // ))
 
-const radiusMapKey = 'borderRadius'
-const radiiMap = mapThemeToCSSProp(radiusMapKey) as KeysToPropMap<
-  typeof radiusMapKey
->
-
 export const TouchableOpacity = forwardRef<
   HTMLButtonElement,
-  ComponentProps<typeof motion.button>
+  ComponentProps<typeof m.button>
 >((props, ref) => (
-  <motion.button
+  <m.button
     {...props}
     ref={ref}
     whileTap={props.whileTap || { opacity: 0.4 }}
@@ -48,7 +43,10 @@ const pulse = keyframes({
   '50%': { opacity: 0.5 },
 })
 
-const StyledButton = styled(motion.button, {
+// converted styles to reusable css for object composition
+// sample usecase is styling dialog close button
+// const Close = styled(Dialog.Close, buttonStyles, { color: '$primar1' })
+export const buttonStyles = css({
   background: 'none',
   border: '0px solid $black1',
   padding: '0 $3',
@@ -59,14 +57,17 @@ const StyledButton = styled(motion.button, {
   boxShadow: 'inset 0 0 0 $$borderWidth $$borderColor',
   $$borderColor: 'currentColor',
   $$borderWidth: '1px',
+  $$accentColor: 'currentColor',
 
   transition: 'all .15s ease',
   userSelect: 'none',
   cursor: 'pointer',
+  WebkitTapHighlightColor: 'transparent',
 
   // used when morphing to Link/a
   display: 'grid',
   placeItems: 'center',
+  gridAutoFlow: 'column',
 
   '&:disabled': {
     cursor: 'not-allowed',
@@ -79,7 +80,7 @@ const StyledButton = styled(motion.button, {
   },
 
   variants: {
-    radius: radiiMap,
+    radius: mapThemeToCSSProp('borderRadius'),
     size: {
       small: { height: '$5' },
       medium: { height: '$6' },
@@ -98,23 +99,34 @@ const StyledButton = styled(motion.button, {
     },
     variant: {
       secondary: {
+        $$accentColor: '$colors$primary1',
+        $$borderColor: '$$accentColor',
         $$borderWidth: '2px',
-        color: '$primary1',
+        color: '$$accentColor',
 
         '&:not(&:disabled):hover': {
-          $$borderColor: '$colors$primary1',
-
-          background: '$$borderColor',
+          background: '$$accentColor',
           color: '$white1',
         },
       },
       primary: {
         $$opacity: 2,
+
         border: 'none',
-        linearGradient: `to bottom right, $primary1, $primary4`,
+        linearGradient: 'to right, $primary1 0%, $primary4 50%',
         color: '$white1 !important',
         fontWeight: '$semibold',
         boxShadow: 'none',
+        backgroundSize: '200% auto',
+        transition: 'all 0.2s ease',
+
+        '&:active': {
+          filter: 'brightness(0.9)',
+        },
+
+        '&:hover': {
+          backgroundPosition: 'center',
+        },
       },
       ghost: {
         boxShadow: 'none',
@@ -131,29 +143,18 @@ const StyledButton = styled(motion.button, {
   },
 })
 
-type PolymorphicButton = Polymorphic.ForwardRefComponent<
-  typeof motion.button,
-  Polymorphic.OwnProps<typeof StyledButton>
->
+const StyledButton = styled(m.button, buttonStyles)
 
-const Button = forwardRef(({ disabled, loading, ...rest }, ref) => {
+const Button = forwardRef<
+  ElementRef<typeof StyledButton>,
+  ComponentProps<typeof StyledButton>
+>(({ disabled, loading, ...rest }, ref) => {
   const isDisabled = (disabled || loading) as boolean | undefined
   return (
-    <StyledButton
-      ref={ref}
-      {...rest}
-      disabled={isDisabled}
-      loading={loading}
-      // make sure to only use motion elements for the `as` prop
-      // causes build error if component is casted to non-motion element
-      whileTap={!isDisabled ? rest.whileTap : undefined}
-      whileDrag={!isDisabled ? rest.whileDrag : undefined}
-      whileHover={!isDisabled ? rest.whileHover : undefined}
-      whileFocus={!isDisabled ? rest.whileFocus : undefined}
-    >
+    <StyledButton ref={ref} {...rest} disabled={isDisabled} loading={loading}>
       {loading ? 'Loading...' : rest.children}
     </StyledButton>
   )
-}) as PolymorphicButton
+})
 
-export default Button
+export default styled(Button)

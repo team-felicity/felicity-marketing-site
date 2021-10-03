@@ -1,8 +1,9 @@
-import { forwardRef, ComponentProps } from 'react'
+import { forwardRef } from 'react'
 import { XIcon } from '@heroicons/react/outline'
 
+import type { ElementRef, ComponentProps } from 'react'
+
 import * as Dialog from '@radix-ui/react-dialog'
-import type * as Polymorphic from '@radix-ui/react-polymorphic'
 
 import { styled, keyframes } from '@config/stitches'
 import { Button } from '@components'
@@ -35,12 +36,10 @@ const StyledOverlay = styled(Dialog.Overlay, {
   },
 })
 
-// requires children
-type SheetRootProps = ComponentProps<typeof Dialog.Root> & {
-  children: React.ReactNode
-}
-
-export function Root({ children, ...rest }: SheetRootProps) {
+export function Root({
+  children,
+  ...rest
+}: ComponentProps<typeof Dialog.Root>) {
   return (
     <Dialog.Root {...rest}>
       <StyledOverlay />
@@ -123,23 +122,22 @@ const StyledCloseButton = styled(Button, {
   justifyContent: 'center',
 })
 
-type PolymorphicDialogContent = Polymorphic.ForwardRefComponent<
-  Polymorphic.IntrinsicElement<typeof Dialog.Content>,
-  Polymorphic.OwnProps<typeof StyledContent>
->
-
-export const Content = forwardRef(({ children, ...rest }, ref) => (
+export const Content = forwardRef<
+  ElementRef<typeof Dialog.Content>,
+  ComponentProps<typeof Dialog.Content>
+>(({ children, ...rest }, ref) => (
   <StyledContent {...rest} ref={ref}>
     {children}
-    <Dialog.Close
-      as={StyledCloseButton}
-      variant="ghost"
-      whileTap={{ filter: 'brightness(0.5)' }}
-    >
-      <XIcon width="1rem" />
+    <Dialog.Close asChild>
+      <StyledCloseButton
+        variant="ghost"
+        whileTap={{ filter: 'brightness(0.5)' }}
+      >
+        <XIcon width="1rem" />
+      </StyledCloseButton>
     </Dialog.Close>
   </StyledContent>
-)) as PolymorphicDialogContent
+))
 
 export const Trigger = Dialog.Trigger
 export const Close = Dialog.Close

@@ -1,6 +1,8 @@
-import { createCss, CSSPropertiesToTokenScale } from '@stitches/react'
+import { createStitches } from '@stitches/react'
+import { DESKTOP_SIZE, FHD_SIZE, PHONE_SIZE, TABLET_SIZE } from 'utils'
+import type * as Stitches from '@stitches/react'
 
-export const stitches = createCss({
+export const stitches = createStitches({
   theme: {
     colors: {
       // primary colors
@@ -9,12 +11,15 @@ export const stitches = createCss({
       primary3: '#35A3A5',
       primary4: '#2B657D',
       primary5: '#455A64',
-
+      primary6: '#61C295',
+      primary7: '#344953',
+      primary8: '#EEFAFF',
       // grays
       gray1: '#9C9595',
       gray2: '#888888',
       gray3: '#c4c4c4',
       gray4: '#c7c7c7',
+      gray5: '#F5F5F6',
 
       //whites
       white1: '#ffffff',
@@ -26,6 +31,7 @@ export const stitches = createCss({
       error: '#ee0000',
       shadowLight: 'hsl(206 22% 7% / 35%)',
       shadowDark: 'hsl(206 22% 7% / 20%)',
+      inherit: 'inherit',
     },
     space: {
       1: '5px',
@@ -50,17 +56,20 @@ export const stitches = createCss({
       9: '80px',
     },
     fontSizes: {
-      1: '12px',
-      2: '14px',
-      3: '16px',
-      4: '18px',
-      5: '20px',
-      6: '24px',
-      7: '28px',
-      8: '32px',
-      9: '36px',
-      10: '40px',
-      11: '44px',
+      1: '0.75rem',
+      2: '0.875rem',
+      3: '1rem',
+      4: '1.125rem',
+      5: '1.25rem',
+      6: '1.5rem',
+      7: '1.625rem',
+      8: '2rem',
+      9: '2.25rem',
+      10: '2.5rem',
+      11: '2.75rem',
+      12: '3rem',
+      13: '3.5rem',
+      14: '4rem',
     },
     radii: {
       1: '4px',
@@ -97,92 +106,77 @@ export const stitches = createCss({
     borderWidths: {},
     letterSpacings: {},
     lineHeights: {},
-    shadows: {},
+    shadows: { headerShadow: '0 0 5px rgba(0, 0, 0, 0.13)' },
     transitions: {},
   },
 
   utils: {
-    // you can type value with `$${keyof typeof cfg['theme']['space']}` | (string & {})
-    // but it cannot currently type when using on a component
-    m: () => (v) => ({
-      marginTop: v,
-      marginBottom: v,
-      marginLeft: v,
-      marginRight: v,
-    }),
-    mt: () => (v) => ({ marginTop: v }),
-    mr: () => (v) => ({ marginRight: v }),
-    mb: () => (v) => ({ marginBottom: v }),
-    ml: () => (v) => ({ marginLeft: v }),
-    mx: () => (v) => ({ marginRight: v, marginLeft: v }),
-    my: () => (v) => ({ marginTop: v, marginBottom: v }),
+    m: (v: Stitches.PropertyValue<'margin'>) => ({ margin: v }),
+    mt: (v: Stitches.PropertyValue<'margin'>) => ({ marginTop: v }),
+    mr: (v: Stitches.PropertyValue<'margin'>) => ({ marginRight: v }),
+    mb: (v: Stitches.PropertyValue<'margin'>) => ({ marginBottom: v }),
+    ml: (v: Stitches.PropertyValue<'margin'>) => ({ marginLeft: v }),
+    mx: (v: Stitches.PropertyValue<'marginInline'>) => ({ marginInline: v }),
+    my: (v: Stitches.PropertyValue<'marginBlock'>) => ({ marginBlock: v }),
 
-    p: () => (v) => ({
-      paddingTop: v,
-      paddingBottom: v,
-      paddingLeft: v,
-      paddingRight: v,
-    }),
-    pt: () => (v) => ({ paddingTop: v }),
-    pr: () => (v) => ({ paddingRight: v }),
-    pb: () => (v) => ({ paddingBottom: v }),
-    pl: () => (v) => ({ paddingLeft: v }),
-    px: () => (v) => ({ paddingLeft: v, paddingRight: v }),
-    py: () => (v) => ({ paddingTop: v, paddingBottom: v }),
+    p: (v: Stitches.PropertyValue<'padding'>) => ({ padding: v }),
+    pt: (v: Stitches.PropertyValue<'padding'>) => ({ paddingTop: v }),
+    pr: (v: Stitches.PropertyValue<'padding'>) => ({ paddingRight: v }),
+    pb: (v: Stitches.PropertyValue<'padding'>) => ({ paddingBottom: v }),
+    pl: (v: Stitches.PropertyValue<'padding'>) => ({ paddingLeft: v }),
+    px: (v: Stitches.PropertyValue<'paddingInline'>) => ({ paddingInline: v }),
+    py: (v: Stitches.PropertyValue<'paddingBlock'>) => ({ paddingBlock: v }),
 
-    gapy: () => (v) => ({ rowGap: v }),
-    gapx: () => (v) => ({ columnGap: v }),
+    gapy: (v: Stitches.PropertyValue<'rowGap'>) => ({ rowGap: v }),
+    gapx: (v: Stitches.PropertyValue<'columnGap'>) => ({ columnGap: v }),
 
-    rt: () => (v) => ({
+    rt: (v: Stitches.PropertyValue<'borderRadius'>) => ({
       borderTopLeftRadius: v,
       borderTopRightRadius: v,
     }),
-    rb: () => (v) => ({
+    rb: (v: Stitches.PropertyValue<'borderRadius'>) => ({
       borderBottomLeftRadius: v,
       borderBottomRightRadius: v,
     }),
-    rl: () => (v) => ({
+    rl: (v: Stitches.PropertyValue<'borderRadius'>) => ({
       borderTopLeftRadius: v,
       borderBottomLeftRadius: v,
     }),
-    rr: () => (v) => ({
+    rr: (v: Stitches.PropertyValue<'borderRadius'>) => ({
       borderTopRightRadius: v,
       borderBottomRightRadius: v,
     }),
 
-    linearGradient: () => (v) => ({
+    linearGradient: (v: Stitches.PropertyValue<'backgroundImage'>) => ({
       backgroundImage: `linear-gradient(${v})`,
     }),
   },
 
   media: {
-    phone: '(min-width: 520px)',
-    tablet: '(min-width: 900px)',
-    desktop: '(min-width: 1200px)',
+    phone: `(min-width: ${PHONE_SIZE}px)`,
+    tablet: `(min-width: ${TABLET_SIZE}px)`,
+    desktop: `(min-width: ${DESKTOP_SIZE}px)`,
+    fhd: `(min-width: ${FHD_SIZE}px)`,
   },
 })
 
-export const {
-  css,
-  styled,
-  config,
-  getCssString,
-  global,
-  keyframes,
-  theme,
-  utils,
-} = stitches
+export const { css, styled, config, getCssText, globalCss, keyframes, theme } =
+  stitches
 
-export const globalStyles = global({
-  '@import':
-    "url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap')",
+export type CSS = Stitches.CSS<typeof config>
 
+export const globalStyles = globalCss({
   '*, ::after, ::before': {
     boxSizing: 'border-box',
   },
 
   body: {
     fontFamily: '$default',
+  },
+
+  html: {
+    scrollPaddingTop: 90,
+    scrollBehavior: 'smooth',
   },
 
   'body, html': {
@@ -196,16 +190,16 @@ export const globalStyles = global({
   },
 })
 
-export type CSSProps = keyof CSSPropertiesToTokenScale
-type ThemeKeyFromCSSProp<T extends CSSProps> = CSSPropertiesToTokenScale[T]
+type DefaultThemeMapKeys = keyof Stitches.DefaultThemeMap
+type ThemeKey<T extends DefaultThemeMapKeys> = Stitches.DefaultThemeMap[T]
 type TokenKeys<T extends keyof typeof config.theme> = Exclude<
   keyof typeof config.theme[T],
   symbol
 >
 
-export type KeysToPropMap<Prop extends CSSProps> = Record<
-  TokenKeys<CSSPropertiesToTokenScale[Prop]>,
-  Record<Prop, `$${TokenKeys<ThemeKeyFromCSSProp<Prop>>}`>
+export type KeysToPropMap<Prop extends DefaultThemeMapKeys> = Record<
+  TokenKeys<ThemeKey<Prop>>,
+  Record<Prop, `$${TokenKeys<ThemeKey<Prop>>}`>
 >
 
 /**
@@ -222,12 +216,12 @@ export type KeysToPropMap<Prop extends CSSProps> = Record<
  *    ...
  * }
  */
-export function mapThemeToCSSProp(cssProp: CSSProps) {
+export function mapThemeToCSSProp<T extends DefaultThemeMapKeys>(cssProp: T) {
   const themeKey = config.themeMap[cssProp]
   return Object.fromEntries(
     Object.entries(theme[themeKey]).map(([key]) => [
       key,
       { [cssProp]: `$${key}` },
     ])
-  ) as KeysToPropMap<typeof cssProp>
+  ) as KeysToPropMap<T>
 }

@@ -54,6 +54,8 @@ export async function getArticle(slug = '') {
     `
 		query {
 			articles(where: { slug: "${slug}"}) {
+				slug
+				excerpt
 				title
 				author {
 					name

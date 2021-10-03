@@ -1,7 +1,7 @@
 import type { ParsedUrlQuery } from 'querystring'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 
-import { SyntheticEvent, useState } from 'react'
+import { ReactElement, SyntheticEvent, useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { serialize } from 'next-mdx-remote/serialize'
@@ -30,6 +30,7 @@ import { toDefaultDateFormat } from 'utils/functions'
 import { textStyles } from '@components/Text'
 import { BaseInput } from '@components/TextField'
 import components, { ContentContainer } from '@components/BlogComponents'
+import Layout from '@components/Layout'
 
 export default function BlogDetail({
   contentSource,
@@ -382,4 +383,20 @@ export const getStaticProps: GetStaticProps<
       notFound: true,
     }
   }
+}
+
+BlogDetail.getLayout = (
+  page: ReactElement<InferGetStaticPropsType<typeof getStaticProps>>
+) => {
+  return (
+    <Layout
+      meta={{
+        title: `${page.props.meta.title} — Felicity`,
+        description: page.props.meta.excerpt,
+        url: `https://felicity.com.ph/${page.props.meta.slug}`,
+      }}
+    >
+      {page}
+    </Layout>
+  )
 }

@@ -42,7 +42,7 @@ export default function Layout({
   return (
     <>
       <Head>
-        <title>{meta.title}</title>
+        <title>{finalMetaData.title}</title>
         <meta name="description" content={finalMetaData.description} />
         <link rel="icon" href="/favicon.ico" />
 

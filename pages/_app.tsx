@@ -38,7 +38,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         id="hs-script-loader"
         src="//js-na1.hs-scripts.com/20815345.js"
         strategy="lazyOnload"
-      ></Script>
+      />
     </>
   )
 }

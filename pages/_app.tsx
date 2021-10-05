@@ -36,9 +36,8 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       <Script
         type="text/javascript"
         id="hs-script-loader"
-        async
-        defer
         src="//js-na1.hs-scripts.com/20815345.js"
+        strategy="lazyOnload"
       ></Script>
     </>
   )

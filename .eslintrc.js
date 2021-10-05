@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-undef
 module.exports = {
   extends: [
-    'eslint:recommended',
+    //'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'next',
     'next/core-web-vitals',

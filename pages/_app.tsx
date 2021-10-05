@@ -8,6 +8,7 @@ import { LazyMotion } from 'framer-motion'
 import { globalStyles } from '@config/stitches'
 
 import Layout from '@components/Layout'
+import Script from 'next/script'
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -26,11 +27,20 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>)
 
   return (
-    <IdProvider>
-      <LazyMotion features={loadFeatures}>
-        {getLayout(<Component {...pageProps} />)}
-      </LazyMotion>
-    </IdProvider>
+    <>
+      <IdProvider>
+        <LazyMotion features={loadFeatures}>
+          {getLayout(<Component {...pageProps} />)}
+        </LazyMotion>
+      </IdProvider>
+      <Script
+        type="text/javascript"
+        id="hs-script-loader"
+        async
+        defer
+        src="//js-na1.hs-scripts.com/20815345.js"
+      ></Script>
+    </>
   )
 }
 export default MyApp

@@ -33,12 +33,14 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           {getLayout(<Component {...pageProps} />)}
         </LazyMotion>
       </IdProvider>
-      <Script
-        type="text/javascript"
-        id="hs-script-loader"
-        src="//js-na1.hs-scripts.com/20815345.js"
-        strategy="lazyOnload"
-      />
+      {process.env.NODE_ENV === 'production' ? (
+        <Script
+          type="text/javascript"
+          id="hs-script-loader"
+          src="//js-na1.hs-scripts.com/20815345.js"
+          strategy="lazyOnload"
+        />
+      ) : null}
     </>
   )
 }

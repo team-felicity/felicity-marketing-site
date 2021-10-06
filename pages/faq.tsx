@@ -68,7 +68,6 @@ export default function FAQsPage() {
           </AnimateSharedLayout>
           {data.map((tab) => (
             <Tabs.Content value={tab.category} key={tab.category}>
-              {/* @ts-expect-error library types issue */}
               <Accordion.Root type="single" collapsible>
                 {tab.questions.map((question, index) => (
                   <Accordion.Item value={question.label} key={index}>

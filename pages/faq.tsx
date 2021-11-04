@@ -23,7 +23,7 @@ export default function FAQsPage() {
         >
           Frequently Asked Questions
         </Text>
-        <Text
+        {/* <Text
           as="p"
           weight="light"
           size={{ '@initial': '3', '@tablet': '4' }}
@@ -34,7 +34,7 @@ export default function FAQsPage() {
           architecto recusandae inventore minus odit a ullam. Vel odio iste
           reiciendis, repudiandae autem incidunt alias repellat odit ducimus,
           placeat dignissimos!
-        </Text>
+        </Text> */}
       </View>
 
       <View>
@@ -97,90 +97,90 @@ const tabUnderline = css({
 
 const data = [
   {
-    category: 'Transaction',
+    category: 'Membership',
     questions: [
       {
-        label: 'Can I cancel my order?',
+        label: 'How to become a member?',
+        description:
+          'Step 1: Sign up by filling in the Registration Form \nStep 2: Present a valid ID to verify your identity (3-day verification period) \nStep 3: Choose a subscription plan that suits you best \nStep 4: Get your free BDO card 3 days after request submission (only for Citizens and higher) \nStep 5: Enjoy your shopping!',
+      },
+      {
+        label: 'How can I earn from this system?',
+        description:
+          'It’s easy! Simply share your delightful experience in Felicity and have other people experience the same way! Invite people to join Felicity and earn at most 10% in every member’s product purchase. Note that earnings can only be given to individuals who purchase Felicity products monthly. In this way, we can make sure that everyone lives happily and healthily.',
+      },
+      {
+        label: 'Can I be a member even without recruiting?',
+        description:
+          'Absolutely! The recruitment system exists to help people achieve their financial goals. If you don’t see the need to do such, then you’re still very welcome to be our member and shopper at any level.',
+      },
+      {
+        label: 'What’s the best membership type for me?',
         description:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
       },
       {
-        label: 'Do I have to order in advance?',
-        description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
-      },
-      {
-        label: 'How do I place an order?',
-        description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
-      },
-      {
-        label: 'What is Felicity Coins?',
-        description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
-      },
-      {
-        label: 'How Does Felicity Work?',
+        label: 'What can I get from being a member?',
         description:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
       },
     ],
   },
   {
-    category: 'General',
+    category: 'Purchase',
     questions: [
       {
-        label: 'How Does Felicity Work?',
+        label: 'How and where can I buy the products?',
         description:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
       },
       {
-        label: 'How do I place an order?',
+        label: 'What are the payment options available?',
         description:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
       },
       {
-        label: 'Do I have to order in advance?',
+        label: 'Is the shop open 24/7?',
         description:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
       },
       {
-        label: 'Can I cancel my order?',
+        label: 'Is there a physical store where I can shop?',
         description:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
       },
       {
-        label: 'What is Felicity Coins?',
+        label: 'Is there a minimum purchase per transaction?',
         description:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
       },
     ],
   },
   {
-    category: 'Payments',
+    category: 'Delivery',
     questions: [
       {
-        label: 'How do I place an order?',
+        label: 'What are the delivery options available?',
         description:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
       },
       {
-        label: 'How Does Felicity Work?',
+        label: 'Do you deliver nationwide?',
         description:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
       },
       {
-        label: 'Can I cancel my order?',
+        label: 'Do you deliver anytime and anywhere in the city?',
         description:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
       },
       {
-        label: 'Do I have to order in advance?',
+        label: 'How much is the delivery fee?',
         description:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
       },
       {
-        label: 'What is Felicity Coins?',
+        label: 'How can I check my order delivery status?',
         description:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
       },

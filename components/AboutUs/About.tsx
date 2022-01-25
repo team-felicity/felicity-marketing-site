@@ -6,7 +6,6 @@ import Image from 'next/image'
 import Logo from '@assets/logo/header-logo.png'
 import HalfCircle from './HalfCircle'
 import OurTeam from './OurTeam'
-import OwnerQuote from './OwnerQuote'
 
 export default function AboutUs() {
   return (
@@ -24,7 +23,7 @@ export default function AboutUs() {
           justifyContent: 'center',
           pt: '$5',
           '@tablet': {
-            height: '95vh',
+            height: '125vh',
           },
         }}
       >
@@ -33,7 +32,6 @@ export default function AboutUs() {
         </Title>
         <Mission />
       </Container>
-      <OwnerQuote />
       <OurTeam />
     </View>
   )
@@ -171,6 +169,7 @@ const Behind = styled(View, {
     left: '-5%',
   },
 })
+
 const ImageContainer = styled(View, {
   userSelect: 'none',
   alignSelf: 'center',

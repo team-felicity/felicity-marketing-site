@@ -72,9 +72,21 @@ export default function FAQsPage() {
                 {tab.questions.map((question, index) => (
                   <Accordion.Item value={question.label} key={index}>
                     <Accordion.Trigger>{question.label}</Accordion.Trigger>
+
+                      {
+                        typeof question.description === 'string' ? 
                     <Accordion.Content>
                       {question.description}
                     </Accordion.Content>
+: 
+question.description.map(desc => (
+                    <Accordion.Content key={desc}>
+                      {question.description}
+                    </Accordion.Content>
+
+))
+
+                      }
                   </Accordion.Item>
                 ))}
               </Accordion.Root>
@@ -95,14 +107,25 @@ const tabUnderline = css({
   backgroundColor: '$primary4',
 })
 
-const data = [
+const data: Array<{
+  category: string
+  questions: Array<{
+    label: string
+    description: string | string[]
+  }>
+}> = [
   {
     category: 'Membership',
     questions: [
       {
         label: 'How to become a member?',
-        description:
-          'Step 1: Sign up by filling in the Registration Form \nStep 2: Present a valid ID to verify your identity (3-day verification period) \nStep 3: Choose a subscription plan that suits you best \nStep 4: Get your free BDO card 3 days after request submission (only for Citizens and higher) \nStep 5: Enjoy your shopping!',
+        description: [
+"Step 1: Sign up by filling in the Registration Form",
+'Step 2: Present a valid ID to verify your identity (3-day verification period)',
+'Step 3: Choose a subscription plan that suits you best',
+'Step 4: Get your free BDO card 3 days after request submission (only for Citizens and higher)',
+'Step 5: Enjoy your shopping!'
+        ]
       },
       {
         label: 'How can I earn from this system?',

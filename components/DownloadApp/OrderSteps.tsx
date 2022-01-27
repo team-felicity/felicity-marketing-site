@@ -23,7 +23,7 @@ const data = [
     id: 3,
     imageProps: Deliver,
     columnTitle: 'COLLECT',
-    subtitle: 'LGet your order without having to leave your home',
+    subtitle: 'Get your order without having to leave your home',
   },
 ]
 

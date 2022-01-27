@@ -130,22 +130,26 @@ const data: Array<{
       {
         label: 'How can I earn from this system?',
         description:
-          'It’s easy! Simply share your delightful experience in Felicity and have other people experience the same way! Invite people to join Felicity and earn at most 10% in every member’s product purchase. Note that earnings can only be given to individuals who purchase Felicity products monthly. In this way, we can make sure that everyone lives happily and healthily.',
+          'It’s easy! Simply share your delightful experience in Felicity and have other people experience the same way! \
+           Invite people to join Felicity and earn at most 10% in every member’s product purchase. \
+           Note that earnings can only be given to individuals who purchase Felicity products monthly. \
+           In this way, we can make sure that everyone lives happily and healthily.',
       },
       {
         label: 'Can I be a member even without recruiting?',
         description:
-          'Absolutely! The recruitment system exists to help people achieve their financial goals. If you don’t see the need to do such, then you’re still very welcome to be our member and shopper at any level.',
+          'Absolutely! The recruitment system exists to help people achieve their financial goals. \
+           If you don’t see the need to do such, then you’re still very welcome to be our member and shopper at any level.',
       },
       {
         label: 'What’s the best membership type for me?',
         description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
+          'Still not sure about what to do? Tourist matches those who only shop once in a blue moon. This is also perfect for students or even adults who do not have a regular plan in buying food groceries yet. Are you a young adult who is always on the go? Then, be a Citizen in Felicity! If you’re one who lives independently, having this subscription would help you jump start your grocery schedule set ups while helping you live a healthy life. The recruitment system this level holds also allows you to earn a little bit of extra cash – a perfect passive income source! Are you a parent who keeps things together in the household? Sign up as a Scout and enjoy the perks! May it be budgeting the money, spending more time with kids, being more productive, or managing time efficiently, Felicity is here to help you out. With our very affordable products and convenient shopping experience, being a parent becomes less stressful. What’s more, with this level’s broader recruitment range, you will be able to meet not just the needs but also the wants for your entire family. Do you identify yourself as a goal-getter or a breadwinner? Then, you are destined to be an Influencer! Its huge member base allows you to get the most of the system with the aim to help every household to lead a healthy lifestyle and transform society into a happy one. Share happiness every day and make your dreams come true all with Felicity. Do you run your own restaurant? Be our Partner then! It has a special system that allows your business to grow more by providing very affordable yet fresh product supply. What’s great about this is that this level allows you to enjoy the same privileges as that of an Influencer which makes you not just a boss but a super empowered boss. Which level suits you best? Start your journey with us now!',
       },
       {
         label: 'What can I get from being a member?',
         description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
+          'Felicity is full of perks that you’ll surely enjoy! We have fresh products that you can easily afford thanks to product and delivery coupons, so be sure to join our games and events to save more. Plus, you can even get a chance to have your food for FREE forever and achieve your financial goals! Aside from that, you’ll also get a free BDO card that you can use for your transactions and an insurance when you sign up as a Citizen, Scout, Influencer, or a Partner. These are just basic for Felicity and more great things may come. So, stick with us and help create a happy and healthy community!',
       },
     ],
   },
@@ -155,27 +159,27 @@ const data: Array<{
       {
         label: 'How and where can I buy the products?',
         description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
+          'Our app is still under construction and we’re doing our best to have it ready as soon as possible. For now, you can view our catalogue and purchase our products via our Facebook Page and Instagram “Felicity Fresh Foods”. Don’t forget to Like and Follow us there and give us a great review as well!',
       },
       {
         label: 'What are the payment options available?',
         description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
+          'We accept transactions done via Palawan, Gcash, BDO, and Cash On Delivery (COD)',
       },
       {
         label: 'Is the shop open 24/7?',
         description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
+          'Want to shop now? You can place your order at any day from 7:00am to 8:00pm in our Facebook Page and Instagram. Enjoy!',
       },
       {
         label: 'Is there a physical store where I can shop?',
         description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
+          'Felicity wants you to experience a hassle-free grocery time so instead of having a shop, we do all transactions online! All you have to do is scroll through our products via Facebook or Instagram (App is coming soon) and have your goods delivered at your home.',
       },
       {
         label: 'Is there a minimum purchase per transaction?',
         description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
+          'We want the best experience for you, and we understand that we get caught up in emergency situations from time to time. For this, Felicity does not set any minimum purchase for Tourists, Citizens, Scouts, and Influencers.',
       },
     ],
   },
@@ -185,27 +189,27 @@ const data: Array<{
       {
         label: 'What are the delivery options available?',
         description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
+          'Scheduled Delivery – Depending on your location, you may decide when to have your orders delivered and plot them in the delivery calendar (note that we can only deliver within operating hours and 4 hours after your order has been accepted). Regular Delivery – We deliver your order 4 hours after it has been accepted (depending on your location). Rush Delivery – We deliver your order 1 hour after it has been accepted (depending on your location). Pick Up – You may choose to get your order directly from our Felicity site 4 hours after it has been accepted.',
       },
       {
         label: 'Do you deliver nationwide?',
         description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
+          'For now, Felicity only operates within the cities of Cebu, Mandaue, Lapu-Lapu, Consolacion, and Talisay. As the family grows and more and more people would want to start living happily and healthily, we would broaden our service range so the whole Philippines can experience a dose of Fresh Happiness Every Day soon.',
       },
       {
         label: 'Do you deliver anytime and anywhere in the city?',
         description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
+          'For now, we only deliver items within our operating hours which is from 7:00am to 8:00pm every day.',
       },
       {
         label: 'How much is the delivery fee?',
         description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
+          'Felicity’s standard delivery rate is Php 50.00 only. However, there are many opportunities for you to win various delivery coupon rates so make sure to participate in our games and events!',
       },
       {
         label: 'How can I check my order delivery status?',
         description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut similique beatae incidunt corporis, alias dolor officia esse perferendis ratione nostrum!',
+          'Once your order is placed, all there is left is to wait for the text message from our delivery men when they are already on the way to your location.',
       },
     ],
   },

@@ -102,17 +102,25 @@ const data = [
       {
         label: 'How to become a member?',
         description:
-          'Step 1: Sign up by filling in the Registration Form \nStep 2: Present a valid ID to verify your identity (3-day verification period) \nStep 3: Choose a subscription plan that suits you best \nStep 4: Get your free BDO card 3 days after request submission (only for Citizens and higher) \nStep 5: Enjoy your shopping!',
+          'Step 1: Sign up by filling in the Registration Form \
+           Step 2: Present a valid ID to verify your identity (3-day verification period) \
+           Step 3: Choose a subscription plan that suits you best \
+           Step 4: Get your free BDO card 3 days after request submission (only for Citizens and higher) \
+           Step 5: Enjoy your shopping!',
       },
       {
         label: 'How can I earn from this system?',
         description:
-          'It’s easy! Simply share your delightful experience in Felicity and have other people experience the same way! Invite people to join Felicity and earn at most 10% in every member’s product purchase. Note that earnings can only be given to individuals who purchase Felicity products monthly. In this way, we can make sure that everyone lives happily and healthily.',
+          'It’s easy! Simply share your delightful experience in Felicity and have other people experience the same way! \
+           Invite people to join Felicity and earn at most 10% in every member’s product purchase. \
+           Note that earnings can only be given to individuals who purchase Felicity products monthly. \
+           In this way, we can make sure that everyone lives happily and healthily.',
       },
       {
         label: 'Can I be a member even without recruiting?',
         description:
-          'Absolutely! The recruitment system exists to help people achieve their financial goals. If you don’t see the need to do such, then you’re still very welcome to be our member and shopper at any level.',
+          'Absolutely! The recruitment system exists to help people achieve their financial goals. \
+           If you don’t see the need to do such, then you’re still very welcome to be our member and shopper at any level.',
       },
       {
         label: 'What’s the best membership type for me?',

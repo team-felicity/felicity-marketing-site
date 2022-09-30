@@ -1,10 +1,13 @@
 import Image from 'next/image'
+import { m } from 'framer-motion'
+
+import { ArticleCard } from 'utils/api'
+import { toDefaultDateFormat } from 'utils/functions'
+import { styled } from '@config/stitches'
+
 import { Text, View, Flex, ScrollReveal } from '@components'
 import { textStyles } from '@components/Text'
-import { styled } from '@config/stitches'
 import { buttonStyles } from '@components/Button'
-import { m } from 'framer-motion'
-import { ArticleCard } from 'utils/api'
 
 interface Props {
   direction: 'row' | 'column' | 'rowReverse' | 'columnReverse'
@@ -13,6 +16,20 @@ interface Props {
 }
 
 export default function RecentCard({ direction, from, data }: Props) {
+  const {
+    coverImage: {
+      data: { attributes: coverImage },
+    },
+    title,
+    author: {
+      data: { attributes: author },
+    },
+    createdAt,
+    excerpt,
+    readTimeEstimate,
+    slug,
+  } = data.attributes
+
   return (
     <Flex
       direction={{
@@ -35,13 +52,13 @@ export default function RecentCard({ direction, from, data }: Props) {
           <StyledImage
             src={
               process.env.NODE_ENV === 'development'
-                ? `http://localhost:1337${data.coverImage.url}`
-                : data.coverImage.url
+                ? `${process.env.NEXT_PUBLIC_API_URL}${coverImage.url}`
+                : coverImage.url
             }
-            width={data.coverImage.width}
-            height={data.coverImage.height}
+            width={coverImage.width}
+            height={coverImage.height}
             objectFit="cover"
-            alt={data.coverImage.url}
+            alt={coverImage.url}
           />
         </ImageContainer>
       </ScrollReveal>
@@ -54,7 +71,7 @@ export default function RecentCard({ direction, from, data }: Props) {
               '@desktop': '8',
             }}
           >
-            {data.title}
+            {title}
           </Blogtitle>
         </ScrollReveal>
         <ScrollReveal>
@@ -65,7 +82,7 @@ export default function RecentCard({ direction, from, data }: Props) {
                 '@desktop': '3',
               }}
             >
-              {data.author.name},
+              {author.name},
             </AuthorText>
             <AuthorText
               size={{
@@ -73,23 +90,22 @@ export default function RecentCard({ direction, from, data }: Props) {
                 '@desktop': '3',
               }}
             >
-              {/* .slice(3) removes day (Mon) */}
-              {new Date(data.created_at).toDateString().slice(3)}
+              {toDefaultDateFormat(new Date(createdAt))}
             </AuthorText>
           </Flex>
         </ScrollReveal>
         <ScrollReveal>
-          <Text>{data.excerpt}</Text>
+          <Text>{excerpt}</Text>
         </ScrollReveal>
         <ScrollReveal>
           <Text color="primary3" weight="medium">
-            {data.readTimeEstimate} min read
+            {readTimeEstimate} min read
           </Text>
         </ScrollReveal>
         <ScrollReveal>
           <Button
             as={m.a}
-            href={`/blog/${data.slug}`}
+            href={`/blog/${slug}`}
             variant="secondary"
             size="large"
             css={{

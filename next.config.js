@@ -8,6 +8,6 @@ module.exports = withBundleAnalyzer({
   reactStrictMode: true,
 
   images: {
-    domains: ['localhost', 'storage.googleapis.com'],
+    domains: ['localhost', '127.0.0.1', 'storage.googleapis.com'],
   },
 })

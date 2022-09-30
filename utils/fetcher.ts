@@ -1,4 +1,7 @@
 export type GQLResponse<T> = { data: T }
+export type GQLResponseV2<T, U extends string> = {
+  data: Record<U, { data: T }>
+}
 
 async function defaultResolver<T>(res: Response) {
   if (res.ok) return (await res.json()) as Promise<T>
@@ -21,6 +24,22 @@ export function gqlClient<T>(
       variables,
     }),
   }).then(defaultResolver) as Promise<GQLResponse<T>>
+}
+
+export function gqlClientV2<T, U extends string>(
+  query: string,
+  variables: Record<string, unknown> = {}
+) {
+  return fetch(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query,
+      variables,
+    }),
+  }).then(defaultResolver) as Promise<GQLResponseV2<T, U>>
 }
 
 export function restClient(

@@ -58,7 +58,7 @@ export default function BlogList({ articles }: { articles: ArticlesListMeta }) {
             <RecentCard
               direction="row"
               from="blog"
-              key={article.slug}
+              key={article.attributes.slug}
               data={article}
             />
           ))}

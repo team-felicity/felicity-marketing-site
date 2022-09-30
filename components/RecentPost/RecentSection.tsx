@@ -37,7 +37,7 @@ export default function RecentPostSection({
 
         <Flex direction="column" gap="8">
           {articles.map((article, index) => (
-            <View key={article.slug} css={{ position: 'relative' }}>
+            <View key={article.attributes.slug} css={{ position: 'relative' }}>
               {index % 2 ? (
                 <>
                   <BrocoliView>

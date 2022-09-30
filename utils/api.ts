@@ -5,6 +5,7 @@ import {
   Author,
   CoverImage,
   DataAttributes,
+  Category,
 } from './types'
 
 export interface RelativeArticleMeta {
@@ -48,47 +49,118 @@ export async function getRelativeArticles(createdAt: string) {
 }
 
 export async function getAllArticleSlugs() {
-  return await gqlClient<{ articles: Array<{ slug: string }> }>(
-    `{ articles { slug } }`
-  ).then((res) =>
-    res.data.articles.map((article: { slug: string }) => article.slug)
+  return await gqlClientV2<Array<Attributes<{ slug: string }>>, 'articles'>(`
+    query { 
+      articles { 
+        data { 
+          attributes { 
+            slug 
+          } 
+        } 
+      } 
+    }
+    `).then((res) =>
+    res.data.articles.data.map(({ attributes: { slug } }) => slug)
   )
 }
 
+export type ArticleDetailData = Pick<
+  Article,
+  'title' | 'excerpt' | 'slug' | 'createdAt' | 'content' | 'readTimeEstimate'
+> & {
+  author: DataAttributes<
+    Pick<Author, 'name'> & DataAttributes<Pick<Author, 'picture'>>
+  >
+  coverImage: DataAttributes<CoverImage>
+  categories: { data: Array<Attributes<Category>> }
+}
+
 export async function getArticle(slug = '') {
-  return gqlClient<{ articles: Article[] }>(
+  return gqlClientV2<Array<Attributes<ArticleDetailData>>, 'articles'>(
     `
 		query {
-			articles(where: { slug: "${slug}"}) {
-				slug
-				excerpt
-				title
-				author {
-					name
-					picture {
-						url
+			articles(filters: { slug: {eq: "${slug}" } }) {
+				data {
+					attributes {
+						title
+						excerpt
+						slug
+						createdAt
+            content
+						readTimeEstimate
+						author {
+							data {
+								attributes {
+									name
+									picture {
+										data {
+											attributes {
+													url
+											}
+										}
+									}
+								}
+							}
+						}
+						coverImage {
+							data {
+								attributes {
+									url
+									width
+									height
+									formats
+								}
+							}
+						}
+						categories {
+							data {
+								attributes {
+									name
+									slug
+								}
+							}
+						}
 					}
 				}
-				created_at
-				updated_at
-				content
-				coverImage {
-					url
-					width
-					height
-					formats
-				}
-				categories {
-					name
-					slug
-				}
-				readTimeEstimate
 			}
 		}
-		`,
-    { slug }
-  ).then((res) => res.data.articles[0])
+		`
+  ).then((res) => res.data.articles.data[0]?.attributes)
 }
+// export async function getArticle(slug = '') {
+//   return gqlClient<{ articles: Article[] }>(
+//     `
+// 		query {
+// 			articles(where: { slug: "${slug}"}) {
+// 				slug
+// 				excerpt
+// 				title
+// 				author {
+// 					name
+// 					picture {
+// 						url
+// 					}
+// 				}
+// 				created_at
+// 				updated_at
+// 				content
+// 				coverImage {
+// 					url
+// 					width
+// 					height
+// 					formats
+// 				}
+// 				categories {
+// 					name
+// 					slug
+// 				}
+// 				readTimeEstimate
+// 			}
+// 		}
+// 		`,
+//     { slug }
+//   ).then((res) => res.data.articles[0])
+// }
 
 export interface RelatedArticleMeta extends RelativeArticleMeta {
   coverImage: CoverImage

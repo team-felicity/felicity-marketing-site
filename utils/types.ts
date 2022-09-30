@@ -31,7 +31,7 @@ export type CoverImage = {
   formats: { thumbnail: { url: string } }
 }
 
-export interface Category {
+export type Category = {
   name: string
   slug: string
 }

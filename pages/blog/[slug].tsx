@@ -1,6 +1,5 @@
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
-
-import { SyntheticEvent, useState } from 'react'
+import { ReactElement, SyntheticEvent, useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { serialize } from 'next-mdx-remote/serialize'
@@ -29,7 +28,7 @@ import { toDefaultDateFormat } from 'utils/functions'
 import { textStyles } from '@components/Text'
 import { BaseInput } from '@components/TextField'
 import components, { ContentContainer } from '@components/BlogComponents'
-// import Layout from '@components/Layout'
+import Layout from '@components/Layout'
 
 export default function BlogDetail({
   contentSource,
@@ -48,8 +47,6 @@ InferGetStaticPropsType<typeof getStaticProps>) {
     setEmail('')
     router.push('/thank-you')
   }
-
-  if (!meta || !contentSource) return null
 
   const {
     author: {
@@ -358,59 +355,50 @@ export const getStaticPaths = async () => {
   }
 }
 
-export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
-  try {
-    const { content, ...meta } =
-      (await getArticle(params?.slug as string)) || {}
-    // const { prev, next } = await getRelativeArticles(meta.createdAt)
-    // const relatedArticles = await getRelatedArticles({
-    //   categories: meta.categories.data.map(({ attributes: { name } }) => name),
-    //   slug: params?.slug,
-    // })
+export const getStaticProps = async ({
+  params,
+}: GetStaticPropsContext<{ slug: string }>) => {
+  const slug = params?.slug
+  const { content, ...meta } = (await getArticle(slug)) || {}
+  // const { prev, next } = await getRelativeArticles(meta.createdAt)
+  // const relatedArticles = await getRelatedArticles({
+  //   categories: meta.categories.data.map(({ attributes: { name } }) => name),
+  //   slug: params?.slug,
+  // })
+  const notFound = !content
 
-    const contentSource = await serialize(content, {
-      mdxOptions: {
-        remarkPlugins: [remarkUnwrapImages],
-        rehypePlugins: [rehypeSanitize, rehypeSlug],
-      },
-    })
+  const contentSource = await serialize(content, {
+    mdxOptions: {
+      remarkPlugins: [remarkUnwrapImages],
+      rehypePlugins: [rehypeSanitize, rehypeSlug],
+    },
+  })
 
-    if (meta === undefined)
-      return {
-        props: {},
-        notFound: true,
-      }
-
-    return {
-      props: {
-        contentSource,
-        meta,
-        // prev,
-        // next,
-        // relatedArticles,
-      },
-      revalidate: 60,
-    }
-  } catch {
-    return {
-      props: {},
-      notFound: true,
-    }
+  return {
+    props: {
+      contentSource,
+      meta,
+      // prev,
+      // next,
+      // relatedArticles,
+    },
+    revalidate: 60,
+    notFound,
   }
 }
 
-// BlogDetail.getLayout = (
-//   page: ReactElement<InferGetStaticPropsType<typeof getStaticProps>>
-// ) => {
-//   return (
-//     <Layout
-//       meta={{
-//         title: `${page.props.meta.title} — Felicity`,
-//         description: page.props.meta.excerpt,
-//         url: `https://felicity.com.ph/${page.props.meta.slug}`,
-//       }}
-//     >
-//       {page}
-//     </Layout>
-//   )
-// }
+BlogDetail.getLayout = (
+  page: ReactElement<InferGetStaticPropsType<typeof getStaticProps>>
+) => {
+  return (
+    <Layout
+      meta={{
+        title: `${page.props.meta.title} — Felicity`,
+        description: page.props.meta.excerpt,
+        url: `https://felicity.com.ph/${page.props.meta.slug}`,
+      }}
+    >
+      {page}
+    </Layout>
+  )
+}

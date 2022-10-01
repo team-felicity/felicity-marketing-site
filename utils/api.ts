@@ -86,7 +86,7 @@ export async function getArticle(slug = '') {
 						excerpt
 						slug
 						createdAt
-            content
+						content
 						readTimeEstimate
 						author {
 							data {

@@ -1,10 +1,14 @@
-export type Attributes<T extends Record<string, unknown>> = {
+export type Data<T> = {
+  data: T
+}
+
+export type Attributes<T> = {
   attributes: T
 }
 // nested fields should be wrapped with `DataAttributes`
-export type DataAttributes<T extends Record<string, unknown>> = {
-  data: { attributes: T }
-}
+export type DataAttributes<T extends Record<string, unknown>> = Data<
+  Attributes<T>
+>
 
 export interface Article {
   title: string

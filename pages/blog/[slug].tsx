@@ -12,19 +12,18 @@ import remarkUnwrapImages from 'remark-unwrap-images'
 
 import { styled } from '@config/stitches'
 
-import { Button, Container, Flex, Grid, Text } from '@components'
+import { Button, Container, Flex, Grid, Link, Text, View } from '@components'
 
 import {
   getAllArticleSlugs,
   getArticle,
+  getRelativeArticles,
   // getRelatedArticles,
   // getRelativeArticles,
-  // RelatedArticleMeta,
-  // RelativeArticleMeta,
   subscribeToBlog,
 } from 'utils/api'
-// import { Article } from 'utils/types'
 import { toDefaultDateFormat } from 'utils/functions'
+
 import { textStyles } from '@components/Text'
 import { BaseInput } from '@components/TextField'
 import components, { ContentContainer } from '@components/BlogComponents'
@@ -32,11 +31,10 @@ import Layout from '@components/Layout'
 
 export default function BlogDetail({
   contentSource,
-  // meta: ,
   meta,
-}: // next,
-// prev,
-// relatedArticles,
+  next,
+  prev,
+}: // relatedArticles,
 InferGetStaticPropsType<typeof getStaticProps>) {
   const [email, setEmail] = useState('')
   const router = useRouter()
@@ -163,7 +161,7 @@ InferGetStaticPropsType<typeof getStaticProps>) {
         }}
       >
         <Flex justify="between">
-          {/* {prev ? (
+          {prev ? (
             <Link href={`/blog/${prev.slug}`} css={{ width: '30%' }}>
               <RelativeArticleContainer as={Flex} direction="column">
                 <RelativeArticleLabel>Previous Article</RelativeArticleLabel>
@@ -192,7 +190,7 @@ InferGetStaticPropsType<typeof getStaticProps>) {
           ) : (
             // placeholder to maintain space betweenness
             <View css={{ width: '1px', height: '1px' }} />
-          )} */}
+          )}
         </Flex>
       </Container>
 
@@ -265,25 +263,25 @@ InferGetStaticPropsType<typeof getStaticProps>) {
   )
 }
 
-// const RelativeArticleLabel = styled('span', {
-//   textTransform: 'uppercase',
-//   fontWeight: '$medium',
-//   color: '$black1',
-// })
-// const RelativeArticleTitle = styled('span', {
-//   textTransform: 'uppercase',
-//   fontWeight: 'bold',
-//   fontSize: '$6',
-//   cursor: 'pointer',
-//   transition: 'all 200ms ease',
-//   display: 'block',
-//   color: '$black1',
-// })
-// const RelativeArticleContainer = styled('div', {
-//   [`&:hover ${RelativeArticleTitle}`]: {
-//     color: '$primary6',
-//   },
-// })
+const RelativeArticleLabel = styled('span', {
+  textTransform: 'uppercase',
+  fontWeight: '$medium',
+  color: '$black1',
+})
+const RelativeArticleTitle = styled('span', {
+  textTransform: 'uppercase',
+  fontWeight: 'bold',
+  fontSize: '$6',
+  cursor: 'pointer',
+  transition: 'all 200ms ease',
+  display: 'block',
+  color: '$black1',
+})
+const RelativeArticleContainer = styled('div', {
+  [`&:hover ${RelativeArticleTitle}`]: {
+    color: '$primary6',
+  },
+})
 
 const SubscribeText = styled('span', {
   ...textStyles,
@@ -360,12 +358,16 @@ export const getStaticProps = async ({
 }: GetStaticPropsContext<{ slug: string }>) => {
   const slug = params?.slug
   const { content, ...meta } = (await getArticle(slug)) || {}
-  // const { prev, next } = await getRelativeArticles(meta.createdAt)
+  const notFound = !content
+
+  const { prev, next } = notFound
+    ? { prev: null, next: null }
+    : await getRelativeArticles(meta.createdAt)
+
   // const relatedArticles = await getRelatedArticles({
   //   categories: meta.categories.data.map(({ attributes: { name } }) => name),
   //   slug: params?.slug,
   // })
-  const notFound = !content
 
   const contentSource = await serialize(content, {
     mdxOptions: {
@@ -378,8 +380,8 @@ export const getStaticProps = async ({
     props: {
       contentSource,
       meta,
-      // prev,
-      // next,
+      prev,
+      next,
       // relatedArticles,
     },
     revalidate: 60,

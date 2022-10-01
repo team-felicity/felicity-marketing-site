@@ -6,43 +6,47 @@ import {
   CoverImage,
   DataAttributes,
   Category,
+  Data,
 } from './types'
 
-export interface RelativeArticleMeta {
+export type RelativeArticleMeta = {
   title: string
   slug: string
 }
 
 export async function getRelativeArticles(createdAt: string) {
-  const { next, prev } = await gqlClient<{
-    previousArticle: RelativeArticleMeta[] | null
-    nextArticle: RelativeArticleMeta[] | null
-  }>(
-    `
-		query {
-			previousArticle: articles(
-				limit: 1
-				where: { created_at_lt: "${createdAt}"}
-			) {
-				title
-				slug
-			}
-
-			nextArticle: articles(
-				limit: 1
-				where: { created_at_gt: "${createdAt}"}
-			) {
-				title
-				slug
+  const { next, prev } = await gqlClientV2<{
+    previousArticle: Data<Array<Attributes<RelativeArticleMeta> | null>>
+    nextArticle: Data<Array<Attributes<RelativeArticleMeta> | null>>
+  }>(`
+	query {
+		previousArticle: articles(
+			filters: { createdAt: { lt: "${createdAt}" } }
+		) {
+			data {
+				attributes {
+					title
+					slug
+				}
 			}
 		}
-	`,
-    { createdAt }
-  )
+
+		nextArticle: articles(
+			filters: { createdAt: { gt: "${createdAt}" } }
+		) {
+			data {
+				attributes {
+					title
+					slug
+				}
+			}
+		}
+	}
+	`)
     .then((res) => res.data)
-    .then((data) => ({
-      prev: data.previousArticle?.[0] || null,
-      next: data.nextArticle?.[0] || null,
+    .then(({ nextArticle, previousArticle }) => ({
+      prev: previousArticle.data[0]?.attributes || null,
+      next: nextArticle.data[0]?.attributes || null,
     }))
 
   return { prev, next }
@@ -127,40 +131,6 @@ export async function getArticle(slug = '') {
 		`
   ).then((res) => res.data.articles.data[0]?.attributes)
 }
-// export async function getArticle(slug = '') {
-//   return gqlClient<{ articles: Article[] }>(
-//     `
-// 		query {
-// 			articles(where: { slug: "${slug}"}) {
-// 				slug
-// 				excerpt
-// 				title
-// 				author {
-// 					name
-// 					picture {
-// 						url
-// 					}
-// 				}
-// 				created_at
-// 				updated_at
-// 				content
-// 				coverImage {
-// 					url
-// 					width
-// 					height
-// 					formats
-// 				}
-// 				categories {
-// 					name
-// 					slug
-// 				}
-// 				readTimeEstimate
-// 			}
-// 		}
-// 		`,
-//     { slug }
-//   ).then((res) => res.data.articles[0])
-// }
 
 export interface RelatedArticleMeta extends RelativeArticleMeta {
   coverImage: CoverImage

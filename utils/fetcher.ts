@@ -1,7 +1,9 @@
+import { Data } from './types'
+
 export type GQLResponse<T> = { data: T }
-export type GQLResponseV2<T, U extends string> = {
-  data: Record<U, { data: T }>
-}
+export type GQLResponseV2<T, U extends string | undefined> = Data<
+  U extends string ? Record<U, { data: T }> : T
+>
 
 async function defaultResolver<T>(res: Response) {
   if (res.ok) return (await res.json()) as Promise<T>
@@ -26,7 +28,7 @@ export function gqlClient<T>(
   }).then(defaultResolver) as Promise<GQLResponse<T>>
 }
 
-export function gqlClientV2<T, U extends string>(
+export function gqlClientV2<T, U extends string | undefined = undefined>(
   query: string,
   variables: Record<string, unknown> = {}
 ) {

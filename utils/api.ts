@@ -1,4 +1,4 @@
-import { gqlClient, gqlClientV2, restClient } from './fetcher'
+import { gqlClientV2, restClient } from './fetcher'
 import {
   Article,
   Attributes,
@@ -132,8 +132,8 @@ export async function getArticle(slug = '') {
   ).then((res) => res.data.articles.data[0]?.attributes)
 }
 
-export interface RelatedArticleMeta extends RelativeArticleMeta {
-  coverImage: CoverImage
+export type RelatedArticleMeta = RelativeArticleMeta & {
+  coverImage: DataAttributes<CoverImage>
 }
 
 export async function getRelatedArticles({
@@ -143,29 +143,35 @@ export async function getRelatedArticles({
   categories: string[]
   slug?: string
 }) {
-  return gqlClient<{ articles: RelatedArticleMeta[] }>(
+  return gqlClientV2<Array<Attributes<RelatedArticleMeta>>, 'articles'>(
     `
-		query {
-			articles(
-				where: {
-					categories: { name: ${JSON.stringify(categories)} }
-					slug_ne: "${slug}"
-				}
-				limit: 3
-			) {
-				title
-				slug
-				coverImage {
-					url
-					width
-					height
-					formats
+	query {
+		articles(
+			filters: {
+				categories: { name: { in: ${JSON.stringify(categories)} } }
+				slug: { ne: "${slug}"}
+			}
+		)	{
+			data {
+				attributes {
+					title
+					slug
+					coverImage {
+						data {
+							attributes {
+								url
+								width
+								height
+								formats
+							}
+						}
+					}
 				}
 			}
 		}
-		`,
-    { categories, slug }
-  ).then((res) => res.data.articles)
+	}
+	`
+  ).then((res) => res.data.articles.data)
 }
 
 export async function subscribeToBlog(email: string) {

@@ -8,7 +8,7 @@ import { ArrowRightIcon } from '@heroicons/react/solid'
 import rehypeSanitize from 'rehype-sanitize'
 import rehypeSlug from 'rehype-slug'
 import remarkUnwrapImages from 'remark-unwrap-images'
-// import * as AspectRatio from '@radix-ui/react-aspect-ratio'
+import * as AspectRatio from '@radix-ui/react-aspect-ratio'
 
 import { styled } from '@config/stitches'
 
@@ -18,8 +18,7 @@ import {
   getAllArticleSlugs,
   getArticle,
   getRelativeArticles,
-  // getRelatedArticles,
-  // getRelativeArticles,
+  getRelatedArticles,
   subscribeToBlog,
 } from 'utils/api'
 import { toDefaultDateFormat } from 'utils/functions'
@@ -34,8 +33,8 @@ export default function BlogDetail({
   meta,
   next,
   prev,
-}: // relatedArticles,
-InferGetStaticPropsType<typeof getStaticProps>) {
+  relatedArticles,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const [email, setEmail] = useState('')
   const router = useRouter()
 
@@ -217,7 +216,7 @@ InferGetStaticPropsType<typeof getStaticProps>) {
                 gap: 'clamp($4, 5vw ,$9)',
               }}
             >
-              {/* {relatedArticles?.map((item, index) => (
+              {relatedArticles.map(({ attributes: item }, index) => (
                 <Link
                   href={`/blog/${item.slug}`}
                   key={index}
@@ -240,12 +239,12 @@ InferGetStaticPropsType<typeof getStaticProps>) {
                         <Image
                           src={
                             process.env.NODE_ENV === 'development'
-                              ? `http://localhost:1337${item.coverImage.url}`
-                              : item.coverImage.url
+                              ? `http://localhost:1337${item.coverImage.data.attributes.url}`
+                              : item.coverImage.data.attributes.url
                           }
                           layout="fill"
                           objectFit="cover"
-                          alt={item.coverImage.url}
+                          alt={item.coverImage.data.attributes.url}
                         />
                       </div>
                     </AspectRatio.Root>
@@ -254,7 +253,7 @@ InferGetStaticPropsType<typeof getStaticProps>) {
                     </Text>
                   </Flex>
                 </Link>
-              ))} */}
+              ))}
             </Grid>
           </Flex>
         </Container>
@@ -364,10 +363,14 @@ export const getStaticProps = async ({
     ? { prev: null, next: null }
     : await getRelativeArticles(meta.createdAt)
 
-  // const relatedArticles = await getRelatedArticles({
-  //   categories: meta.categories.data.map(({ attributes: { name } }) => name),
-  //   slug: params?.slug,
-  // })
+  const relatedArticles = notFound
+    ? []
+    : await getRelatedArticles({
+        categories: meta.categories.data.map(
+          ({ attributes: { name } }) => name
+        ),
+        slug,
+      })
 
   const contentSource = await serialize(content, {
     mdxOptions: {
@@ -382,7 +385,7 @@ export const getStaticProps = async ({
       meta,
       prev,
       next,
-      // relatedArticles,
+      relatedArticles,
     },
     revalidate: 60,
     notFound,

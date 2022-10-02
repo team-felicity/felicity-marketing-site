@@ -1,4 +1,4 @@
-import { gqlClientV2, restClient } from './fetcher'
+import { gqlClient, restClient } from './fetcher'
 import {
   Article,
   Attributes,
@@ -15,7 +15,7 @@ export type RelativeArticleMeta = {
 }
 
 export async function getRelativeArticles(createdAt: string) {
-  const { next, prev } = await gqlClientV2<{
+  const { next, prev } = await gqlClient<{
     previousArticle: Data<Array<Attributes<RelativeArticleMeta> | null>>
     nextArticle: Data<Array<Attributes<RelativeArticleMeta> | null>>
   }>(`
@@ -53,7 +53,7 @@ export async function getRelativeArticles(createdAt: string) {
 }
 
 export async function getAllArticleSlugs() {
-  return await gqlClientV2<Array<Attributes<{ slug: string }>>, 'articles'>(`
+  return await gqlClient<Array<Attributes<{ slug: string }>>, 'articles'>(`
     query { 
       articles { 
         data { 
@@ -80,7 +80,7 @@ export type ArticleDetailData = Pick<
 }
 
 export async function getArticle(slug = '') {
-  return gqlClientV2<Array<Attributes<ArticleDetailData>>, 'articles'>(
+  return gqlClient<Array<Attributes<ArticleDetailData>>, 'articles'>(
     `
 		query {
 			articles(filters: { slug: {eq: "${slug}" } }) {
@@ -143,7 +143,7 @@ export async function getRelatedArticles({
   categories: string[]
   slug?: string
 }) {
-  return gqlClientV2<Array<Attributes<RelatedArticleMeta>>, 'articles'>(
+  return gqlClient<Array<Attributes<RelatedArticleMeta>>, 'articles'>(
     `
 	query {
 		articles(
@@ -196,7 +196,7 @@ export type ArticlesListMeta = Array<ArticleCard>
 
 export async function articlesList(props: { limit?: number } = {}) {
   const { limit } = props
-  return gqlClientV2<{ articles: ArticlesListMeta }, 'articles'>(`
+  return gqlClient<{ articles: ArticlesListMeta }, 'articles'>(`
 		query {
 			${
         limit !== undefined

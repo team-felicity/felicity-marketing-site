@@ -1,7 +1,6 @@
 import { Data } from './types'
 
-export type GQLResponse<T> = { data: T }
-export type GQLResponseV2<T, U extends string | undefined> = Data<
+type GQLResponse<T, U extends string | undefined> = Data<
   U extends string ? Record<U, { data: T }> : T
 >
 
@@ -12,7 +11,7 @@ async function defaultResolver<T>(res: Response) {
   return Promise.reject(new Error(err))
 }
 
-export function gqlClient<T>(
+export function gqlClient<T, U extends string | undefined = undefined>(
   query: string,
   variables: Record<string, unknown> = {}
 ) {
@@ -25,23 +24,7 @@ export function gqlClient<T>(
       query,
       variables,
     }),
-  }).then(defaultResolver) as Promise<GQLResponse<T>>
-}
-
-export function gqlClientV2<T, U extends string | undefined = undefined>(
-  query: string,
-  variables: Record<string, unknown> = {}
-) {
-  return fetch(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
-  }).then(defaultResolver) as Promise<GQLResponseV2<T, U>>
+  }).then(defaultResolver) as Promise<GQLResponse<T, U>>
 }
 
 export function restClient(

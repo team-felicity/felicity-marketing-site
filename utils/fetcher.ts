@@ -42,7 +42,7 @@ export function restClient(
   }
 
   return fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/${endpoint}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/${endpoint}`,
     finalConfig
   ).then(defaultResolver)
 }

@@ -234,12 +234,11 @@ export async function notifyOnLaunch(email: string) {
 }
 
 export interface ContactFields {
-  firstName: string
-  lastName: string
+  name: string
   email: string
   message: string
 }
 
 export function contact(values: ContactFields) {
-  return restClient('messages', { body: JSON.stringify(values) })
+  return restClient('messages', { body: JSON.stringify({ data: values }) })
 }

@@ -36,35 +36,27 @@ export default function ContactUs() {
       >
         <Grid flow={{ '@initial': 'row', '@desktop': 'column' }} gap="4">
           <TextField
-            placeholder="First Name"
+            placeholder="Name"
             variant="flushed"
-            {...register('firstName', {
+            {...register('name', {
               required: 'Please fill out this field',
             })}
-            error={errors.firstName?.message}
+            error={errors.name?.message}
           />
           <TextField
-            placeholder="Last Name"
+            placeholder="Email"
             variant="flushed"
-            {...register('lastName', {
+            {...register('email', {
               required: 'Please fill out this field',
+              pattern: {
+                value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                message: 'Please fill in a valid email',
+              },
             })}
-            error={errors.lastName?.message}
+            error={errors.email?.message}
           />
         </Grid>
 
-        <TextField
-          placeholder="Email"
-          variant="flushed"
-          {...register('email', {
-            required: 'Please fill out this field',
-            pattern: {
-              value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-              message: 'Please fill in a valid email',
-            },
-          })}
-          error={errors.email?.message}
-        />
         <TextArea
           placeholder="Message"
           rows={7}

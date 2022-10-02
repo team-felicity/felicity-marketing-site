@@ -9,7 +9,7 @@ import {
   Data,
 } from './types'
 
-export type RelativeArticleMeta = {
+type RelativeArticleMeta = {
   title: string
   slug: string
 }
@@ -68,7 +68,7 @@ export async function getAllArticleSlugs() {
   )
 }
 
-export type ArticleDetailData = Pick<
+type ArticleDetailData = Pick<
   Article,
   'title' | 'excerpt' | 'slug' | 'createdAt' | 'content' | 'readTimeEstimate'
 > & {
@@ -132,7 +132,7 @@ export async function getArticle(slug = '') {
   ).then((res) => res.data.articles.data[0]?.attributes)
 }
 
-export type RelatedArticleMeta = RelativeArticleMeta & {
+type RelatedArticleMeta = RelativeArticleMeta & {
   coverImage: DataAttributes<CoverImage>
 }
 
@@ -174,14 +174,6 @@ export async function getRelatedArticles({
   ).then((res) => res.data.articles.data)
 }
 
-export async function subscribeToBlog(email: string) {
-  return restClient('subscribers', { body: JSON.stringify({ email }) })
-}
-
-export async function notifyOnLaunch(email: string) {
-  return restClient('launch-subscribers', { body: JSON.stringify({ email }) })
-}
-
 export type ArticleCard = Attributes<
   Pick<
     Article,
@@ -191,7 +183,6 @@ export type ArticleCard = Attributes<
     coverImage: DataAttributes<CoverImage>
   }
 >
-
 export type ArticlesListMeta = Array<ArticleCard>
 
 export async function articlesList(props: { limit?: number } = {}) {
@@ -232,6 +223,14 @@ export async function articlesList(props: { limit?: number } = {}) {
 			}
 		}
 	`).then((res) => res.data.articles.data)
+}
+
+export async function subscribeToBlog(email: string) {
+  return restClient('subscribers', { body: JSON.stringify({ email }) })
+}
+
+export async function notifyOnLaunch(email: string) {
+  return restClient('launch-subscribers', { body: JSON.stringify({ email }) })
 }
 
 export interface ContactFields {

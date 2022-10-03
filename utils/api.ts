@@ -226,11 +226,15 @@ export async function articlesList(props: { limit?: number } = {}) {
 }
 
 export async function subscribeToBlog(email: string) {
-  return restClient('subscribers', { body: JSON.stringify({ email }) })
+  return restClient('subscribers', {
+    body: JSON.stringify({ data: { email } }),
+  })
 }
 
 export async function notifyOnLaunch(email: string) {
-  return restClient('launch-subscribers', { body: JSON.stringify({ email }) })
+  return restClient('launch-subscribers', {
+    body: JSON.stringify({ data: { email } }),
+  })
 }
 
 export interface ContactFields {

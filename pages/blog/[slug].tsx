@@ -1,11 +1,9 @@
-import type { ParsedUrlQuery } from 'querystring'
-import type { GetStaticProps, InferGetStaticPropsType } from 'next'
-
+import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import { ReactElement, SyntheticEvent, useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { serialize } from 'next-mdx-remote/serialize'
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
+import { MDXRemote } from 'next-mdx-remote'
 import { ArrowRightIcon } from '@heroicons/react/solid'
 import rehypeSanitize from 'rehype-sanitize'
 import rehypeSlug from 'rehype-slug'
@@ -19,14 +17,12 @@ import { Button, Container, Flex, Grid, Link, Text, View } from '@components'
 import {
   getAllArticleSlugs,
   getArticle,
-  getRelatedArticles,
   getRelativeArticles,
-  RelatedArticleMeta,
-  RelativeArticleMeta,
+  getRelatedArticles,
   subscribeToBlog,
 } from 'utils/api'
-import { Article } from 'utils/types'
 import { toDefaultDateFormat } from 'utils/functions'
+
 import { textStyles } from '@components/Text'
 import { BaseInput } from '@components/TextField'
 import components, { ContentContainer } from '@components/BlogComponents'
@@ -34,7 +30,7 @@ import Layout from '@components/Layout'
 
 export default function BlogDetail({
   contentSource,
-  meta: { author, coverImage, title, created_at, readTimeEstimate, categories },
+  meta,
   next,
   prev,
   relatedArticles,
@@ -49,6 +45,19 @@ export default function BlogDetail({
     router.push('/thank-you')
   }
 
+  const {
+    author: {
+      data: { attributes: author },
+    },
+    coverImage: {
+      data: { attributes: coverImage },
+    },
+    title,
+    createdAt,
+    readTimeEstimate,
+    categories,
+  } = meta
+
   return (
     <div>
       <article>
@@ -58,7 +67,7 @@ export default function BlogDetail({
             <Flex gap="3">
               <MetaDetail>{author.name}</MetaDetail>
               <MetaDetail>
-                {toDefaultDateFormat(new Date(created_at))}
+                {toDefaultDateFormat(new Date(createdAt))}
               </MetaDetail>
               <MetaDetail color="primary1">
                 {readTimeEstimate} min read
@@ -119,7 +128,7 @@ export default function BlogDetail({
             <Flex direction="column" css={{ my: '$8' }}>
               <Text css={{ textTransform: 'uppercase' }}>Categories</Text>
               <Flex gap="4" css={{ ml: '$1', mt: '$2' }}>
-                {categories.map(({ name }) => (
+                {categories.data.map(({ attributes: { name } }) => (
                   <Text
                     key={name}
                     color="white1"
@@ -207,7 +216,7 @@ export default function BlogDetail({
                 gap: 'clamp($4, 5vw ,$9)',
               }}
             >
-              {relatedArticles?.map((item, index) => (
+              {relatedArticles.map(({ attributes: item }, index) => (
                 <Link
                   href={`/blog/${item.slug}`}
                   key={index}
@@ -230,12 +239,12 @@ export default function BlogDetail({
                         <Image
                           src={
                             process.env.NODE_ENV === 'development'
-                              ? `http://localhost:1337${item.coverImage.url}`
-                              : item.coverImage.url
+                              ? `http://localhost:1337${item.coverImage.data.attributes.url}`
+                              : item.coverImage.data.attributes.url
                           }
                           layout="fill"
                           objectFit="cover"
-                          alt={item.coverImage.url}
+                          alt={item.coverImage.data.attributes.url}
                         />
                       </div>
                     </AspectRatio.Root>
@@ -343,45 +352,43 @@ export const getStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps<
-  {
-    contentSource: MDXRemoteSerializeResult
-    meta: Omit<Article, 'content'>
-    prev: RelativeArticleMeta | null
-    next: RelativeArticleMeta | null
-    relatedArticles: RelatedArticleMeta[]
-  },
-  ParsedUrlQuery & { slug: string }
-> = async ({ params }) => {
-  try {
-    const { content, ...meta } = (await getArticle(params?.slug)) || {}
-    const { prev, next } = await getRelativeArticles(meta.created_at)
-    const relatedArticles = await getRelatedArticles({
-      categories: meta.categories.map(({ name }) => name),
-      slug: params?.slug,
-    })
+export const getStaticProps = async ({
+  params,
+}: GetStaticPropsContext<{ slug: string }>) => {
+  const slug = params?.slug
+  const { content, ...meta } = (await getArticle(slug)) || {}
+  const notFound = !content
 
-    const contentSource = await serialize(content, {
-      mdxOptions: {
-        remarkPlugins: [remarkUnwrapImages],
-        rehypePlugins: [rehypeSanitize, rehypeSlug],
-      },
-    })
+  const { prev, next } = notFound
+    ? { prev: null, next: null }
+    : await getRelativeArticles(meta.createdAt)
 
-    return {
-      props: {
-        contentSource,
-        meta,
-        prev,
-        next,
-        relatedArticles,
-      },
-      revalidate: 60,
-    }
-  } catch {
-    return {
-      notFound: true,
-    }
+  const relatedArticles = notFound
+    ? []
+    : await getRelatedArticles({
+        categories: meta.categories.data.map(
+          ({ attributes: { name } }) => name
+        ),
+        slug,
+      })
+
+  const contentSource = await serialize(content, {
+    mdxOptions: {
+      remarkPlugins: [remarkUnwrapImages],
+      rehypePlugins: [rehypeSanitize, rehypeSlug],
+    },
+  })
+
+  return {
+    props: {
+      contentSource,
+      meta,
+      prev,
+      next,
+      relatedArticles,
+    },
+    revalidate: 60,
+    notFound,
   }
 }
 

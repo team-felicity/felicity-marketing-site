@@ -7,8 +7,11 @@ import { ArrowSmDownIcon } from '@heroicons/react/solid'
 import { ArticlesListMeta } from 'utils/api'
 
 const ARTICLES_TO_SHOW = 2
+type Props = { articles: ArticlesListMeta }
 
-export default function BlogList({ articles }: { articles: ArticlesListMeta }) {
+export default function BlogList(props: Props) {
+  const { articles } = props
+
   const [loading, setLoading] = useState(false)
   const [cursor, setCursor] = useState(1)
 
@@ -58,7 +61,7 @@ export default function BlogList({ articles }: { articles: ArticlesListMeta }) {
             <RecentCard
               direction="row"
               from="blog"
-              key={article.slug}
+              key={article.attributes.slug}
               data={article}
             />
           ))}

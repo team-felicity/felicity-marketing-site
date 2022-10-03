@@ -1,4 +1,8 @@
-export type GQLResponse<T> = { data: T }
+import { Data } from './types'
+
+type GQLResponse<T, U extends string | undefined> = Data<
+  U extends string ? Record<U, { data: T }> : T
+>
 
 async function defaultResolver<T>(res: Response) {
   if (res.ok) return (await res.json()) as Promise<T>
@@ -7,7 +11,7 @@ async function defaultResolver<T>(res: Response) {
   return Promise.reject(new Error(err))
 }
 
-export function gqlClient<T>(
+export function gqlClient<T, U extends string | undefined = undefined>(
   query: string,
   variables: Record<string, unknown> = {}
 ) {
@@ -20,7 +24,7 @@ export function gqlClient<T>(
       query,
       variables,
     }),
-  }).then(defaultResolver) as Promise<GQLResponse<T>>
+  }).then(defaultResolver) as Promise<GQLResponse<T, U>>
 }
 
 export function restClient(
@@ -38,7 +42,7 @@ export function restClient(
   }
 
   return fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/${endpoint}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/${endpoint}`,
     finalConfig
   ).then(defaultResolver)
 }

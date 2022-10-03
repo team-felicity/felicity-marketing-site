@@ -1033,10 +1033,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@stitches/react@^1.2.3":
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/@stitches/react/-/react-1.2.3.tgz#fe785d780d22085b2ad3d9cece0c30d58b6de18f"
-  integrity sha512-tvjtFemrbdIFPr5kzTujpR2UvsG52D8jorhj3WRhyq/UAOMacdOaT9oqW6f8KgSCsn7JXa0yvJSUW3IUVn9eQw==
+"@stitches/react@^1.2.8":
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/@stitches/react/-/react-1.2.8.tgz#954f8008be8d9c65c4e58efa0937f32388ce3a38"
+  integrity sha512-9g9dWI4gsSVe8bNLlb+lMkBYsnIKCZTmvqvDG+Avnn69XfmHZKiaMrx7cgTaddq7aTPPmXiTsbFcUy0xgI4+wA==
 
 "@testing-library/dom@^8.0.0":
   version "8.2.0"

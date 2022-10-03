@@ -1,3 +1,4 @@
 import { styled } from '@config/stitches'
 
-export default styled('div', {})
+const View = styled('div', {})
+export default View

@@ -1,6 +1,6 @@
 import { mapThemeToCSSProp, styled } from '@config/stitches'
 
-export default styled('div', {
+const Grid = styled('div', {
   display: 'grid',
 
   variants: {
@@ -35,3 +35,5 @@ export default styled('div', {
     },
   },
 })
+
+export default Grid

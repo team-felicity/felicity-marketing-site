@@ -1,6 +1,6 @@
 import { mapThemeToCSSProp, styled } from '@config/stitches'
 
-export default styled('div', {
+const Flex = styled('div', {
   display: 'flex',
   flexDirection: '$$fd' as string,
   justifyContent: '$$jc',
@@ -37,3 +37,4 @@ export default styled('div', {
     justify: 'start',
   },
 })
+export default Flex

@@ -95,7 +95,8 @@ export default function BlogDetail({
             />
           </Container>
           <ContentContainer size="medium">
-            <MDXRemote {...contentSource} components={components} />
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+            <MDXRemote {...contentSource} components={components as any} />
 
             <Flex
               as="form"

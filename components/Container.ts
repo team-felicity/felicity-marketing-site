@@ -1,6 +1,6 @@
 import { styled } from '@config/stitches'
 
-export default styled('div', {
+const Container = styled('div', {
   mx: 'auto',
   px: '$5',
 
@@ -17,3 +17,5 @@ export default styled('div', {
     size: 'xl',
   },
 })
+
+export default Container

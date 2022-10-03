@@ -8,7 +8,8 @@ export const textStyles = {
     weight: mapThemeToCSSProp('fontWeight'),
   },
 }
-export default styled('span', {
+
+const Text = styled('span', {
   ...textStyles,
   defaultVariants: {
     size: '3',
@@ -16,3 +17,5 @@ export default styled('span', {
     weight: 'regular',
   },
 })
+
+export default Text

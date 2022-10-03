@@ -2,7 +2,6 @@ import type { ReactElement, ReactNode } from 'react'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 
-import { IdProvider } from '@radix-ui/react-id'
 import { LazyMotion } from 'framer-motion'
 
 import { globalStyles } from '@config/stitches'
@@ -28,11 +27,9 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <>
-      <IdProvider>
-        <LazyMotion features={loadFeatures}>
-          {getLayout(<Component {...pageProps} />)}
-        </LazyMotion>
-      </IdProvider>
+      <LazyMotion features={loadFeatures}>
+        {getLayout(<Component {...pageProps} />)}
+      </LazyMotion>
       {process.env.NODE_ENV === 'production' ? (
         <Script
           type="text/javascript"

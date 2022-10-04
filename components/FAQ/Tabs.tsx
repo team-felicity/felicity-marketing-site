@@ -3,6 +3,9 @@ import * as TabsPrimitive from '@radix-ui/react-tabs'
 
 export const Root = styled(TabsPrimitive.Root, {})
 export const Trigger = styled(TabsPrimitive.Trigger, {
+  background: 'none',
+  border: 'none',
+
   position: 'relative',
   textTransform: 'capitalize',
   cursor: 'pointer',

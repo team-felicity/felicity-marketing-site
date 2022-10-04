@@ -5,8 +5,10 @@ import { ArticleCard } from 'utils/api'
 import { toDefaultDateFormat } from 'utils/functions'
 import { styled } from '@config/stitches'
 
-import { Text, View, Flex, ScrollReveal } from '@components'
-import { textStyles } from '@components/Text'
+import ScrollReveal from '@components/ScrollReveal'
+import Flex from '@components/Flex'
+import View from '@components/View'
+import Text, { textStyles } from '@components/Text'
 import { buttonStyles } from '@components/Button'
 
 interface Props {

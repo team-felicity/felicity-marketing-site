@@ -2,7 +2,10 @@ import { m } from 'framer-motion'
 
 import { styled } from '@config/stitches'
 
-import { Container, Grid, View, Flex } from '@components'
+import Container from '@components/Container'
+import Grid from '@components/Grid'
+import View from '@components/View'
+import Flex from '@components/Flex'
 import { textStyles } from '@components/Text'
 import { buttonStyles } from '@components/Button'
 import HeroCarousel from './HeroCarousel'

@@ -1,4 +1,4 @@
-import { Shop } from '@components'
+import Shop from '@components/Shop/shop'
 import Layout from '@components/Layout'
 import type { ReactElement } from 'react'
 

@@ -4,8 +4,11 @@ import { useForm } from 'react-hook-form'
 
 import { styled } from '@config/stitches'
 
-import { Text, Button, Grid, TextField, Container, TextArea } from '@components'
-import { textStyles } from '@components/Text'
+import Button from '@components/Button'
+import Grid from '@components/Grid'
+import Container from '@components/Container'
+import { TextArea, TextField } from '@components/TextField'
+import Text, { textStyles } from '@components/Text'
 import { contact, ContactFields } from 'utils/api'
 
 export default function ContactUs() {

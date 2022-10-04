@@ -1,4 +1,4 @@
-import { BlogList } from '@components'
+import BlogList from '@components/Blog/BlogList'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { articlesList } from 'utils/api'
 

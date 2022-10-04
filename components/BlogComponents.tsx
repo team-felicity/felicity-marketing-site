@@ -1,7 +1,11 @@
-import { styled, css } from '@config/stitches'
-import { LinkIcon } from '@heroicons/react/outline'
 import type { ComponentProps, ReactNode } from 'react'
-import { Flex, View, Container } from './index'
+import { LinkIcon } from '@heroicons/react/outline'
+
+import { styled, css } from '@config/stitches'
+
+import View from '@components/View'
+import Container from '@components/Container'
+import Flex from '@components/Flex'
 
 const components = {
   p: (props: ComponentProps<typeof P>) => <P {...props} />,

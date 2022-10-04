@@ -1,7 +1,14 @@
 import Image from 'next/image'
-import { Flex, View, Grid, Container, ScrollReveal } from '@components'
-import { styled } from '@config/stitches'
+
+import ScrollReveal from '@components/ScrollReveal'
+import Container from '@components/Container'
+import Grid from '@components/Grid'
+import Flex from '@components/Flex'
+import View from '@components/View'
 import { textStyles } from '@components/Text'
+
+import { styled } from '@config/stitches'
+
 import Shop from 'public/shop.svg'
 import Click from 'public/click.svg'
 import Deliver from 'public/deliver.svg'

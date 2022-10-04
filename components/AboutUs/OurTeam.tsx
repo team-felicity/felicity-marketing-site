@@ -1,7 +1,14 @@
 import Image from 'next/image'
-import { Flex, View, Grid, Container, ScrollReveal } from '@components'
+
 import { styled } from '@config/stitches'
+
+import View from '@components/View'
+import Flex from '@components/Flex'
+import Container from '@components/Container'
+import ScrollReveal from '@components/ScrollReveal'
+import Grid from '@components/Grid'
 import { textStyles } from '@components/Text'
+
 import SampleImage from 'public/sample.png'
 import HalfCircle from './HalfCircle'
 

@@ -1,9 +1,15 @@
-import { Container, View, Flex, ScrollReveal } from '@components'
-import { styled } from '@config/stitches'
-import { textStyles } from '@components/Text'
-import SampleImage from 'public/sample.png'
 import Image from 'next/image'
+
+import { styled } from '@config/stitches'
+
+import View from '@components/View'
+import Flex from '@components/Flex'
+import Container from '@components/Container'
+import ScrollReveal from '@components/ScrollReveal'
+import { textStyles } from '@components/Text'
+
 import Logo from '@assets/logo/header-logo.png'
+import SampleImage from 'public/sample.png'
 import HalfCircle from './HalfCircle'
 import OurTeam from './OurTeam'
 import OwnerQuote from './OwnerQuote'

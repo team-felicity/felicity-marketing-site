@@ -1,5 +1,5 @@
-import { View } from '@components'
 import Container from '@components/Container'
+import View from '@components/View'
 import Grid from '@components/Grid'
 import ContactUsForm from './ContactUsForm'
 import Maps from './Maps'

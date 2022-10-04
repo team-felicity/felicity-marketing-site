@@ -1,10 +1,15 @@
-import { Container, Flex, View, ScrollReveal } from '@components'
-import RecentCard from './RecentCard'
-import { styled } from '@config/stitches'
 import Image from 'next/image'
 import Tomato from 'public/tomato.png'
 import Brocoli from 'public/brocoli.png'
+
+import ScrollReveal from '@components/ScrollReveal'
+import Container from '@components/Container'
+import Flex from '@components/Flex'
+import View from '@components/View'
 import { textStyles } from '@components/Text'
+import { styled } from '@config/stitches'
+
+import RecentCard from './RecentCard'
 import { ArticlesListMeta } from 'utils/api'
 
 export default function RecentPostSection({

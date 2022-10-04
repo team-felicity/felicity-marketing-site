@@ -2,7 +2,10 @@ import { useRouter } from 'next/router'
 
 import { styled } from '@config/stitches'
 
-import { Flex, Link, Container, View } from '@components'
+import Container from '@components/Container'
+import Flex from '@components/Flex'
+import View from '@components/View'
+import Link from '@components/Link'
 import { LogoWithCompanyName, NavLink, NavLinkText } from './HeaderComponents'
 import PhoneHeader from './PhoneHeader'
 

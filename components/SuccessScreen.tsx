@@ -1,12 +1,18 @@
-import { styled } from '@config/stitches'
+import { ArrowRightIcon } from '@heroicons/react/outline'
+
 import Image from 'next/image'
-import { Container, View, Flex, Link, Grid } from '@components'
+import View from '@components/View'
+import Flex from '@components/Flex'
+import Container from '@components/Container'
+import Grid from '@components/Grid'
+import Link from '@components/Link'
 import { textStyles } from '@components/Text'
+import { styled } from '@config/stitches'
+
 import BrocoliImg from 'public/brocoli.png'
 import BowlImg from 'public/foodbowl.png'
 import LemonImg from 'public/lemon.png'
 import CheckImg from 'public/check.svg'
-import { ArrowRightIcon } from '@heroicons/react/outline'
 
 const IMAGE_HEIGHT = 65
 

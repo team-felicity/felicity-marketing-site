@@ -3,9 +3,15 @@ import Appstore from 'public/appstore.png'
 import Playstore from 'public/googleplay.png'
 import Phone from 'public/phone.svg'
 import Foodbowl from 'public/foodbowl.png'
-import { Link, View, Flex, Container, ScrollReveal } from '@components'
-import { styled } from '@config/stitches'
+
+import ScrollReveal from '@components/ScrollReveal'
+import Container from '@components/Container'
+import Flex from '@components/Flex'
+import View from '@components/View'
+import Link from '@components/Link'
 import { textStyles } from '@components/Text'
+
+import { styled } from '@config/stitches'
 
 export default function DownloadSection() {
   return (

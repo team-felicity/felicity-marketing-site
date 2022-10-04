@@ -2,8 +2,9 @@ import Image from 'next/image'
 
 import { styled } from '@config/stitches'
 
-import { Flex, Text, Link } from '@components'
-import { textStyles } from '@components/Text'
+import Flex from '@components/Flex'
+import Link from '@components/Link'
+import Text, { textStyles } from '@components/Text'
 
 import Logo from '@assets/logo/header-logo.png'
 

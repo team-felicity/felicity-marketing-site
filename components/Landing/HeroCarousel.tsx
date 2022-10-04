@@ -7,7 +7,8 @@ import Img1 from '@assets/carousel-image1.jpg'
 import DesktopVector from '@assets/carousel-vector-desktop.png'
 import PhoneVector from '@assets/carousel-vector-phone.png'
 
-import { View, Flex } from '@components'
+import View from '@components/View'
+import Flex from '@components/Flex'
 
 const carouselImages = [Img1, Img1, Img1, Img1]
 const getTranslateXValue = (carouselIdx: number) =>

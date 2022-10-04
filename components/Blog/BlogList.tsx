@@ -1,9 +1,15 @@
 import { useState } from 'react'
-import RecentCard from '@components/RecentPost/RecentCard'
-import { Container, View, Button, Flex } from '@components'
-import { styled } from '@config/stitches'
-import { textStyles } from '@components/Text'
 import { ArrowSmDownIcon } from '@heroicons/react/solid'
+
+import { styled } from '@config/stitches'
+
+import View from '@components/View'
+import Flex from '@components/Flex'
+import Container from '@components/Container'
+import Button from '@components/Button'
+import { textStyles } from '@components/Text'
+import RecentCard from '@components/RecentPost/RecentCard'
+
 import { ArticlesListMeta } from 'utils/api'
 
 const ARTICLES_TO_SHOW = 2

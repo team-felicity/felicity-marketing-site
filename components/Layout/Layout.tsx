@@ -4,7 +4,8 @@ import { useRouter } from 'next/router'
 import type { ReactNode } from 'react'
 import type { CSS } from '@config/stitches'
 
-import { Flex, View } from '@components'
+import Flex from '@components/Flex'
+import View from '@components/View'
 import Header from './Header'
 import Footer from './Footer'
 

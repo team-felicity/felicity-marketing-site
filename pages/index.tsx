@@ -1,14 +1,14 @@
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import Image from 'next/image'
-import {
-  DownloadSection,
-  OrderSteps,
-  RecentPostSection,
-  Grid,
-  View,
-} from '@components'
+
+import Grid from '@components/Grid'
+import View from '@components/View'
+
 import Hero from '@components/Landing/Hero'
 import ContactUs from '@components/ContactUs'
+import DownloadSection from '@components/DownloadApp/DownloadSection'
+import OrderSteps from '@components/DownloadApp/OrderSteps'
+import RecentPostSection from '@components/RecentPost/RecentSection'
 
 import Waves from 'public/waves.svg'
 import { articlesList } from 'utils/api'

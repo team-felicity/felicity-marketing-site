@@ -1,10 +1,15 @@
 import { styled } from '@config/stitches'
 import Image from 'next/image'
-import { Container, View, Flex, Grid } from '@components'
+
+import View from '@components/View'
+import Flex from '@components/Flex'
+import Container from '@components/Container'
+import Grid from '@components/Grid'
 import { textStyles } from '@components/Text'
+import { buttonStyles } from '@components/Button'
+
 import FoodBowlImg from 'public/foodbowl2.png'
 import SliceImg from 'public/slice.png'
-import { buttonStyles } from '@components/Button'
 
 export default function ErrorScreen() {
   return (

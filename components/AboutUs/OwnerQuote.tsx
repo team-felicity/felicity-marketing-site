@@ -1,11 +1,17 @@
 import Image from 'next/image'
-import { Flex, View, Container, ScrollReveal, Text } from '@components'
+
+import { styled } from '@config/stitches'
+
+import View from '@components/View'
+import Flex from '@components/Flex'
+import Container from '@components/Container'
+import ScrollReveal from '@components/ScrollReveal'
+import Text, { textStyles } from '@components/Text'
+
 import SampleImage from 'public/sample.png'
 import BrocoliImg from 'public/brocoli.png'
 import BowlImg from 'public/foodbowl.png'
 import QuoteImg from 'public/quote.png'
-import { styled } from '@config/stitches'
-import { textStyles } from '@components/Text'
 
 export default function OwnerQuote() {
   return (

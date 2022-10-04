@@ -6,7 +6,9 @@ import { AnimateSharedLayout, motion } from 'framer-motion'
 
 import { css } from '@config/stitches'
 
-import { Text, Container, View } from '@components'
+import View from '@components/View'
+import Text from '@components/Text'
+import Container from '@components/Container'
 
 export default function FAQsPage() {
   const [currentTab, setCurrentTab] = useState(data[0].category)

@@ -12,7 +12,13 @@ import * as AspectRatio from '@radix-ui/react-aspect-ratio'
 
 import { styled } from '@config/stitches'
 
-import { Button, Container, Flex, Grid, Link, Text, View } from '@components'
+import View from '@components/View'
+import Text from '@components/Text'
+import Container from '@components/Container'
+import Button from '@components/Button'
+import Flex from '@components/Flex'
+import Grid from '@components/Grid'
+import Link from '@components/Link'
 
 import {
   getAllArticleSlugs,
@@ -95,8 +101,8 @@ export default function BlogDetail({
             />
           </Container>
           <ContentContainer size="medium">
-            <MDXRemote {...contentSource} components={components} />
-
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+            <MDXRemote {...contentSource} components={components as any} />
             <Flex
               as="form"
               direction="column"

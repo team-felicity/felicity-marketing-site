@@ -1,4 +1,5 @@
-import { Flex, View } from '@components'
+import View from '@components/View'
+import Flex from '@components/Flex'
 import Text from '@components/Text'
 
 const BORDER_RADIUS = 40

@@ -7,7 +7,8 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { TABLET_SIZE } from '@utils'
 import { keyframes, styled, theme } from '@config/stitches'
 
-import { Link, Flex } from '@components'
+import Flex from '@components/Flex'
+import Link from '@components/Link'
 
 import Facebook from 'public/facebook.svg'
 import Instagram from 'public/instagram.svg'

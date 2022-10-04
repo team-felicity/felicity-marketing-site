@@ -6,8 +6,11 @@ import type { ReactNode } from 'react'
 
 import { styled } from '@config/stitches'
 
-import { Text, View, Flex, Link, Container } from '@components'
-import { textStyles } from '@components/Text'
+import Container from '@components/Container'
+import Flex from '@components/Flex'
+import View from '@components/View'
+import Link from '@components/Link'
+import Text, { textStyles } from '@components/Text'
 import Button from '@components/Button'
 import Logo from '@assets/logo/header-logo.png'
 

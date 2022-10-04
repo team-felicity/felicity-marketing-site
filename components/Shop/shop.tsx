@@ -1,22 +1,30 @@
-import { styled } from '@config/stitches'
+import { SyntheticEvent, useState } from 'react'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
-import { Container, Grid, View, Flex, Button, Link, Text } from '@components'
-import { textStyles } from '@components/Text'
+import { ArrowRightIcon } from '@heroicons/react/solid'
+
+import { styled } from '@config/stitches'
+
+import View from '@components/View'
+import Flex from '@components/Flex'
+import Container from '@components/Container'
+import Button from '@components/Button'
+import Link from '@components/Link'
+import Grid from '@components/Grid'
+import Text, { textStyles } from '@components/Text'
+import { BaseInput } from '@components/TextField'
+
+import { notifyOnLaunch } from 'utils/api'
+
 import Facebook from 'public/shopfacebook.svg'
 import Instagram from 'public/shopinstagram.svg'
 import Twitter from 'public/shoptwitter.svg'
 import Youtube from 'public/shopyoutube.svg'
 import Email from 'public/shopemail.svg'
-import React from 'react'
 import Logo from 'public/shoplogo.svg'
 import Appstore from 'public/appstore.png'
 import Playstore from 'public/googleplay.png'
 import Waves from 'public/shopwave.svg'
-import { BaseInput } from '@components/TextField'
-import { ArrowRightIcon } from '@heroicons/react/solid'
-import { SyntheticEvent, useState } from 'react'
-import { notifyOnLaunch } from 'utils/api'
-import { useRouter } from 'next/router'
 
 const socialMediaLinks = [
   {

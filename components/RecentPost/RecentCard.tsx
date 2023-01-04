@@ -43,14 +43,7 @@ export default function RecentCard({ direction, from, data }: Props) {
       gapX={from === 'blog' ? '8' : '5'}
     >
       <ScrollReveal>
-        <ImageContainer
-          css={{
-            '@desktop': {
-              width: from === 'blog' ? '25rem' : '20rem',
-              pt: from === 'blog' ? '$0' : '0.875rem',
-            },
-          }}
-        >
+        <ImageContainer>
           <StyledImage
             src={
               process.env.NODE_ENV === 'development'
@@ -97,10 +90,10 @@ export default function RecentCard({ direction, from, data }: Props) {
           </Flex>
         </ScrollReveal>
         <ScrollReveal>
-          <Text>{excerpt}</Text>
+          <Text color="primary5">{excerpt}</Text>
         </ScrollReveal>
         <ScrollReveal>
-          <Text color="primary3" weight="medium">
+          <Text color="primary5" weight="medium">
             {readTimeEstimate} min read
           </Text>
         </ScrollReveal>
@@ -114,6 +107,7 @@ export default function RecentCard({ direction, from, data }: Props) {
               marginTop: '$4',
               fontSize: '$3',
               width: 'fit-content',
+              textAlign: 'center',
               padding: '1rem 1rem',
               height: 'unset',
               marginBottom: '$5',
@@ -121,10 +115,6 @@ export default function RecentCard({ direction, from, data }: Props) {
                 from === 'blog' ? '$colors$primary4' : '$colors$primary1',
               '@tablet': {
                 padding: from === 'blog' ? '1rem 9rem' : '1rem 7rem',
-              },
-              '@desktop': {
-                fontSize: '$4',
-                padding: from === 'blog' ? '1rem 12rem' : '1rem 9rem',
               },
             }}
           >
@@ -158,9 +148,6 @@ const ContentFlex = styled(Flex, {
 const ImageContainer = styled(View, {
   width: '100%',
   pb: '$3',
-  '@tablet': {
-    width: '20rem',
-  },
 })
 
 const StyledImage = styled(Image, {

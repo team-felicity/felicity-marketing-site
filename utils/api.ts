@@ -181,6 +181,7 @@ export type ArticleCard = Attributes<
   > & {
     author: DataAttributes<Pick<Author, 'name'>>
     coverImage: DataAttributes<CoverImage>
+    categories: Data<Array<Attributes<Pick<Category, 'slug'>>>>
   }
 >
 export type ArticlesListMeta = Array<ArticleCard>
@@ -197,6 +198,13 @@ export async function articlesList(props: { limit?: number } = {}) {
 				data {
 					attributes {
 						title
+            categories {
+              data {
+                attributes {
+                  slug
+                }
+              }
+            }
 						author {
 							data {
 								attributes {
@@ -223,6 +231,29 @@ export async function articlesList(props: { limit?: number } = {}) {
 			}
 		}
 	`).then((res) => res.data.articles.data)
+}
+
+export async function getAllCategories() {
+  return await gqlClient<
+    Array<Attributes<{ slug: string; name: string }>>,
+    'categories'
+  >(`
+    query { 
+      categories { 
+        data { 
+          attributes { 
+            slug 
+            name
+          } 
+        } 
+      } 
+    }
+    `).then((res) =>
+    res.data.categories.data.map(({ attributes: { slug, name } }) => ({
+      slug,
+      name,
+    }))
+  )
 }
 
 export async function subscribeToBlog(email: string) {

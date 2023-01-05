@@ -151,9 +151,7 @@ const ImageContainer = styled(View, {
 })
 
 const StyledImage = styled(Image, {
-  borderTopLeftRadius: '50px',
-  borderBottomLeftRadius: '50px',
-  borderBottomRightRadius: '50px',
+  borderRadius: '50px',
   objectFit: 'contain',
 })
 

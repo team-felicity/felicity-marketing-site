@@ -120,6 +120,6 @@ const PostCard = styled(View, {
   backgroundColor: '$white1',
   boxShadow: '1px 2px 6px 1px #D0D0D0',
   '@desktop': {
-    pt: '$4',
+    pt: '$5',
   },
 })

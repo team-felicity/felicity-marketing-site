@@ -23,7 +23,7 @@ export default function LandingPage({
       <RecentPostSection articles={articles} />
       <OrderSteps />
       <DownloadSection />
-      <ContactUs />
+      <ContactUs css={{ backgroundColor: '$white1', py: '$9' }} />
     </View>
   )
 }

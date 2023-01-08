@@ -2,183 +2,193 @@ import Image from 'next/image'
 
 import { styled } from '@config/stitches'
 
+import ContactUs from '@components/ContactUs'
 import View from '@components/View'
-import Flex from '@components/Flex'
 import Container from '@components/Container'
-import ScrollReveal from '@components/ScrollReveal'
-import { textStyles } from '@components/Text'
+import Text, { textStyles } from '@components/Text'
+import Grid from '@components/Grid'
 
-import Logo from '@assets/logo/header-logo.png'
-import SampleImage from 'public/sample.png'
-import HalfCircle from './HalfCircle'
-import OurTeam from './OurTeam'
-import OwnerQuote from './OwnerQuote'
+import Img1 from '@assets/placeholder.jpg'
+import Banner1 from '@assets/banner1.jpg'
+import Banner2 from '@assets/banner2.jpg'
+import Flex from '@components/Flex'
 
 export default function AboutUs() {
   return (
-    <View
-      as="section"
-      css={{
-        flexGrow: 1,
-        background: 'linear-gradient(#CBE5C6,#E5FAF1)',
-      }}
-    >
+    <View css={{ background: 'linear-gradient(#CBE5C6,#E5FAF1)' }}>
       <Container
         size="large2"
         css={{
           display: 'grid',
-          justifyContent: 'center',
-          pt: '$5',
+          pt: '3.5rem',
+          gap: '6rem',
           '@tablet': {
-            height: '95vh',
+            pt: '5rem',
+            gap: '10rem',
           },
         }}
       >
-        <Title size={{ '@initial': '10', '@tablet': '12', '@desktop': '14' }}>
-          ABOUT US
-        </Title>
-        <Mission />
+        <Hero />
+        <WhereItAllBegins />
+        <TheDreamers />
+        <ContactUs css={{ pb: '$9' }} />
       </Container>
-      <OwnerQuote />
-      <OurTeam />
     </View>
+  )
+}
+
+function Hero() {
+  return (
+    <div>
+      <Title intent="pageTitle" css={{ mb: '3rem', textAlign: 'center' }}>
+        About Us
+      </Title>
+      <ImagesContainer>
+        <HeroImageWrapper>
+          <Image src={Img1} alt="vector" placeholder="blur" />
+        </HeroImageWrapper>
+        <HeroImageWrapper>
+          <Image src={Img1} alt="vector" placeholder="blur" />
+        </HeroImageWrapper>
+        <HeroImageWrapper>
+          <Image src={Img1} alt="vector" placeholder="blur" />
+        </HeroImageWrapper>
+      </ImagesContainer>
+      <Text
+        as="p"
+        size="4"
+        color="primary5"
+        css={{ mt: '$4', textAlign: 'center' }}
+      >
+        Felicity is a company that aims to spread happiness to the lives of the
+        Filipino people through a grocery shopping app that offers affordable
+        products and good services, making food easily accessible to everyone.
+        Apart from making a primary need effortlessly available, Felicity also
+        wants to make sure that Filipinos also get to fulfill their wants. By
+        subscribing, customers can enjoy various perks such as discounts,
+        vouchers, and commission from member purchases. With this platform,
+        Felicity hopes to achieve its dream of a society where people lead a
+        life of fewer worries.
+      </Text>
+    </div>
+  )
+}
+
+const ImageWrapper = styled('div', {
+  borderRadius: '$10',
+  overflow: 'clip',
+  display: 'flex',
+})
+
+const HeroImageWrapper = styled(ImageWrapper, {
+  position: 'sticky',
+  top: 'calc((var(--header-height) + 1rem))',
+  left: 0,
+
+  '@tablet': {
+    position: 'relative',
+    top: 0,
+  },
+})
+
+const ImagesContainer = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  gapx: '$6',
+  gapy: '$4',
+  position: 'relative',
+
+  '@tablet': {
+    flexDirection: 'row',
+  },
+})
+
+function WhereItAllBegins() {
+  return (
+    <Grid columns={{ '@initial': 1, '@tablet': 2 }} gapX="8" gapY="6">
+      <ImageWrapper css={{ height: 400 }}>
+        <Image
+          src={Banner2}
+          alt="vector"
+          placeholder="blur"
+          objectFit="cover"
+          quality={10}
+        />
+      </ImageWrapper>
+      <Flex direction="column" gap="3">
+        <Title as="h2">Where It All Begins</Title>
+        <Text as="p" color="primary5">
+          The Felicity Facility is where we start with our mission on making
+          people happy. From planning systems to delivering items to each
+          household, we make sure that everything we do will bring happiness and
+          fewer worries to our customers.
+        </Text>
+        <Text as="p" color="primary5">
+          The Felicity Facility is where we start with our mission on making
+          people happy. From planning systems to delivering items to each
+          household, we make sure that everything we do will bring happiness and
+          fewer worries to our customers.
+        </Text>
+      </Flex>
+    </Grid>
+  )
+}
+
+function TheDreamers() {
+  return (
+    <Flex direction="column" gap="5">
+      <Title as="h2" css={{ textAlign: 'center' }}>
+        The Dreamers
+      </Title>
+      <ImageWrapper css={{ height: 250, width: '100%' }}>
+        <Image
+          src={Banner1}
+          alt="vector"
+          placeholder="blur"
+          objectFit="cover"
+        />
+      </ImageWrapper>
+
+      <Text as="p" color="primary5" css={{ textAlign: 'center' }}>
+        In a world wherein happiness comes with a price, it is not surprising
+        how so many people find this hard to achieve. From basic necessities to
+        even reaching our dreams, we all now give a second thought before
+        deciding to get them, thanks to their hefty price tags! But is this the
+        kind of life we all want to live until the end? Well, definitely not for
+        Felicity! Because here, we believe that every Filipino should gain
+        access not just to fresh and quality products along with good service at
+        such an affordable price, but also to a platform that would give every
+        Filipino a chance to improve their life and finances through passive
+        income. Here in Felicity, we want to build a community where people can
+        be happier and live a quality life. We want to see a city where people
+        can smile genuinely with fewer worries. Imagine a whole community of
+        winners! A happy city - this is what we dream of here in Felicity.
+      </Text>
+    </Flex>
   )
 }
 
 const Title = styled('h1', {
   ...textStyles,
-  textAlign: 'center',
-  defaultVariants: {
-    color: 'primary4',
-    weight: 'bold',
+
+  variants: {
+    ...textStyles.variants,
+
+    intent: {
+      sectionTitle: {
+        fontSize: '$8',
+        '@tablet': { fontSize: '$11' },
+      },
+      pageTitle: {
+        fontSize: '$11',
+        '@tablet': { fontSize: '$14' },
+      },
+    },
   },
-})
 
-function Mission() {
-  return (
-    <Flex
-      gap="6"
-      css={{ py: '$8' }}
-      direction={{ '@initial': 'column', '@tablet': 'row' }}
-      align={{ '@initial': 'center', '@tablet': 'start' }}
-    >
-      <ScrollReveal>
-        <ImageContainer>
-          <Behind>
-            <HalfCircle fill="#20577A" />
-          </Behind>
-          <StyledImage src={SampleImage} alt="try" />
-        </ImageContainer>
-      </ScrollReveal>
-
-      <ContentFlex css={{ '@tablet': { width: '30vw' } }}>
-        <ScrollReveal>
-          <ContentTitle
-            size={{
-              '@initial': '9',
-              '@desktop': '12',
-            }}
-          >
-            Our <EmphasizedText>Mission</EmphasizedText>
-          </ContentTitle>
-        </ScrollReveal>
-        <ScrollReveal>
-          <Description>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Id donec
-            ultrices tincidunt arcu non sodales neque. Orci phasellus egestas
-            tellus rutrum tellus pellentesque eu tincidun
-          </Description>
-          <Description>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Id donec
-            ultrices tincidunt arcu non sodales neque. Orci phasellus egestas
-            tellus rutrum tellus pellentesque eu tincidunt tortor.
-          </Description>
-        </ScrollReveal>
-        <ScrollReveal>
-          <Flex
-            align="center"
-            gap="3"
-            justify={{ '@initial': 'center', '@tablet': 'start' }}
-          >
-            <div style={{ width: 50 }}>
-              <Image src={Logo} alt="Felicity Logo" layout="responsive" />
-            </div>
-            <CompanyName>FELICITY</CompanyName>
-          </Flex>
-        </ScrollReveal>
-      </ContentFlex>
-    </Flex>
-  )
-}
-
-const ContentFlex = styled(Flex, {
-  flexDirection: 'column',
-  gap: '$4',
-})
-
-const StyledImage = styled(Image, {
-  borderTopLeftRadius: '200px',
-  borderBottomLeftRadius: '200px',
-  borderBottomRightRadius: '200px',
-  objectFit: 'contain',
-})
-
-const ContentTitle = styled('h1', {
-  ...textStyles,
-  textAlign: 'center',
-  '@tablet': { textAlign: 'start' },
   defaultVariants: {
     color: 'primary5',
     weight: 'bold',
-  },
-})
-
-const Description = styled('p', {
-  ...textStyles,
-  textAlign: 'center',
-  '@tablet': { textAlign: 'start' },
-})
-
-const EmphasizedText = styled('span', {
-  ...textStyles,
-
-  fontSize: 'inherit',
-  fontWeight: 'inherit',
-
-  defaultVariants: {
-    color: 'primary3',
-  },
-})
-
-const CompanyName = styled('h1', {
-  ...textStyles,
-
-  defaultVariants: {
-    color: 'primary4',
-    size: '6',
-    weight: 'bold',
-  },
-})
-
-const Behind = styled(View, {
-  position: 'absolute',
-  alignContent: 'center',
-  width: '8rem',
-  bottom: '-8%',
-  left: '-7%',
-  '@tablet': {
-    width: '13rem',
-    left: '-5%',
-  },
-})
-const ImageContainer = styled(View, {
-  userSelect: 'none',
-  alignSelf: 'center',
-  position: 'relative',
-  width: '15rem',
-  '@tablet': {
-    width: '30rem',
+    intent: 'sectionTitle',
   },
 })

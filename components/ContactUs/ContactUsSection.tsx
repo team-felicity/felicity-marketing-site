@@ -3,10 +3,11 @@ import View from '@components/View'
 import Grid from '@components/Grid'
 import ContactUsForm from './ContactUsForm'
 import Maps from './Maps'
+import { CSS } from '@config/stitches'
 
-export default function ContactUsSection() {
+export default function ContactUsSection({ css }: { css?: CSS }) {
   return (
-    <View as="section" css={{ py: '$9', backgroundColor: '$white1' }}>
+    <View as="section" css={css}>
       <Container
         size="large2"
         as={Grid}

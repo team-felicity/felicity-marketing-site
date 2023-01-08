@@ -1,5 +1,11 @@
 import { createStitches } from '@stitches/react'
-import { DESKTOP_SIZE, FHD_SIZE, PHONE_SIZE, TABLET_SIZE } from 'utils'
+import {
+  DESKTOP_SIZE,
+  FHD_SIZE,
+  HEADER_HEIGHT,
+  PHONE_SIZE,
+  TABLET_SIZE,
+} from 'utils'
 import type * as Stitches from '@stitches/react'
 
 export const stitches = createStitches({
@@ -170,6 +176,7 @@ export const globalStyles = globalCss({
     boxSizing: 'border-box',
   },
 
+  // reset
   body: {
     fontFamily: '$default',
   },
@@ -187,6 +194,11 @@ export const globalStyles = globalCss({
   a: {
     textDecoration: 'none',
     cursor: 'pointer',
+  },
+
+  // css variables
+  ':root': {
+    '--header-height': HEADER_HEIGHT + 'px',
   },
 })
 

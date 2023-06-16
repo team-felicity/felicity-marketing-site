@@ -8,7 +8,9 @@ import Hero from '@components/Landing/Hero'
 import ContactUs from '@components/ContactUs'
 import DownloadSection from '@components/DownloadApp/DownloadSection'
 import OrderSteps from '@components/DownloadApp/OrderSteps'
+import EarnEffortlessly from '@components/DownloadApp/EarnEffortlessly'
 import RecentPostSection from '@components/RecentPost/RecentSection'
+import OurTeam from '@components/AboutUs/OurTeam'
 
 import Waves from 'public/waves.svg'
 import { articlesList } from 'utils/api'
@@ -22,7 +24,9 @@ export default function LandingPage({
       <Wave />
       <RecentPostSection articles={articles} />
       <OrderSteps />
+      <EarnEffortlessly />
       <DownloadSection />
+      <OurTeam />
       <ContactUs css={{ backgroundColor: '$white1', py: '$9' }} />
     </View>
   )

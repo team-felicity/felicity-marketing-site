@@ -17,24 +17,24 @@ const data = [
   {
     id: 1,
     imageProps: Shop,
-    columnTitle: 'CLICK',
-    subtitle: 'Browse through the app and simply click your favorite goods',
+    columnTitle: 'INVITE',
+    subtitle: 'Share Felicity to your family and friends and invite them',
   },
   {
     id: 2,
     imageProps: Click,
-    columnTitle: 'SHOP',
-    subtitle: 'Review your orders and check out of the cart',
+    columnTitle: 'PURCHASE',
+    subtitle: 'Have your members subscribe and purchase',
   },
   {
     id: 3,
     imageProps: Deliver,
-    columnTitle: 'DELIVER',
-    subtitle: 'Get your order without having to leave your home',
+    columnTitle: 'EARN',
+    subtitle: 'Get up to 10% commission from their purchases',
   },
 ]
 
-export default function OrderSteps() {
+export default function EarnEffortlessly() {
   return (
     <View
       as="section"
@@ -55,7 +55,7 @@ export default function OrderSteps() {
         }}
       >
         <ScrollReveal>
-          <Header>Order in 3 easy steps!</Header>
+          <Header>Earn Effortlessly</Header>
         </ScrollReveal>
         <OuterFlex>
           {data.map((data) => (

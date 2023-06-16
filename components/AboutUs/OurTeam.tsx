@@ -10,32 +10,55 @@ import Grid from '@components/Grid'
 import { textStyles } from '@components/Text'
 
 import SampleImage from 'public/sample.png'
-import HalfCircle from './HalfCircle'
 
 const data = [
   {
     id: 1,
     imageProps: SampleImage,
-    color: '#35A3A5',
-    columnTitle: 'Member 1',
-    subtitle:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id donec ultrices tincidunt arcu non sodales neque. Orci phasellus egestas tellus rutrum tellus pellentesque eu tincidunt tortor. ',
+    color: '#20577A',
+    columnTitle: 'Silver',
+    subtitle: 'Php 500 one-time membership',
+    subtitle1: 'Php 500/month consumable subscription',
+    subtitle2: 'ATM Card & Insurance',
+    subtitle3: 'Discounts and Vouchers',
+    subtitle4: 'Upto 10 commission per member purchase',
+    subtitle5: '20 recruits/annum',
   },
   {
     id: 2,
     imageProps: SampleImage,
-    color: '#61C295',
-    columnTitle: 'Member 2',
-    subtitle:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id donec ultrices tincidunt arcu non sodales neque. Orci phasellus egestas tellus rutrum tellus pellentesque eu tincidunt tortor. ',
+    color: '#20577A',
+    columnTitle: 'Gold',
+    subtitle: 'Php 500 one-time membership',
+    subtitle1: 'Php 2,000/month consumable subscription',
+    subtitle2: 'ATM Card & Insurance',
+    subtitle3: 'Discounts and Vouchers',
+    subtitle4: 'Upto 10 commission per member purchase',
+    subtitle5: '200 recruits/annum',
   },
   {
     id: 3,
     imageProps: SampleImage,
     color: '#20577A',
-    columnTitle: 'Member 3',
-    subtitle:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id donec ultrices tincidunt arcu non sodales neque. Orci phasellus egestas tellus rutrum tellus pellentesque eu tincidunt tortor. ',
+    columnTitle: 'Platinum',
+    subtitle: 'Php 500 one-time membership',
+    subtitle1: 'Php 24,000/month consumable subscription',
+    subtitle2: 'ATM Card & Insurance',
+    subtitle3: 'Discounts and Vouchers',
+    subtitle4: 'Upto 10 commission per member purchase',
+    subtitle5: '2,000 recruits/annum',
+  },
+  {
+    id: 4,
+    imageProps: SampleImage,
+    color: '#20577A',
+    columnTitle: 'Diamond',
+    subtitle: 'Php 500 one-time membership',
+    subtitle1: 'Php 30,000/month consumable subscription',
+    subtitle2: 'ATM Card & Insurance',
+    subtitle3: 'Exclusive Deals and Discounts',
+    subtitle4: 'Upto 10 commission per member purchase',
+    subtitle5: '2,000 recruits/annum',
   },
 ]
 
@@ -54,30 +77,26 @@ export default function OurTeam() {
         css={{
           gapy: '8rem',
           mb: '$8',
+          ml: 100,
+          mr: 100,
         }}
       >
         <ScrollReveal>
-          <Title size={{ '@initial': '10', '@tablet': '12', '@desktop': '14' }}>
-            OUR TEAM
+          <Title
+            size={{ '@initial': '10', '@tablet': '12', '@desktop': '14' }}
+            css={{ pt: 100, pb: 0, mb: 0 }}
+          >
+            BE PART OF THE HAPPY TREND
           </Title>
         </ScrollReveal>
         <OuterFlex>
           {data.map((data) => (
             <ScrollReveal key={data.id}>
-              <FlexCol
-                css={{
-                  '@desktop': {
-                    background:
-                      data.id === 2 ? 'rgba(117, 183, 198, 0.32)' : undefined,
-                    p: '$6 $4 7rem',
-                    rt: '$pill',
-                  },
-                }}
-              >
+              <FlexCol>
                 <ImageContainer>
-                  <Behind>
+                  {/* <Behind>
                     <HalfCircle fill={data.color} />
-                  </Behind>
+                  </Behind> */}
                   <StyledTeamImage
                     src={data.imageProps}
                     alt={data.columnTitle}
@@ -85,6 +104,11 @@ export default function OurTeam() {
                 </ImageContainer>
                 <ColumnTitle>{data.columnTitle}</ColumnTitle>
                 <Subtitles>{data.subtitle}</Subtitles>
+                <Subtitles>{data.subtitle1}</Subtitles>
+                <Subtitles>{data.subtitle2}</Subtitles>
+                <Subtitles>{data.subtitle3}</Subtitles>
+                <Subtitles>{data.subtitle4}</Subtitles>
+                <Subtitles>{data.subtitle5}</Subtitles>
               </FlexCol>
             </ScrollReveal>
           ))}
@@ -108,6 +132,7 @@ const StyledTeamImage = styled(Image, {
   borderTopLeftRadius: '300px',
   borderBottomLeftRadius: '300px',
   borderTopRightRadius: '300px',
+  borderBottomRightRadius: '300px',
 })
 
 const OuterFlex = styled(Flex, {
@@ -150,11 +175,11 @@ const ImageContainer = styled(View, {
   userSelect: 'none',
   '@tablet': { width: '15rem' },
 })
-const Behind = styled(View, {
-  alignSelf: 'center',
-  position: 'absolute',
-  width: '6.5rem',
-  right: '55%',
-  bottom: '-8%',
-  '@tablet': { width: '8rem' },
-})
+// const Behind = styled(View, {
+//   alignSelf: 'center',
+//   position: 'absolute',
+//   width: '6.5rem',
+//   right: '55%',
+//   bottom: '-8%',
+//   '@tablet': { width: '8rem' },
+// })

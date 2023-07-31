@@ -8,8 +8,9 @@ import Container from '@components/Container'
 import Text, { textStyles } from '@components/Text'
 import Grid from '@components/Grid'
 
-import Img1 from '@assets/placeholder.jpg'
-import Banner1 from '@assets/banner1.jpg'
+import Production from '@assets/Production.jpg'
+import Delivery from '@assets/Delivery.jpg'
+import Sales from '@assets/Sales.jpg'
 import Banner2 from '@assets/banner2.jpg'
 import Flex from '@components/Flex'
 
@@ -45,13 +46,13 @@ function Hero() {
       </Title>
       <ImagesContainer>
         <HeroImageWrapper>
-          <Image src={Img1} alt="vector" placeholder="blur" />
+          <Image src={Production} alt="vector" />
         </HeroImageWrapper>
         <HeroImageWrapper>
-          <Image src={Img1} alt="vector" placeholder="blur" />
+          <Image src={Delivery} alt="vector" />
         </HeroImageWrapper>
         <HeroImageWrapper>
-          <Image src={Img1} alt="vector" placeholder="blur" />
+          <Image src={Sales} alt="vector" />
         </HeroImageWrapper>
       </ImagesContainer>
       <Text
@@ -142,7 +143,7 @@ function TheDreamers() {
       </Title>
       <ImageWrapper css={{ height: 250, width: '100%' }}>
         <Image
-          src={Banner1}
+          src={Banner2}
           alt="vector"
           placeholder="blur"
           objectFit="cover"

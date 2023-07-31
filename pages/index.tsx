@@ -22,11 +22,11 @@ export default function LandingPage({
     <View css={{ linearGradient: '#60BB93,#85AAC1' }}>
       <Hero />
       <Wave />
-      <RecentPostSection articles={articles} />
       <OrderSteps />
       <EarnEffortlessly />
-      <DownloadSection />
       <OurTeam />
+      <DownloadSection />
+      <RecentPostSection articles={articles} />
       <ContactUs css={{ backgroundColor: '$white1', py: '$9' }} />
     </View>
   )

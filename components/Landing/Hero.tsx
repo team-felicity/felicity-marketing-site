@@ -62,8 +62,8 @@ function HeroContent() {
           damping: 30,
         }}
       >
-        Discover <EmphasizedSloganText>Fresh and Healthy </EmphasizedSloganText>
-        Food
+        Shop for Food and Earn Extra
+        <EmphasizedSloganText> EFFORTLESSLY </EmphasizedSloganText>
       </SloganText>
       <CompanyDescription
         as={m.p}
@@ -76,9 +76,7 @@ function HeroContent() {
           delay: 0.5,
         }}
       >
-        Millions of companies of all sizes—from startups to Fortune 500s—use
-        Stripe’s software and APIs to accept payments, send payouts, and manage
-        their businesses online.
+        Get the freshest produce without having to break a bank or a sweat
       </CompanyDescription>
       <ScrollReveal
         transition={{

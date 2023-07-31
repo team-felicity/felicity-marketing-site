@@ -9,12 +9,15 @@ import ScrollReveal from '@components/ScrollReveal'
 import Grid from '@components/Grid'
 import { textStyles } from '@components/Text'
 
-import SampleImage from 'public/sample.png'
+import SilverCard from 'public/SilverCard.svg'
+import GoldCard from 'public/GoldCard.svg'
+import PlatinumCard from 'public/PlatinumCard.svg'
+import DiamondCard from 'public/DiamondCard.svg'
 
 const data = [
   {
     id: 1,
-    imageProps: SampleImage,
+    imageProps: SilverCard,
     color: '#20577A',
     columnTitle: 'Silver',
     subtitle: 'Php 500 one-time membership',
@@ -26,7 +29,7 @@ const data = [
   },
   {
     id: 2,
-    imageProps: SampleImage,
+    imageProps: GoldCard,
     color: '#20577A',
     columnTitle: 'Gold',
     subtitle: 'Php 500 one-time membership',
@@ -38,7 +41,7 @@ const data = [
   },
   {
     id: 3,
-    imageProps: SampleImage,
+    imageProps: PlatinumCard,
     color: '#20577A',
     columnTitle: 'Platinum',
     subtitle: 'Php 500 one-time membership',
@@ -50,7 +53,7 @@ const data = [
   },
   {
     id: 4,
-    imageProps: SampleImage,
+    imageProps: DiamondCard,
     color: '#20577A',
     columnTitle: 'Diamond',
     subtitle: 'Php 500 one-time membership',
@@ -129,10 +132,10 @@ const Title = styled('h1', {
 })
 
 const StyledTeamImage = styled(Image, {
-  borderTopLeftRadius: '300px',
-  borderBottomLeftRadius: '300px',
-  borderTopRightRadius: '300px',
-  borderBottomRightRadius: '300px',
+  borderTopLeftRadius: '50px',
+  borderBottomLeftRadius: '50px',
+  borderTopRightRadius: '50px',
+  borderBottomRightRadius: '50px',
 })
 
 const OuterFlex = styled(Flex, {

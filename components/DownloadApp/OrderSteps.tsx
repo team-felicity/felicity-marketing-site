@@ -9,27 +9,27 @@ import { textStyles } from '@components/Text'
 
 import { styled } from '@config/stitches'
 
-import Shop from 'public/shop.svg'
-import Click from 'public/click.svg'
-import Deliver from 'public/deliver.svg'
+import Click from 'public/Click.svg'
+import Confirm from 'public/Confirm.svg'
+import Collect from 'public/Collect.svg'
 
 const data = [
   {
     id: 1,
-    imageProps: Shop,
+    imageProps: Click,
     columnTitle: 'CLICK',
     subtitle: 'Browse through the app and simply click your favorite goods',
   },
   {
     id: 2,
-    imageProps: Click,
-    columnTitle: 'SHOP',
+    imageProps: Confirm,
+    columnTitle: 'CONFIRM',
     subtitle: 'Review your orders and check out of the cart',
   },
   {
     id: 3,
-    imageProps: Deliver,
-    columnTitle: 'DELIVER',
+    imageProps: Collect,
+    columnTitle: 'COLLECT',
     subtitle: 'Get your order without having to leave your home',
   },
 ]
@@ -61,7 +61,12 @@ export default function OrderSteps() {
           {data.map((data) => (
             <ScrollReveal key={data.id}>
               <FlexCol>
-                <Image src={data.imageProps} alt={data.columnTitle} />
+                <Image
+                  src={data.imageProps}
+                  alt={data.columnTitle}
+                  width={200}
+                  height={200}
+                />
                 <ColumnTitle>{data.columnTitle}</ColumnTitle>
                 <Subtitles>{data.subtitle}</Subtitles>
               </FlexCol>

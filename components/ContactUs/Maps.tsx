@@ -36,7 +36,7 @@ function CPIMapIFrame() {
       loading="lazy"
       title="Felicity Office Location"
       allowFullScreen
-      src={`https://www.google.com/maps/embed/v1/place?q=place_id:ChIJA3VW-ayXqTMRAJcZxg3yxNQ&key=${process.env.NEXT_PUBLIC_MAPS_API_KEY}`}
+      src={`https://goo.gl/maps/m8s8v4guSWk8Fgu38&key=${process.env.NEXT_PUBLIC_MAPS_API_KEY}`}
     />
   )
 }

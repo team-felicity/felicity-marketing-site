@@ -9,26 +9,26 @@ import { textStyles } from '@components/Text'
 
 import { styled } from '@config/stitches'
 
-import Shop from 'public/shop.svg'
-import Click from 'public/click.svg'
-import Deliver from 'public/deliver.svg'
+import Invite from 'public/Invite.svg'
+import Purchase from 'public/Purchase.svg'
+import Earn from 'public/Earn.svg'
 
 const data = [
   {
     id: 1,
-    imageProps: Shop,
+    imageProps: Invite,
     columnTitle: 'INVITE',
     subtitle: 'Share Felicity to your family and friends and invite them',
   },
   {
     id: 2,
-    imageProps: Click,
+    imageProps: Purchase,
     columnTitle: 'PURCHASE',
     subtitle: 'Have your members subscribe and purchase',
   },
   {
     id: 3,
-    imageProps: Deliver,
+    imageProps: Earn,
     columnTitle: 'EARN',
     subtitle: 'Get up to 10% commission from their purchases',
   },
@@ -61,7 +61,12 @@ export default function EarnEffortlessly() {
           {data.map((data) => (
             <ScrollReveal key={data.id}>
               <FlexCol>
-                <Image src={data.imageProps} alt={data.columnTitle} />
+                <Image
+                  src={data.imageProps}
+                  alt={data.columnTitle}
+                  width={200}
+                  height={200}
+                />
                 <ColumnTitle>{data.columnTitle}</ColumnTitle>
                 <Subtitles>{data.subtitle}</Subtitles>
               </FlexCol>

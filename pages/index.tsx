@@ -10,7 +10,7 @@ import DownloadSection from '@components/DownloadApp/DownloadSection'
 import OrderSteps from '@components/DownloadApp/OrderSteps'
 import EarnEffortlessly from '@components/DownloadApp/EarnEffortlessly'
 import RecentPostSection from '@components/RecentPost/RecentSection'
-import OurTeam from '@components/AboutUs/OurTeam'
+import Pricing from '@components/AboutUs/OurTeam'
 
 import Waves from 'public/waves.svg'
 import { articlesList } from 'utils/api'
@@ -24,7 +24,7 @@ export default function LandingPage({
       <Wave />
       <OrderSteps />
       <EarnEffortlessly />
-      <OurTeam />
+      <Pricing />
       <DownloadSection />
       <RecentPostSection articles={articles} />
       <ContactUs css={{ backgroundColor: '$white1', py: '$9' }} />

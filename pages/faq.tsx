@@ -9,6 +9,7 @@ import { css } from '@config/stitches'
 import View from '@components/View'
 import Text from '@components/Text'
 import Container from '@components/Container'
+import Balancer from 'react-wrap-balancer'
 
 export default function FAQsPage() {
   const [currentTab, setCurrentTab] = useState(data[0].category)
@@ -31,11 +32,13 @@ export default function FAQsPage() {
           size={{ '@initial': '3', '@tablet': '4' }}
           css={{ textAlign: 'center' }}
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
-          consequuntur totam cum minima, dolore dolorum omnis. Fugiat dolore
-          architecto recusandae inventore minus odit a ullam. Vel odio iste
-          reiciendis, repudiandae autem incidunt alias repellat odit ducimus,
-          placeat dignissimos!
+          <Balancer>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
+            consequuntur totam cum minima, dolore dolorum omnis. Fugiat dolore
+            architecto recusandae inventore minus odit a ullam. Vel odio iste
+            reiciendis, repudiandae autem incidunt alias repellat odit ducimus,
+            placeat dignissimos!
+          </Balancer>
         </Text>
       </View>
 
@@ -56,8 +59,8 @@ export default function FAQsPage() {
                       initial={false}
                       transition={{
                         type: 'spring',
-                        stiffness: 500,
-                        damping: 30,
+                        stiffness: 300,
+                        damping: 40,
                       }}
                       className={tabUnderline()}
                     />

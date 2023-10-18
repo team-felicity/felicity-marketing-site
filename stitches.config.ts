@@ -179,6 +179,7 @@ export const globalStyles = globalCss({
   // reset
   body: {
     fontFamily: '$default',
+    color: '$primary5',
   },
 
   html: {

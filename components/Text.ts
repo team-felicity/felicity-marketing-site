@@ -12,7 +12,7 @@ export default styled('span', {
   ...textStyles,
   defaultVariants: {
     size: '3',
-    color: 'black1',
+    color: 'primary5',
     weight: 'regular',
   },
 })

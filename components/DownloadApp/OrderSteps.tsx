@@ -1,6 +1,6 @@
-import Click from 'public/Click.svg'
-import Confirm from 'public/Confirm.svg'
-import Collect from 'public/Collect.svg'
+import Click from '../../public/click.svg'
+import Confirm from '../../public/Confirm.svg'
+import Collect from '../../public/Collect.svg'
 import Steps from '@components/Landing/Steps'
 
 const steps = [

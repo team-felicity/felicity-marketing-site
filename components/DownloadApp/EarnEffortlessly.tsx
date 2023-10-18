@@ -1,6 +1,6 @@
-import Invite from 'public/Invite.svg'
-import Purchase from 'public/Purchase.svg'
-import Earn from 'public/Earn.svg'
+import Invite from '../../public/Invite.svg'
+import Purchase from '../../public/Purchase.svg'
+import Earn from '../../public/Earn.svg'
 import Steps from '@components/Landing/Steps'
 
 const steps = [

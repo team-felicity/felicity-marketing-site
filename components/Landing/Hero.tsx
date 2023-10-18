@@ -120,6 +120,10 @@ const SloganText = styled('h1', {
 
 const EmphasizedSloganText = styled('span', {
   ...textStyles,
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  WebkitBoxDecorationBreak: 'clone',
+  backgroundImage: 'linear-gradient(to right, $primary1, $primary4)',
 
   fontSize: 'inherit',
   fontWeight: 'inherit',

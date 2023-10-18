@@ -1,4 +1,5 @@
 import { m } from 'framer-motion'
+import Balancer from 'react-wrap-balancer'
 
 import { styled } from '@config/stitches'
 
@@ -8,9 +9,10 @@ import View from '@components/View'
 import Flex from '@components/Flex'
 import { textStyles } from '@components/Text'
 import { buttonStyles } from '@components/Button'
-import HeroCarousel from './HeroCarousel'
 import ScrollReveal from '@components/ScrollReveal'
+
 import { TABLET_SIZE } from 'utils'
+import HeroCarousel from './HeroCarousel'
 
 export default function Hero() {
   return (
@@ -76,7 +78,9 @@ function HeroContent() {
           delay: 0.5,
         }}
       >
-        Get the freshest produce without having to break a bank or a sweat
+        <Balancer>
+          Get the freshest produce without having to break a bank or a sweat
+        </Balancer>
       </CompanyDescription>
       <ScrollReveal
         transition={{

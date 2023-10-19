@@ -9,7 +9,7 @@ import { textStyles } from '@components/Text'
 
 import { styled } from '@config/stitches'
 
-import Click from 'public/Click.svg'
+import Click from 'public/click.svg'
 import Confirm from 'public/Confirm.svg'
 import Collect from 'public/Collect.svg'
 

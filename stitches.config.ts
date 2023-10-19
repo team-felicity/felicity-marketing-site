@@ -182,9 +182,16 @@ export const globalStyles = globalCss({
     color: '$primary5',
   },
 
+  'body, height, #__next': {
+    height: '100%',
+  },
+
   html: {
     scrollPaddingTop: 90,
     scrollBehavior: 'smooth',
+
+    display: 'grid',
+    height: '100vh',
   },
 
   'body, html': {

@@ -50,6 +50,7 @@ export default function Footer() {
         backgroundColor: '$gray5',
         paddingTop: '$6',
         paddingBottom: '$6',
+        mt: 'auto',
       }}
     >
       <Container

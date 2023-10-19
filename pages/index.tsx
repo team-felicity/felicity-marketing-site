@@ -5,6 +5,7 @@ import Grid from '@components/Grid'
 import View from '@components/View'
 
 import Hero from '@components/Landing/Hero'
+import Brochure from '@components/Landing/Brochure'
 import ContactUs from '@components/ContactUs'
 import DownloadSection from '@components/DownloadApp/DownloadSection'
 import OrderSteps from '@components/DownloadApp/OrderSteps'
@@ -22,6 +23,7 @@ export default function LandingPage({
     <View css={{ linearGradient: '#60BB93,#85AAC1' }}>
       <Hero />
       <Wave />
+      <Brochure />
       <OrderSteps />
       <EarnEffortlessly />
       <OurTeam />

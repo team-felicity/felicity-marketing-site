@@ -1,6 +1,8 @@
 import Image from 'next/image'
 
 import { styled } from '@config/stitches'
+import { useCallback, useEffect, useState } from 'react'
+import Youtube from 'react-youtube'
 
 import ContactUs from '@components/ContactUs'
 import View from '@components/View'
@@ -8,11 +10,21 @@ import Container from '@components/Container'
 import Text, { textStyles } from '@components/Text'
 import Grid from '@components/Grid'
 
-import Production from '@assets/Production.jpg'
-import Delivery from '@assets/Delivery.jpg'
-import Sales from '@assets/Sales.jpg'
-import Banner2 from '@assets/banner2.jpg'
+import Production from '@assets/AboutUs/Production.jpeg'
+import Delivery from '@assets/AboutUs/Delivery.jpeg'
+import Sales from '@assets/AboutUs/Sales.jpeg'
 import Flex from '@components/Flex'
+
+import Image01 from '@assets/AboutUs/Felicity01.jpeg'
+import Image02 from '@assets/AboutUs/Felicity02.jpeg'
+import Image03 from '@assets/AboutUs/Felicity03.jpeg'
+import Image04 from '@assets/AboutUs/Felicity04.jpeg'
+import Image05 from '@assets/AboutUs/Felicity05.jpeg'
+import Image06 from '@assets/AboutUs/Felicity06.jpeg'
+import Image07 from '@assets/AboutUs/Felicity07.jpeg'
+import Image08 from '@assets/AboutUs/Felicity08.jpeg'
+import Image09 from '@assets/AboutUs/Felicity09.jpeg'
+import Image10 from '@assets/AboutUs/Felicity10.jpeg'
 
 export default function AboutUs() {
   return (
@@ -85,6 +97,8 @@ const HeroImageWrapper = styled(ImageWrapper, {
   position: 'sticky',
   top: 'calc((var(--header-height) + 1rem))',
   left: 0,
+  height: '100%',
+  width: '100%',
 
   '@tablet': {
     position: 'relative',
@@ -105,17 +119,72 @@ const ImagesContainer = styled('div', {
 })
 
 function WhereItAllBegins() {
+  const carouselImages = [
+    Image01,
+    Image02,
+    Image03,
+    Image04,
+    Image05,
+    Image06,
+    Image07,
+    Image08,
+    Image09,
+    Image10,
+  ]
+
+  const getTranslateXValue = (carouselIdx: number) =>
+    -(100 / carouselImages.length) * (carouselIdx - 1)
+
+  const MS_DURATION_FOR_EACH_PICTURE = 3000
+
+  const [carouselIndex, setCarouselIndex] = useState(1)
+
+  const handleNextImage = useCallback(() => {
+    if (carouselIndex + 1 > carouselImages.length) setCarouselIndex(1)
+    else setCarouselIndex((prev) => prev + 1)
+  }, [carouselIndex, carouselImages.length])
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      handleNextImage()
+    }, MS_DURATION_FOR_EACH_PICTURE) //
+    return () => clearInterval(id)
+  }, [handleNextImage])
+
   return (
     <Grid columns={{ '@initial': 1, '@tablet': 2 }} gapX="8" gapY="6">
-      <ImageWrapper css={{ height: 400 }}>
-        <Image
-          src={Banner2}
-          alt="vector"
-          placeholder="blur"
-          objectFit="cover"
-          quality={10}
-        />
-      </ImageWrapper>
+      <View css={{ width: '100%', overflow: 'hidden', borderRadius: '$10' }}>
+        <ImageWrapper
+          css={{
+            height: 400,
+            overflow: 'clip',
+            width: `${100 * carouselImages.length}%`,
+          }}
+        >
+          <Flex
+            css={{
+              width: `${100 * carouselImages.length}%`,
+              margin: 0,
+              padding: '1px 0',
+              transform: `translateX(${getTranslateXValue(carouselIndex)}%)`,
+              transition: 'all 300ms ease',
+            }}
+          >
+            {carouselImages.map((item, index) => (
+              <Image
+                priority
+                key={index}
+                src={item}
+                width={700}
+                height={400}
+                objectFit="cover"
+                alt="Image of a mango"
+                placeholder="blur"
+              />
+            ))}
+          </Flex>
+        </ImageWrapper>
+      </View>
       <Flex direction="column" gap="3">
         <Title as="h2">Where It All Begins</Title>
         <Text as="p" color="primary5">
@@ -141,14 +210,22 @@ function TheDreamers() {
       <Title as="h2" css={{ textAlign: 'center' }}>
         The Dreamers
       </Title>
-      <ImageWrapper css={{ height: 250, width: '100%' }}>
-        <Image
+      <View
+        css={{
+          height: '100%',
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <Youtube videoId={'K17wR57hKdk'} />
+      </View>
+      {/* <Image
           src={Banner2}
           alt="vector"
           placeholder="blur"
           objectFit="cover"
-        />
-      </ImageWrapper>
+        /> */}
 
       <Text as="p" color="primary5" css={{ textAlign: 'center' }}>
         In a world wherein happiness comes with a price, it is not surprising

@@ -3,7 +3,6 @@ import Balancer from 'react-wrap-balancer'
 
 import { styled } from '@config/stitches'
 import { useCallback, useEffect, useState } from 'react'
-import Youtube from 'react-youtube'
 
 import ContactUs from '@components/ContactUs'
 import View from '@components/View'
@@ -59,13 +58,13 @@ function Hero() {
       </Title>
       <ImagesContainer>
         <HeroImageWrapper>
-          <Image src={Production} alt="vector" />
+          <Image src={Production} alt="vector" placeholder="blur" />
         </HeroImageWrapper>
         <HeroImageWrapper>
-          <Image src={Delivery} alt="vector" />
+          <Image src={Delivery} alt="vector" placeholder="blur" />
         </HeroImageWrapper>
         <HeroImageWrapper>
-          <Image src={Sales} alt="vector" />
+          <Image src={Sales} alt="vector" placeholder="blur" />
         </HeroImageWrapper>
       </ImagesContainer>
       <Text
@@ -198,7 +197,12 @@ function WhereItAllBegins() {
           </Flex>
         </ImageWrapper>
       </View>
-      <Flex direction="column" gap="3">
+      <Flex
+        direction="column"
+        justify="center"
+        align={{ '@initial': 'center', '@desktop': 'start' }}
+        gap="3"
+      >
         <Title as="h2">Where It All Begins</Title>
         {/* <Text as="p" color="primary5"> */}
         {/*   The Felicity Facility is where we start with our mission on making */}
@@ -206,7 +210,7 @@ function WhereItAllBegins() {
         {/*   household, we make sure that everything we do will bring happiness and */}
         {/*   fewer worries to our customers. */}
         {/* </Text> */}
-        <Text as="p" color="primary5">
+        <Text as="p" color="primary5" css={{ textAlign: 'center' }}>
           <Balancer>
             The Felicity Facility is where we start with our mission on making
             people happy. From planning systems to delivering items to each
@@ -227,13 +231,30 @@ function TheDreamers() {
       </Title>
       <View
         css={{
-          height: '100%',
           width: '100%',
+          borderRadius: '1rem',
+          overflow: 'hidden',
           display: 'flex',
-          justifyContent: 'center',
+
+          '@desktop': {
+            borderRadius: '2rem',
+          },
+
+          '& iframe': {
+            width: '100%',
+            aspectRatio: '16/9',
+          },
         }}
       >
-        <Youtube videoId={'K17wR57hKdk'} />
+        <iframe
+          src="https://www.youtube.com/embed/K17wR57hKdk?si=cjHXPn7W_FzwdPvK"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore asdasd
+          allowfullscreen
+        />
       </View>
       {/* <Image
           src={Banner2}

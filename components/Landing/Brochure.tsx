@@ -30,10 +30,19 @@ export default function Brochure() {
           <View
             id="retailview1"
             css={{
-              position: 'relative',
+              borderRadius: '2rem',
+              overflow: 'hidden',
+              display: 'flex',
             }}
           >
-            <Image src={RetailImage} height={400} width={550} alt="retail" />
+            <Image
+              src={RetailImage}
+              height={400}
+              width={550}
+              alt="retail"
+              placeholder="blur"
+              objectFit="cover"
+            />
           </View>
           <View css={{ display: 'flex', justifyContent: 'center' }}>
             <BrochureButton
@@ -60,10 +69,19 @@ export default function Brochure() {
         >
           <View
             css={{
-              position: 'relative',
+              borderRadius: '2rem',
+              overflow: 'hidden',
+              display: 'flex',
             }}
           >
-            <Image src={WholeSale} height={400} width={550} alt="wholesale" />
+            <Image
+              src={WholeSale}
+              height={400}
+              width={550}
+              alt="wholesale"
+              placeholder="blur"
+              objectFit="cover"
+            />
           </View>
           <View css={{ display: 'flex', justifyContent: 'center' }}>
             <BrochureButton

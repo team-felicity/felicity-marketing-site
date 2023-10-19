@@ -9,10 +9,10 @@ import ScrollReveal from '@components/ScrollReveal'
 import Grid from '@components/Grid'
 import { textStyles } from '@components/Text'
 
-import SilverCard from 'public/SilverCard.svg'
-import GoldCard from 'public/GoldCard.svg'
-import PlatinumCard from 'public/PlatinumCard.svg'
-import DiamondCard from 'public/DiamondCard.svg'
+import SilverCard from '../../public/SilverCard.svg'
+import GoldCard from '../../public/GoldCard.svg'
+import PlatinumCard from '../../public/PlatinumCard.svg'
+import DiamondCard from '../../public/DiamondCard.svg'
 
 const data = [
   {
@@ -65,23 +65,21 @@ const data = [
   },
 ]
 
-export default function OurTeam() {
+export default function Pricing() {
   return (
     <View
       as="section"
       css={{
         backgroundColor: '$white1',
-        pb: '$9',
+        py: '$9',
       }}
     >
       <Container
         size="large2"
         as={Grid}
         css={{
-          gapy: '8rem',
+          gapy: '5rem',
           mb: '$8',
-          ml: 100,
-          mr: 100,
         }}
       >
         <ScrollReveal>
@@ -89,7 +87,7 @@ export default function OurTeam() {
             size={{ '@initial': '10', '@tablet': '12', '@desktop': '14' }}
             css={{ pt: 100, pb: 0, mb: 0 }}
           >
-            BE PART OF THE HAPPY TREND
+            Be Part of the Happy Trend
           </Title>
         </ScrollReveal>
         <OuterFlex>

@@ -59,7 +59,7 @@ export default function Layout({
         {/* <meta name="twitter:site" content="@felicityph" /> */}
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <Flex direction="column" css={css}>
+      <Flex direction="column" css={{ height: '100%', ...css }}>
         <Header />
         <View
           as="main"

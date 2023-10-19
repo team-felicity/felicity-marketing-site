@@ -1,8 +1,8 @@
 import Image from 'next/image'
+import Balancer from 'react-wrap-balancer'
 
 import { styled } from '@config/stitches'
 import { useCallback, useEffect, useState } from 'react'
-import Youtube from 'react-youtube'
 
 import ContactUs from '@components/ContactUs'
 import View from '@components/View'
@@ -52,19 +52,19 @@ export default function AboutUs() {
 
 function Hero() {
   return (
-    <div>
+    <Flex direction="column" align="center">
       <Title intent="pageTitle" css={{ mb: '3rem', textAlign: 'center' }}>
         About Us
       </Title>
       <ImagesContainer>
         <HeroImageWrapper>
-          <Image src={Production} alt="vector" />
+          <Image src={Production} alt="vector" placeholder="blur" />
         </HeroImageWrapper>
         <HeroImageWrapper>
-          <Image src={Delivery} alt="vector" />
+          <Image src={Delivery} alt="vector" placeholder="blur" />
         </HeroImageWrapper>
         <HeroImageWrapper>
-          <Image src={Sales} alt="vector" />
+          <Image src={Sales} alt="vector" placeholder="blur" />
         </HeroImageWrapper>
       </ImagesContainer>
       <Text
@@ -73,17 +73,19 @@ function Hero() {
         color="primary5"
         css={{ mt: '$4', textAlign: 'center' }}
       >
-        Felicity is a company that aims to spread happiness to the lives of the
-        Filipino people through a grocery shopping app that offers affordable
-        products and good services, making food easily accessible to everyone.
-        Apart from making a primary need effortlessly available, Felicity also
-        wants to make sure that Filipinos also get to fulfill their wants. By
-        subscribing, customers can enjoy various perks such as discounts,
-        vouchers, and commission from member purchases. With this platform,
-        Felicity hopes to achieve its dream of a society where people lead a
-        life of fewer worries.
+        <Balancer>
+          Felicity is a company that aims to spread happiness to the lives of
+          the Filipino people through a grocery shopping app that offers
+          affordable products and good services, making food easily accessible
+          to everyone. Apart from making a primary need effortlessly available,
+          Felicity also wants to make sure that Filipinos also get to fulfill
+          their wants. By subscribing, customers can enjoy various perks such as
+          discounts, vouchers, and commission from member purchases. With this
+          platform, Felicity hopes to achieve its dream of a society where
+          people lead a life of fewer worries.
+        </Balancer>
       </Text>
-    </div>
+    </Flex>
   )
 }
 
@@ -113,8 +115,18 @@ const ImagesContainer = styled('div', {
   gapy: '$4',
   position: 'relative',
 
+  [`& ${HeroImageWrapper} img`]: {
+    aspectRatio: '16/9',
+    objectFit: 'cover',
+  },
+
   '@tablet': {
     flexDirection: 'row',
+
+    [`& ${HeroImageWrapper} img`]: {
+      aspectRatio: 'initial',
+      objectFit: 'initial',
+    },
   },
 })
 
@@ -185,19 +197,26 @@ function WhereItAllBegins() {
           </Flex>
         </ImageWrapper>
       </View>
-      <Flex direction="column" gap="3">
+      <Flex
+        direction="column"
+        justify="center"
+        align={{ '@initial': 'center', '@desktop': 'start' }}
+        gap="3"
+      >
         <Title as="h2">Where It All Begins</Title>
-        <Text as="p" color="primary5">
-          The Felicity Facility is where we start with our mission on making
-          people happy. From planning systems to delivering items to each
-          household, we make sure that everything we do will bring happiness and
-          fewer worries to our customers.
-        </Text>
-        <Text as="p" color="primary5">
-          The Felicity Facility is where we start with our mission on making
-          people happy. From planning systems to delivering items to each
-          household, we make sure that everything we do will bring happiness and
-          fewer worries to our customers.
+        {/* <Text as="p" color="primary5"> */}
+        {/*   The Felicity Facility is where we start with our mission on making */}
+        {/*   people happy. From planning systems to delivering items to each */}
+        {/*   household, we make sure that everything we do will bring happiness and */}
+        {/*   fewer worries to our customers. */}
+        {/* </Text> */}
+        <Text as="p" color="primary5" css={{ textAlign: 'center' }}>
+          <Balancer>
+            The Felicity Facility is where we start with our mission on making
+            people happy. From planning systems to delivering items to each
+            household, we make sure that everything we do will bring happiness
+            and fewer worries to our customers.
+          </Balancer>
         </Text>
       </Flex>
     </Grid>
@@ -206,19 +225,36 @@ function WhereItAllBegins() {
 
 function TheDreamers() {
   return (
-    <Flex direction="column" gap="5">
+    <Flex direction="column" gap="5" align="center">
       <Title as="h2" css={{ textAlign: 'center' }}>
         The Dreamers
       </Title>
       <View
         css={{
-          height: '100%',
           width: '100%',
+          borderRadius: '1rem',
+          overflow: 'hidden',
           display: 'flex',
-          justifyContent: 'center',
+
+          '@desktop': {
+            borderRadius: '2rem',
+          },
+
+          '& iframe': {
+            width: '100%',
+            aspectRatio: '16/9',
+          },
         }}
       >
-        <Youtube videoId={'K17wR57hKdk'} />
+        <iframe
+          src="https://www.youtube.com/embed/K17wR57hKdk?si=cjHXPn7W_FzwdPvK"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore asdasd
+          allowfullscreen
+        />
       </View>
       {/* <Image
           src={Banner2}
@@ -228,19 +264,22 @@ function TheDreamers() {
         /> */}
 
       <Text as="p" color="primary5" css={{ textAlign: 'center' }}>
-        In a world wherein happiness comes with a price, it is not surprising
-        how so many people find this hard to achieve. From basic necessities to
-        even reaching our dreams, we all now give a second thought before
-        deciding to get them, thanks to their hefty price tags! But is this the
-        kind of life we all want to live until the end? Well, definitely not for
-        Felicity! Because here, we believe that every Filipino should gain
-        access not just to fresh and quality products along with good service at
-        such an affordable price, but also to a platform that would give every
-        Filipino a chance to improve their life and finances through passive
-        income. Here in Felicity, we want to build a community where people can
-        be happier and live a quality life. We want to see a city where people
-        can smile genuinely with fewer worries. Imagine a whole community of
-        winners! A happy city - this is what we dream of here in Felicity.
+        <Balancer>
+          In a world wherein happiness comes with a price, it is not surprising
+          how so many people find this hard to achieve. From basic necessities
+          to even reaching our dreams, we all now give a second thought before
+          deciding to get them, thanks to their hefty price tags! But is this
+          the kind of life we all want to live until the end? Well, definitely
+          not for Felicity! Because here, we believe that every Filipino should
+          gain access not just to fresh and quality products along with good
+          service at such an affordable price, but also to a platform that would
+          give every Filipino a chance to improve their life and finances
+          through passive income. Here in Felicity, we want to build a community
+          where people can be happier and live a quality life. We want to see a
+          city where people can smile genuinely with fewer worries. Imagine a
+          whole community of winners! A happy city - this is what we dream of
+          here in Felicity.
+        </Balancer>
       </Text>
     </Flex>
   )

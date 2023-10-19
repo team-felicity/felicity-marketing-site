@@ -2,15 +2,19 @@ import { useCallback, useEffect, useState } from 'react'
 import NextImage from 'next/image'
 
 import { styled } from '@config/stitches'
+import { useIsomorphicLayoutEffect } from 'utils/useIsomorphicLayoutEffect'
 
-import Img1 from '@assets/carousel-image1.jpg'
+import Image1 from '@assets/carousel-img1.jpg'
+import Image2 from '@assets/carousel-img2.jpg'
+import Image3 from '@assets/carousel-img3.jpg'
+import Image4 from '@assets/carousel-img4.jpg'
 import DesktopVector from '@assets/carousel-vector-desktop.png'
 import PhoneVector from '@assets/carousel-vector-phone.png'
 
 import View from '@components/View'
 import Flex from '@components/Flex'
 
-const carouselImages = [Img1, Img1, Img1, Img1]
+const carouselImages = [Image1, Image2, Image3, Image4]
 const getTranslateXValue = (carouselIdx: number) =>
   -(100 / carouselImages.length) * (carouselIdx - 1)
 
@@ -18,6 +22,7 @@ const MS_DURATION_FOR_EACH_PICTURE = 3000
 
 export default function HeroCarousel() {
   const [carouselIndex, setCarouselIndex] = useState(1)
+  const [loaded, setLoaded] = useState(false)
 
   const handleNextImage = useCallback(() => {
     // cycle back to start on upperbound
@@ -53,7 +58,7 @@ export default function HeroCarousel() {
       }}
     >
       <View css={{ position: 'relative' }}>
-        <CarouselDotContainer gapX="1">
+        <CarouselDotContainer gapX="1" css={{ opacity: loaded ? 1 : 0 }}>
           {carouselImages.map((_, index) => (
             <CarouselDot
               key={index}
@@ -69,6 +74,7 @@ export default function HeroCarousel() {
             padding: '1px 0',
             transform: `translateX(${getTranslateXValue(carouselIndex)}%)`,
             transition: 'all 300ms ease',
+            opacity: loaded ? 1 : 0,
           }}
         >
           {carouselImages.map((item, index) => (
@@ -80,22 +86,35 @@ export default function HeroCarousel() {
               height={900}
               objectFit="cover"
               alt="Image of a mango"
-              placeholder="blur"
-              css={{
-                filter: index % 2 ? 'brightness(0.2)' : 'unset',
-                pointerEvents: 'none',
-                userSelect: 'none',
-              }}
+              quality={70}
+              // placeholder="empty"
+              // css={{
+              //   filter: index % 2 ? 'brightness(0.2)' : 'unset',
+              //   pointerEvents: 'none',
+              //   userSelect: 'none',
+              // }}
             />
           ))}
         </Flex>
-        <Wavez />
+        <Wavez
+          onLoadingComplete={() => {
+            setLoaded(true)
+          }}
+        />
       </View>
     </View>
   )
 }
 
-function Wavez() {
+function Wavez({ onLoadingComplete }: { onLoadingComplete: () => void }) {
+  const [loaded, setLoaded] = useState(false)
+
+  useIsomorphicLayoutEffect(() => {
+    setLoaded(true)
+  }, [])
+
+  if (!loaded) return null
+
   return (
     <Flex
       align="end"
@@ -119,16 +138,19 @@ function Wavez() {
             src={DesktopVector}
             alt="vector"
             layout="fill"
-            placeholder="blur"
+            // placeholder="blur"
             quality={10}
+            priority
+            onLoadingComplete={onLoadingComplete}
           />
         ) : (
           <Image
             src={PhoneVector}
             alt="vector"
             layout="fill"
-            placeholder="blur"
+            // placeholder="blur"
             quality={10}
+            onLoadingComplete={onLoadingComplete}
           />
         )}
       </div>

@@ -19,10 +19,6 @@ const navLinks = [
     title: 'About Us',
   },
   {
-    href: '/blog',
-    title: 'Our Blog',
-  },
-  {
     href: '/faq',
     title: 'FAQs',
   },

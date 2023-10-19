@@ -9,12 +9,15 @@ import ScrollReveal from '@components/ScrollReveal'
 import Grid from '@components/Grid'
 import { textStyles } from '@components/Text'
 
-import SampleImage from 'public/sample.png'
+import SilverCard from '../../public/SilverCard.svg'
+import GoldCard from '../../public/GoldCard.svg'
+import PlatinumCard from '../../public/PlatinumCard.svg'
+import DiamondCard from '../../public/DiamondCard.svg'
 
 const data = [
   {
     id: 1,
-    imageProps: SampleImage,
+    imageProps: SilverCard,
     color: '#20577A',
     columnTitle: 'Silver',
     subtitle: 'Php 500 one-time membership',
@@ -26,7 +29,7 @@ const data = [
   },
   {
     id: 2,
-    imageProps: SampleImage,
+    imageProps: GoldCard,
     color: '#20577A',
     columnTitle: 'Gold',
     subtitle: 'Php 500 one-time membership',
@@ -38,7 +41,7 @@ const data = [
   },
   {
     id: 3,
-    imageProps: SampleImage,
+    imageProps: PlatinumCard,
     color: '#20577A',
     columnTitle: 'Platinum',
     subtitle: 'Php 500 one-time membership',
@@ -50,7 +53,7 @@ const data = [
   },
   {
     id: 4,
-    imageProps: SampleImage,
+    imageProps: DiamondCard,
     color: '#20577A',
     columnTitle: 'Diamond',
     subtitle: 'Php 500 one-time membership',
@@ -62,23 +65,21 @@ const data = [
   },
 ]
 
-export default function OurTeam() {
+export default function Pricing() {
   return (
     <View
       as="section"
       css={{
         backgroundColor: '$white1',
-        pb: '$9',
+        py: '$9',
       }}
     >
       <Container
         size="large2"
         as={Grid}
         css={{
-          gapy: '8rem',
+          gapy: '5rem',
           mb: '$8',
-          ml: 100,
-          mr: 100,
         }}
       >
         <ScrollReveal>
@@ -86,7 +87,7 @@ export default function OurTeam() {
             size={{ '@initial': '10', '@tablet': '12', '@desktop': '14' }}
             css={{ pt: 100, pb: 0, mb: 0 }}
           >
-            BE PART OF THE HAPPY TREND
+            Be Part of the Happy Trend
           </Title>
         </ScrollReveal>
         <OuterFlex>
@@ -129,10 +130,10 @@ const Title = styled('h1', {
 })
 
 const StyledTeamImage = styled(Image, {
-  borderTopLeftRadius: '300px',
-  borderBottomLeftRadius: '300px',
-  borderTopRightRadius: '300px',
-  borderBottomRightRadius: '300px',
+  borderTopLeftRadius: '50px',
+  borderBottomLeftRadius: '50px',
+  borderTopRightRadius: '50px',
+  borderBottomRightRadius: '50px',
 })
 
 const OuterFlex = styled(Flex, {

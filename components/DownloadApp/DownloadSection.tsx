@@ -1,8 +1,5 @@
 import Image from 'next/image'
-import Appstore from 'public/appstore.png'
-import Playstore from 'public/googleplay.png'
-import Phone from 'public/phone.svg'
-import Foodbowl from 'public/foodbowl.png'
+import Balancer from 'react-wrap-balancer'
 
 import ScrollReveal from '@components/ScrollReveal'
 import Container from '@components/Container'
@@ -12,6 +9,11 @@ import Link from '@components/Link'
 import { textStyles } from '@components/Text'
 
 import { styled } from '@config/stitches'
+
+import Appstore from '../../public/appstore.png'
+import Playstore from '../../public/googleplay.png'
+import Phone from '../../public/phone.svg'
+import Foodbowl from '../../public/foodbowl.png'
 
 export default function DownloadSection() {
   return (
@@ -31,12 +33,15 @@ export default function DownloadSection() {
         <Container size="medium" as={FlexCol} css={{ m: 0, p: 0 }}>
           <ScrollReveal>
             <Description>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Id
-              donec ultrices tincidunt arcu non sodales neque. Orci phasellus
-              egestas tellus rutrum tellus pellentesque eu tincidunt tortor rci
-              phasellus egestas tellus rutrum tellus pellentesque eu tincidunt
-              tortor
+              <Balancer>
+                No more wasted time when shopping for your veggies, fruits, and
+                meat can be done anytime and anywhere with less effort! Join the
+                thousands of Filipinos who made their decision to live a more
+                comfortable, more productive, healthier, and happier life every
+                single day and enjoy a lot more of perks by becoming a part of
+                Felicity Community. See the difference for yourself and
+                experience Fresh Happiness Every Day!
+              </Balancer>
             </Description>
           </ScrollReveal>
           <ScrollReveal>
@@ -49,7 +54,7 @@ export default function DownloadSection() {
                 <Image src={Appstore} alt="appstore" />
               </Link>
               <Link
-                href="http://facebok.com"
+                href="https://play.google.com/store/apps/details?id=com.felicityincorporated.felicity"
                 target="_blank"
                 rel="noreferrer noopener"
               >

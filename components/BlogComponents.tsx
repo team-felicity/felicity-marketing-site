@@ -120,11 +120,11 @@ const P = styled('p', {
     initialLetter: 2,
     color: '$primary7',
     fontSize: '3.75em',
-    lineHeight: '0.9',
+    // lineHeight: '0.9',
     textTransform: 'uppercase',
     display: 'block',
     float: 'left',
-    paddingTop: '$1',
+    paddingTop: '$2',
     mr: '$2',
     fontWeight: 'bold',
 

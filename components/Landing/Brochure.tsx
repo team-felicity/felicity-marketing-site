@@ -12,106 +12,106 @@ import WholeSale from 'public/assets/Home/Wholesale01.jpg'
 export default function Brochure() {
   return (
     <View as="section" css={{ py: 'clamp(4rem, 5vw, 5.5rem)' }} id="brochures">
-      <Container
-        as={Flex}
-        size="large2"
-        justify="between"
-        gap="3"
-        align="center"
-        css={{
-          flexDirection: 'row',
-        }}
-      >
-        <Container
-          size="medium"
-          as={FlexCol}
-          css={{ display: 'flex', justifyContent: 'center' }}
+      <Container size="large2">
+        <Flex
+          direction={{ '@initial': 'column', '@desktop': 'row' }}
+          justify="between"
+          gap="8"
+          css={{
+            mx: 'auto',
+            width: '100%',
+
+            '@desktop': {
+              width: '90%',
+            },
+          }}
         >
-          <View
-            id="retailview1"
+          <Flex
+            direction="column"
+            justify="center"
             css={{
-              borderRadius: '2rem',
-              overflow: 'hidden',
               display: 'flex',
+              justifyContent: 'center',
             }}
           >
-            <Image
-              src={RetailImage}
-              height={400}
-              width={550}
-              alt="retail"
-              placeholder="blur"
-              objectFit="cover"
-            />
-          </View>
-          <View css={{ display: 'flex', justifyContent: 'center' }}>
-            <BrochureButton
-              href="https://drive.google.com/file/d/10T05nNAPKNGjnAF8nd_Ojq3lQnbR-hzF/view?usp=sharing"
-              target="blank"
-              radius="pill"
-              size="small"
-              fitContent
+            <View
+              id="retailview1"
               css={{
-                fontSize: '$2',
-                padding: '1rem 3rem',
-                height: 'unset',
-                color: 'White',
+                borderRadius: '2rem',
+                overflow: 'hidden',
+                display: 'flex',
               }}
             >
-              Retail Brochure
-            </BrochureButton>
-          </View>
-        </Container>
-        <Container
-          size="medium"
-          as={FlexCol}
-          css={{ display: 'flex', justifyContent: 'center' }}
-        >
-          <View
-            css={{
-              borderRadius: '2rem',
-              overflow: 'hidden',
-              display: 'flex',
-            }}
+              <Image
+                src={RetailImage}
+                height={400}
+                width={550}
+                alt="retail"
+                placeholder="blur"
+                objectFit="cover"
+              />
+            </View>
+            <View css={{ display: 'flex', justifyContent: 'center' }}>
+              <BrochureButton
+                href="https://drive.google.com/file/d/10T05nNAPKNGjnAF8nd_Ojq3lQnbR-hzF/view?usp=sharing"
+                target="blank"
+                radius="pill"
+                size="small"
+                fitContent
+                css={{
+                  fontSize: '$2',
+                  padding: '1rem 3rem',
+                  height: 'unset',
+                  color: 'White',
+                }}
+              >
+                Retail Brochure
+              </BrochureButton>
+            </View>
+          </Flex>
+          <Flex
+            direction="column"
+            css={{ display: 'flex', justifyContent: 'center' }}
           >
-            <Image
-              src={WholeSale}
-              height={400}
-              width={550}
-              alt="wholesale"
-              placeholder="blur"
-              objectFit="cover"
-            />
-          </View>
-          <View css={{ display: 'flex', justifyContent: 'center' }}>
-            <BrochureButton
-              href="https://drive.google.com/file/d/1UNoAxn0WghTbGFWzunKY7I9KDYbIaRjO/view?usp=sharing"
-              target="blank"
-              radius="pill"
-              size="small"
-              fitContent
+            <View
               css={{
-                fontSize: '$2',
-                padding: '1rem 3rem',
-                height: 'unset',
-                color: 'White',
+                borderRadius: '2rem',
+                overflow: 'hidden',
+                display: 'flex',
               }}
             >
-              Wholesale Brochure
-            </BrochureButton>
-          </View>
-        </Container>
+              <Image
+                src={WholeSale}
+                height={400}
+                width={550}
+                alt="wholesale"
+                placeholder="blur"
+                objectFit="cover"
+              />
+            </View>
+            <View css={{ display: 'flex', justifyContent: 'center' }}>
+              <BrochureButton
+                href="https://drive.google.com/file/d/1UNoAxn0WghTbGFWzunKY7I9KDYbIaRjO/view?usp=sharing"
+                target="blank"
+                radius="pill"
+                size="small"
+                fitContent
+                css={{
+                  fontSize: '$2',
+                  padding: '1rem 3rem',
+                  height: 'unset',
+                  color: 'White',
+                }}
+              >
+                Wholesale Brochure
+              </BrochureButton>
+            </View>
+          </Flex>
+        </Flex>
       </Container>
     </View>
   )
 }
-
-const FlexCol = styled(Flex, {
-  flexDirection: 'column',
-  defaultVariants: {
-    gap: '4',
-  },
-})
 
 const BrochureButton = styled('a', buttonStyles, {
   marginTop: '$4',

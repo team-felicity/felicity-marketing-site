@@ -1,4 +1,3 @@
-import Container from '@components/Container'
 import View from '@components/View'
 import Grid from '@components/Grid'
 import ContactUsForm from './ContactUsForm'
@@ -8,9 +7,7 @@ import { CSS } from '@config/stitches'
 export default function ContactUsSection({ css }: { css?: CSS }) {
   return (
     <View as="section" css={css}>
-      <Container
-        size="large2"
-        as={Grid}
+      <Grid
         gap={{ '@initial': '6', '@desktop': '4' }}
         columns="2"
         css={{
@@ -26,7 +23,7 @@ export default function ContactUsSection({ css }: { css?: CSS }) {
       >
         <Maps />
         <ContactUsForm />
-      </Container>
+      </Grid>
     </View>
   )
 }

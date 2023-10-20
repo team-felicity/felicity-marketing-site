@@ -15,6 +15,7 @@ import Pricing from '@components/AboutUs/OurTeam'
 
 import Waves from 'public/waves.svg'
 import { articlesList } from 'utils/api'
+import Container from '@components/Container'
 
 export default function LandingPage({
   articles,
@@ -29,7 +30,11 @@ export default function LandingPage({
       <Pricing />
       <DownloadSection />
       <RecentPostSection articles={articles} />
-      <ContactUs css={{ backgroundColor: '$white1', py: '$9' }} />
+      <View css={{ backgroundColor: '$white1', py: '$9' }}>
+        <Container size="large2">
+          <ContactUs />
+        </Container>
+      </View>
     </View>
   )
 }

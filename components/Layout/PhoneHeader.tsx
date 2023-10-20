@@ -28,10 +28,10 @@ const navLinks = [
     href: '/about',
     title: 'About Us',
   },
-  {
-    href: '/blog',
-    title: 'Our Blog',
-  },
+  // {
+  //   href: '/blog',
+  //   title: 'Our Blog',
+  // },
   {
     href: '/faq',
     title: 'FAQs',

@@ -6,9 +6,10 @@ import { styled } from '@config/stitches'
 
 import Button from '@components/Button'
 import Grid from '@components/Grid'
-import Container from '@components/Container'
 import { TextArea, TextField } from '@components/TextField'
 import Text, { textStyles } from '@components/Text'
+import Flex from '@components/Flex'
+
 import { contact, ContactFields } from 'utils/api'
 
 export default function ContactUs() {
@@ -22,7 +23,7 @@ export default function ContactUs() {
   const router = useRouter()
 
   return (
-    <Container size="medium" css={{ p: '$5' }}>
+    <Flex direction="column">
       <ContactUsHeader>Contact Us</ContactUsHeader>
       <Text>
         We want to provide you a great experience which is why we want to hear
@@ -65,6 +66,7 @@ export default function ContactUs() {
           rows={7}
           {...register('message', { required: 'Please fill out this field' })}
           error={errors.message?.message}
+          css={{ mt: '$4' }}
         />
         <Button
           type="submit"
@@ -73,7 +75,7 @@ export default function ContactUs() {
           loading={loading}
           radius="10"
           css={{
-            mt: '$2',
+            mt: '$6',
             width: '100%',
             '@desktop': { width: '25%' },
           }}
@@ -81,14 +83,13 @@ export default function ContactUs() {
           Submit
         </Button>
       </FormGrid>
-    </Container>
+    </Flex>
   )
 }
 
 const FormGrid = styled(Grid, {
   borderRadius: '$10',
   mt: '$6',
-  gap: '$4',
 })
 
 const ContactUsHeader = styled('h1', {

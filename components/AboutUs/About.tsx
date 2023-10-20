@@ -210,7 +210,11 @@ function WhereItAllBegins() {
         {/*   household, we make sure that everything we do will bring happiness and */}
         {/*   fewer worries to our customers. */}
         {/* </Text> */}
-        <Text as="p" color="primary5" css={{ textAlign: 'center' }}>
+        <Text
+          as="p"
+          color="primary5"
+          css={{ textAlign: 'center', '@desktop': { textAlign: 'start' } }}
+        >
           <Balancer>
             The Felicity Facility is where we start with our mission on making
             people happy. From planning systems to delivering items to each

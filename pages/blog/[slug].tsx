@@ -92,7 +92,7 @@ export default function BlogDetail({
             <Image
               src={
                 process.env.NODE_ENV === 'development'
-                  ? `http://localhost:1337${coverImage.url}`
+                  ? `${process.env.NEXT_PUBLIC_API_URL}${coverImage.url}`
                   : coverImage.url
               }
               width={coverImage.width}

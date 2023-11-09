@@ -26,7 +26,7 @@ export default function RecentPostSection({
         mb: '$7',
         my: 'clamp(1.5rem, 5vw, 5rem)',
 
-        '@desktop': { mt: '$6' },
+        '@tablet': { mt: '$6' },
       }}
     >
       <View
@@ -35,7 +35,7 @@ export default function RecentPostSection({
         }}
       >
         <ScrollReveal>
-          <Title size={{ '@initial': '11', '@desktop': '14' }}>
+          <Title size={{ '@initial': '11', '@tablet': '14' }}>
             RECENT POST
           </Title>
         </ScrollReveal>
@@ -74,12 +74,8 @@ const TomatoView = styled(View, {
   position: 'absolute',
   left: '-3%',
   transform: 'translateY(-20%)',
-  width: '6rem',
-  height: '6rem',
 
-  '@desktop': {
-    width: '20rem',
-    height: '20rem',
+  '@tablet': {
     transform: 'translateY(-15%)',
     left: '-5%',
   },
@@ -89,12 +85,9 @@ const BrocoliView = styled(View, {
   position: 'absolute',
   right: '-2%',
   transform: 'translateY(-40%)',
-  width: '6rem',
-  height: '6rem',
+  // NOTE: @desktop important since @tablet overflows site on the right
   '@desktop': {
-    width: '20rem',
-    height: '20rem',
-    right: '-19%',
+    right: '-8%',
     transform: 'translateY(-15%)',
   },
 })
@@ -118,7 +111,7 @@ const PostCard = styled(View, {
   backgroundColor: '$white1',
   boxShadow: '1px 2px 6px 1px #D0D0D0',
 
-  '@desktop': {
+  '@tablet': {
     borderRadius: '3rem',
     p: '$5',
   },

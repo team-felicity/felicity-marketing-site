@@ -112,6 +112,7 @@ function HeroContent() {
 const SloganText = styled('h1', {
   ...textStyles,
 
+  maxWidth: '15ch',
   defaultVariants: {
     color: 'primary5',
     weight: 'bold',
@@ -136,6 +137,7 @@ const EmphasizedSloganText = styled('span', {
 const CompanyDescription = styled('p', {
   ...textStyles,
 
+  maxWidth: '50ch',
   opacity: 0.85,
 
   defaultVariants: {

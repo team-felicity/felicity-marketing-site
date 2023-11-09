@@ -120,7 +120,7 @@ const Description = styled('p', {
 
 const Behind = styled(View, {
   position: 'absolute',
-  right: '-25%',
+  right: '-20%',
   top: '50%',
-  transform: 'translateY(-40%)',
+  transform: 'translateY(-50%)',
 })

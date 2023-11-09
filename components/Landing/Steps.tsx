@@ -35,7 +35,7 @@ export default function Steps({ steps, header }: Props) {
         css={{
           gapy: '3rem',
           mb: '$5',
-          '@desktop': {
+          '@tablet': {
             pt: '$5',
           },
         }}
@@ -46,7 +46,7 @@ export default function Steps({ steps, header }: Props) {
         <Flex
           direction={{
             '@initial': 'column',
-            '@desktop': 'row',
+            '@tablet': 'row',
           }}
           justify="between"
           gap="8"
@@ -101,7 +101,7 @@ const ColumnTitle = styled('h1', {
   textAlign: 'center',
   mt: '$4',
 
-  '@desktop': {
+  '@tablet': {
     mt: '$8',
     mb: '$1',
   },
@@ -115,9 +115,9 @@ const ColumnTitle = styled('h1', {
 const Subtitles = styled('p', {
   ...textStyles,
   textAlign: 'center',
-  width: '100%',
-  '@desktop': {
-    px: '$2',
+  maxWidth: '30ch',
+  alignSelf: 'center',
+  '@tablet': {
     fontSize: '$4',
   },
 })

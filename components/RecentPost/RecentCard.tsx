@@ -65,7 +65,7 @@ export default function RecentCard({ direction, from, data }: Props) {
         css={
           direction === 'rowReverse'
             ? {
-                '@desktop': {
+                '@tablet': {
                   pl: '$3',
                 },
               }
@@ -78,7 +78,7 @@ export default function RecentCard({ direction, from, data }: Props) {
               <Blogtitle
                 size={{
                   '@initial': '7',
-                  '@desktop': '8',
+                  '@tablet': '8',
                 }}
               >
                 {title}
@@ -91,7 +91,7 @@ export default function RecentCard({ direction, from, data }: Props) {
             <AuthorText
               size={{
                 '@initial': '2',
-                '@desktop': '3',
+                '@tablet': '3',
               }}
             >
               {author.name},
@@ -99,7 +99,7 @@ export default function RecentCard({ direction, from, data }: Props) {
             <AuthorText
               size={{
                 '@initial': '2',
-                '@desktop': '3',
+                '@tablet': '3',
               }}
             >
               {toDefaultDateFormat(new Date(createdAt))}
@@ -179,7 +179,7 @@ const A = styled('a', {
 const StyledImage = styled(Image, {
   borderRadius: '1.5rem',
 
-  '@desktop': {
+  '@tablet': {
     borderRadius: '35px',
   },
 })

@@ -14,14 +14,14 @@ export default function Brochure() {
     <View as="section" css={{ py: 'clamp(4rem, 5vw, 5.5rem)' }} id="brochures">
       <Container size="large2">
         <Flex
-          direction={{ '@initial': 'column', '@desktop': 'row' }}
+          direction={{ '@initial': 'column', '@tablet': 'row' }}
           justify="between"
           gap="8"
           css={{
             mx: 'auto',
             width: '100%',
 
-            '@desktop': {
+            '@tablet': {
               width: '90%',
             },
           }}
@@ -44,8 +44,6 @@ export default function Brochure() {
             >
               <Image
                 src={RetailImage}
-                height={400}
-                width={550}
                 alt="retail"
                 placeholder="blur"
                 objectFit="cover"
@@ -82,8 +80,6 @@ export default function Brochure() {
             >
               <Image
                 src={WholeSale}
-                height={400}
-                width={550}
                 alt="wholesale"
                 placeholder="blur"
                 objectFit="cover"

@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { m } from 'framer-motion'
 
 import { ArticleCard } from 'utils/api'
@@ -7,7 +8,6 @@ import { styled } from '@config/stitches'
 
 import ScrollReveal from '@components/ScrollReveal'
 import Flex from '@components/Flex'
-import View from '@components/View'
 import Text, { textStyles } from '@components/Text'
 import { buttonStyles } from '@components/Button'
 
@@ -41,33 +41,50 @@ export default function RecentCard({ direction, from, data }: Props) {
       }}
       justify="between"
       gapX={from === 'blog' ? '8' : '5'}
+      gapY="4"
     >
       <ScrollReveal>
-        <ImageContainer>
-          <StyledImage
-            src={
-              process.env.NODE_ENV === 'development'
-                ? `${process.env.NEXT_PUBLIC_API_URL}${coverImage.url}`
-                : coverImage.url
-            }
-            width={coverImage.width}
-            height={coverImage.height}
-            objectFit="cover"
-            alt={coverImage.url}
-          />
-        </ImageContainer>
+        <Link href={`/blog/${slug}`} passHref>
+          <A>
+            <StyledImage
+              src={
+                process.env.NODE_ENV === 'development'
+                  ? `${process.env.NEXT_PUBLIC_API_URL}${coverImage.url}`
+                  : coverImage.url
+              }
+              width={coverImage.width}
+              height={coverImage.height}
+              objectFit="cover"
+              alt={coverImage.url}
+            />
+          </A>
+        </Link>
       </ScrollReveal>
 
-      <ContentFlex css={{ width: '100%' }}>
+      <ContentFlex
+        css={
+          direction === 'rowReverse'
+            ? {
+                '@desktop': {
+                  pl: '$3',
+                },
+              }
+            : {}
+        }
+      >
         <ScrollReveal>
-          <Blogtitle
-            size={{
-              '@initial': '7',
-              '@desktop': '8',
-            }}
-          >
-            {title}
-          </Blogtitle>
+          <Link href={`/blog/${slug}`}>
+            <a>
+              <Blogtitle
+                size={{
+                  '@initial': '7',
+                  '@desktop': '8',
+                }}
+              >
+                {title}
+              </Blogtitle>
+            </a>
+          </Link>
         </ScrollReveal>
         <ScrollReveal>
           <Flex gap="2">
@@ -108,9 +125,10 @@ export default function RecentCard({ direction, from, data }: Props) {
               fontSize: '$3',
               width: 'fit-content',
               textAlign: 'center',
-              padding: '1rem 1rem',
+              padding: '1rem 2rem',
               height: 'unset',
-              marginBottom: '$5',
+              borderRadius: '1rem',
+              alignSelf: 'flex-end',
               $$accentColor:
                 from === 'blog' ? '$colors$primary4' : '$colors$primary1',
               '@tablet': {
@@ -128,11 +146,13 @@ export default function RecentCard({ direction, from, data }: Props) {
 
 const Blogtitle = styled('h1', {
   ...textStyles,
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  display: '-webkit-box',
-  '-webkit-line-clamp': 2,
-  '-webkit-box-orient': 'vertical',
+  // overflow: 'hidden',
+  // textOverflow: 'ellipsis',
+  // display: '-webkit-box',
+  // '-webkit-line-clamp': 2,
+  // '-webkit-box-orient': 'vertical',
+
+  maxWidth: '80%',
 
   defaultVariants: {
     color: 'primary5',
@@ -143,16 +163,25 @@ const Blogtitle = styled('h1', {
 const ContentFlex = styled(Flex, {
   flexDirection: 'column',
   gap: '$2',
+  width: '100%',
+  // background: 'red',
+
+  '&:nth-of-type(odd)': {
+    background: 'red',
+  },
 })
 
-const ImageContainer = styled(View, {
+const A = styled('a', {
+  display: 'flex',
   width: '100%',
-  pb: '$3',
 })
 
 const StyledImage = styled(Image, {
-  borderRadius: '50px',
-  objectFit: 'contain',
+  borderRadius: '1.5rem',
+
+  '@desktop': {
+    borderRadius: '35px',
+  },
 })
 
 const AuthorText = styled('span', {
@@ -165,11 +194,9 @@ const AuthorText = styled('span', {
 })
 
 const Button = styled('a', buttonStyles, {
-  marginTop: '$4',
   fontSize: '$3',
   width: '100%',
   height: 'unset',
-  marginBottom: '$5',
 
   '@phone': {
     width: '50%',

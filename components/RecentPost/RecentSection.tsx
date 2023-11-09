@@ -113,13 +113,13 @@ const PostCard = styled(View, {
   position: 'relative',
   zIndex: 1,
   my: '$4',
-  pt: '$6',
-  pb: '$2',
-  px: '$6',
-  borderRadius: 50,
+  p: '1.5rem',
+  borderRadius: '2rem',
   backgroundColor: '$white1',
   boxShadow: '1px 2px 6px 1px #D0D0D0',
+
   '@desktop': {
-    pt: '$5',
+    borderRadius: '3rem',
+    p: '$5',
   },
 })
